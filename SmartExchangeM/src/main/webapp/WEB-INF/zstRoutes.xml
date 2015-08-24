@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd 
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+    ">
+    <bean id="ibikestationProcess" class="com.smart.smartexchangem.zst.ibikestationPorcess"/>
+    
+   
+    <routeContext id="zstRoute" xmlns="http://camel.apache.org/schema/spring">
+        
+        <route id="geocoder">
+            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/ibikestation"></from>
+            <removeHeaders pattern="CamelHttp*"/>
+            <to uri="http://zsbicycle.com/zsbicycle/zsmap/ibikestation.asp"/>
+            <to uri="direct:ibikeTask"/>
+        </route>
+       
+        <route id="ibikeTask">
+            <from uri="direct:ibikeTask"/>
+            <removeHeaders pattern="CamelHttp*"/>
+            <process ref="ibikestationProcess"/>
+        </route>
+        
+    </routeContext>
+ 
+</beans>
