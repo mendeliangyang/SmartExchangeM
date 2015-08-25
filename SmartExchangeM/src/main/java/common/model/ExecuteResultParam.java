@@ -50,6 +50,8 @@ public class ExecuteResultParam {
         this.ResultJsonObject = obj;
     }
 
+   
+
     public ExecuteResultParam(String pErrMsg, String pExecuteStr) {
         this.errMsg = pErrMsg;
         this.executeStr = pExecuteStr;

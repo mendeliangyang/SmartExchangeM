@@ -22,10 +22,10 @@ public class DeployInfo {
     public static String ResultDataTag = "resultDatas";
     public static String StringLinkMark = "|";
     public static String paramtokenKey = "token";
-    public static String paramRSIDKey ="RSID";
-    public static String httpPathLinkMark ="/";
-    
-    public static final String MasterRSID ="ReviveSmartDB";
+    public static String paramRSIDKey = "RSID";
+    public static String httpPathLinkMark = "/";
+
+    public static final String MasterRSID = "ReviveSmartDB";
 
     public static boolean readSetUp() throws Exception {
         File fXmlFile = null;
@@ -37,8 +37,8 @@ public class DeployInfo {
         MsgFilterModel msgFilter = null;
         Element tempSet = null, tempMsgEle = null, dbColumn = null, dbURLColumn = null;
         try {
-            
-            fXmlFile = new File(DoGetDelplyRootPath() + File.separator
+
+            fXmlFile = new File(DoGetDelplyRootPath() + File.separator + "WEB-INF" + File.separator
                     + "setupDeploy.xml");
 
             dbFactory = DocumentBuilderFactory
@@ -130,10 +130,12 @@ public class DeployInfo {
             return true;
 
         } catch (Exception ex) {
+            System.out.println("readSetUp error. setUpFilePath : %s" + ex.getLocalizedMessage());
+            
             RSLogger.ErrorLogInfo(ex.getLocalizedMessage(), ex);
-            RSLogger.SetUpLogInfo(String.format("readSetUp error. setUpFilePath : %s", fXmlFile) );
+            RSLogger.SetUpLogInfo(String.format("readSetUp error. setUpFilePath : %s", fXmlFile));
             throw ex;// new Exception("readSetUp error. setUpFilePath :"+fXmlFile);
-           // return false;
+            // return false;
         } finally {
             fXmlFile = null;
             dbFactory = null;
@@ -166,7 +168,7 @@ public class DeployInfo {
     private static short httpTimeOut = 5;
 
     public static short GetHttpTimeOut() throws Exception {
-        if (httpTimeOut<=0) {
+        if (httpTimeOut <= 0) {
             throw new Exception("have't load deployInfo.");
         }
         return httpTimeOut;

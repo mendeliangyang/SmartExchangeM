@@ -12,23 +12,10 @@
     
     <bean id="ibikestationProcess" class="com.smart.smartexchangem.zst.ibikestationPorcess"/>
     
-    <!--<import resource="zstRoutes.xml"/>-->
+    <import resource="zstRoutes.xml"/>
  
     <camelContext id="mainRoute" xmlns="http://camel.apache.org/schema/spring">
-        <!--        <routeContextRef ref="zstRouteRef"/>-->
-        <route id="geocoder">
-            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/ibikestation"></from>
-            <removeHeaders pattern="CamelHttp*"/>
-            <to uri="http://zsbicycle.com/zsbicycle/zsmap/ibikestation.asp"/>
-            <to uri="direct:ibikeTask"/>
-        </route>
-       
-        <route id="ibikeTask">
-            <from uri="direct:ibikeTask"/>
-            <removeHeaders pattern="CamelHttp*"/>
-            <process ref="ibikestationProcess"/>
-        </route>
-        
+        <routeContextRef ref="zstRoutes"/>
     </camelContext>
 </beans>
 

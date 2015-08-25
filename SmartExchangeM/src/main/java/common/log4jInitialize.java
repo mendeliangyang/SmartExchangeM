@@ -5,6 +5,7 @@
  */
 package common;
 
+import java.io.File;
 import org.apache.log4j.Logger;
 
 /**
@@ -21,7 +22,7 @@ public class log4jInitialize {
     public static void initializeLog4j() throws Exception {
         //读取配置文件
         System.setProperty("log4jdir", String.format("%s", DeployInfo.GetDeployLogPath()));
-        org.apache.log4j.PropertyConfigurator.configure(String.format("%s%s", DeployInfo.GetDelplyRootPath(), "log4j.properties"));
+        org.apache.log4j.PropertyConfigurator.configure(String.format("%s%s%s%s", DeployInfo.GetDelplyRootPath(), "WEB-INF", File.separator, "log4j.properties"));
 
         log4jErrLog = Logger.getLogger("rsErrorLog");
         log4jNormalLog = Logger.getLogger("rsNormalLog");

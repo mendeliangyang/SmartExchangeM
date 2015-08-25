@@ -7,14 +7,17 @@
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
     ">
     <bean id="ibikestationProcess" class="com.smart.smartexchangem.zst.ibikestationPorcess"/>
+    <bean id="nearbyListIbikProcess" class="com.smart.smartexchangem.zst.NearbyListIbikestationProcess"/>
+    <bean id="nearbyMapIbikProcess" class="com.smart.smartexchangem.zst.NearbyMapIbikestationProcess"/>
     
    
-    <routeContext id="zstRoute" xmlns="http://camel.apache.org/schema/spring">
+    <routeContext id="zstRoutes" xmlns="http://camel.apache.org/schema/spring">
         
-        <route id="geocoder">
+        <route id="ibikestation">
             <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/ibikestation"></from>
             <removeHeaders pattern="CamelHttp*"/>
-            <to uri="http://zsbicycle.com/zsbicycle/zsmap/ibikestation.asp"/>
+            <!--<to uri="http://zsbicycle.com/zsbicycle/zsmap/ibikestation.asp"/>-->
+            <!--<to uri="http://www.baidu.com"/>-->
             <to uri="direct:ibikeTask"/>
         </route>
        
@@ -23,7 +26,17 @@
             <removeHeaders pattern="CamelHttp*"/>
             <process ref="ibikestationProcess"/>
         </route>
+        <route id="nearByListIbik">
+            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/nearByListIbik"></from>
+            <removeHeaders pattern="CamelHttp*"/>
+            <process ref="nearbyListIbikProcess"/>
+        </route>
         
+        <route id="nearbyMapIbik">
+            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/nearByMapIbik"></from>
+            <removeHeaders pattern="CamelHttp*"/>
+            <process ref="nearbyMapIbikProcess"/>
+        </route>
     </routeContext>
  
 </beans>
