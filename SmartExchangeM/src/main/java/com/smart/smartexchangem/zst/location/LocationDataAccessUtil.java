@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -77,8 +78,8 @@ public class LocationDataAccessUtil {
                         Double currentJuli = locationGrid.GetDistanceToCenter(xiangSuZuoBiao[0], xiangSuZuoBiao[1]);
                         if (Double.compare(oldJuli, currentJuli) >= 0) {//旧的距离大
                             SetRemoveById(resultSet, old.getId(), level);
-                            newBycycleDataModel.setTileX(xiangSuZuoBiao[0].divide(new BigDecimal(256)));
-                            newBycycleDataModel.setTileY(xiangSuZuoBiao[1].divide(new BigDecimal(256)));
+                            newBycycleDataModel.setTileX(xiangSuZuoBiao[0].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN));
+                            newBycycleDataModel.setTileY(xiangSuZuoBiao[1].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN));
                             resultSet.add(newBycycleDataModel);
                             old.setTileX(new BigDecimal(-1));
                             old.setTileY(new BigDecimal(-1));
@@ -89,8 +90,8 @@ public class LocationDataAccessUtil {
                         }
 
                     } else {//格子没有被使用
-                        newBycycleDataModel.setTileX(xiangSuZuoBiao[0].divide(new BigDecimal(256)));
-                        newBycycleDataModel.setTileY(xiangSuZuoBiao[1].divide(new BigDecimal(256)));
+                        newBycycleDataModel.setTileX(xiangSuZuoBiao[0].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN));
+                        newBycycleDataModel.setTileY(xiangSuZuoBiao[1].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN));
 
                         resultSet.add(newBycycleDataModel);
                     }
@@ -137,7 +138,7 @@ public class LocationDataAccessUtil {
 
         latXiangSu = latXiangSu.compareTo(new BigDecimal(0)) >= 0 ? latXiangSu : new BigDecimal(0).subtract(latXiangSu);
         lngXiangSu = lngXiangSu.compareTo(new BigDecimal(0)) >= 0 ? lngXiangSu : new BigDecimal(0).subtract(lngXiangSu);
-        return new BigDecimal[]{latXiangSu, lngXiangSu};
+        return new BigDecimal[]{latXiangSu.setScale(0, BigDecimal.ROUND_HALF_DOWN), lngXiangSu.setScale(0, BigDecimal.ROUND_HALF_DOWN)};
     }
 
     /**

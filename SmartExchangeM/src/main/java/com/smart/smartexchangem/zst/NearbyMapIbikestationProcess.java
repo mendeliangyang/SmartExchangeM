@@ -51,10 +51,10 @@ public class NearbyMapIbikestationProcess implements Processor {
         new AnalyzeParam().AnalyzeParamBodyToMap(str, paramMap);
 
         BigDecimal[] xy = LocationDataAccessUtil.GetXiangSuXY(UtileSmart.getStringFromMap(paramMap, paramKey_lat), UtileSmart.getStringFromMap(paramMap, paramKey_lng), Integer.parseInt(UtileSmart.getStringFromMap(paramMap, paramKey_level)));
-        BigDecimal effectXR = xy[0].divide(new BigDecimal(256)).add(new BigDecimal(UtileSmart.getStringFromMap(paramMap, paramKey_level)));
-        BigDecimal effectYR = xy[1].divide(new BigDecimal(256)).add(new BigDecimal(UtileSmart.getStringFromMap(paramMap, paramKey_level)));//new BigDecimal(2560000).add(xy[1]);
-        BigDecimal effectXL = xy[0].divide(new BigDecimal(256)).subtract(new BigDecimal(UtileSmart.getStringFromMap(paramMap, paramKey_level)));
-        BigDecimal effectYL = xy[1].divide(new BigDecimal(256)).subtract(new BigDecimal(UtileSmart.getStringFromMap(paramMap, paramKey_level)));
+        BigDecimal effectXR = xy[0].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN).add(new BigDecimal(UtileSmart.getStringFromMap(paramMap, paramKey_level)));
+        BigDecimal effectYR = xy[1].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN).add(new BigDecimal(UtileSmart.getStringFromMap(paramMap, paramKey_level)));//new BigDecimal(2560000).add(xy[1]);
+        BigDecimal effectXL = xy[0].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN).subtract(new BigDecimal(UtileSmart.getStringFromMap(paramMap, paramKey_level)));
+        BigDecimal effectYL = xy[1].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN).subtract(new BigDecimal(UtileSmart.getStringFromMap(paramMap, paramKey_level)));
         JSONArray array = new JSONArray();
         JSONObject object = null;
         Set<String> setIds = new HashSet<>();
@@ -77,29 +77,29 @@ public class NearbyMapIbikestationProcess implements Processor {
 
             // x表示当地的纬度lat,y表示当地的经度lng
             if (paramLng < doubleTempLng && doubleTempLng < paramLngPlus && paramLat < doubleTempLat && doubleTempLat < paramLatPlus) {
-                //array.add(value.getString("id"));
+                array.add(value.getString("id"));
                 setIds.add(value.getString("id"));
             }
         }
-        synchronized (TaskBicycleData.bicycleSet) {
-            if (TaskBicycleData.bicycleSet != null) {
-                for (BycycleDataModel bicycleSet : TaskBicycleData.bicycleSet) {
-                    //，-1表示小于，0是等于，1是大于。
-                    if (bicycleSet.getTileX() == null || bicycleSet.getTileY() == null || bicycleSet.getLevel() == null) {
-                        continue;
-                    }
-                    // x表示当地的纬度lat,y表示当地的经度lng
-                    for (String setId : setIds) {
-                        if (setId.equals(bicycleSet.getId().toString()) && bicycleSet.getLevel().equals(UtileSmart.getStringFromMap(paramMap, paramKey_level))) {
-                            object = new JSONObject();
-                            object.accumulate("id", bicycleSet.getId());
-                            array.add(array);
-                        }
-                    }
-
-                } // x表示当地的纬度lat,y表示当地的经度lng
-            }
-        }
+//        synchronized (TaskBicycleData.bicycleSet) {
+//            if (TaskBicycleData.bicycleSet != null) {
+//                for (BycycleDataModel bicycleSet : TaskBicycleData.bicycleSet) {
+//                    //，-1表示小于，0是等于，1是大于。
+//                    if (bicycleSet.getTileX() == null || bicycleSet.getTileY() == null || bicycleSet.getLevel() == null || !bicycleSet.getLevel().toString().equals(UtileSmart.getStringFromMap(paramMap, paramKey_level))) {
+//                        continue;
+//                    }
+//                    // x表示当地的纬度lat,y表示当地的经度lng
+//                    for (String setId : setIds) {
+//                        if (setId.equals(bicycleSet.getId().toString())) {
+//                            object = new JSONObject();
+//                            object.accumulate("id", bicycleSet.getId());
+//                            array.add(array);
+//                        }
+//                    }
+//
+//                } // x表示当地的纬度lat,y表示当地的经度lng
+//            }
+//        }
 
 //        synchronized (TaskBicycleData.bicycleSet) {
 //            if (TaskBicycleData.bicycleSet != null) {

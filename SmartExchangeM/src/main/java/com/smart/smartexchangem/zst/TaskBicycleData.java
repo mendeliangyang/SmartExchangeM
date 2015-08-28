@@ -60,7 +60,7 @@ public class TaskBicycleData {
         if (bicycleDataPath == null) {
             bicycleDataPath = new StringBuffer().append(common.DeployInfo.GetDelplyRootPath())
                     .append(File.separator).append("WEB-INF").append(File.separator).append("zstData")
-                    .append(File.separator).append("bicylceXY.json").toString();
+                    .append(File.separator).append("bicycleXY.json").toString();
         }
         return bicycleDataPath;
     }
@@ -141,13 +141,10 @@ public class TaskBicycleData {
                         bicycleMap = bicycleMapTemp;
                         bicycleMapTemp = null;
                         // 数据变动，写数据到bicycle.json
-//                        if (dataChangedFlag) {
-//                            common.UtileSmart.writeFile(getBicycleDataPath(), bicycleMap.toString(), "utf-8");
-//                            common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
-//                        }
-                        common.UtileSmart.writeFile(getBicycleDataPath(), bicycleMap.toString(), "utf-8");
-                        common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
-
+                        if (dataChangedFlag) {
+                            common.UtileSmart.writeFile(getBicycleDataPath(), bicycleMap.toString(), "utf-8");
+                            // common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
+                        }
                     }
                 } catch (HttpException e) {
                     common.RSLogger.ErrorLogInfo("TimingBrushBicycleData httpExcepiton " + e.getLocalizedMessage(), e);
