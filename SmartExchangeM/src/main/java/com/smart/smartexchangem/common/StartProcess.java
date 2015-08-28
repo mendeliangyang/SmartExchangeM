@@ -5,6 +5,7 @@
  */
 package com.smart.smartexchangem.common;
 
+import com.smart.smartexchangem.zst.TaskBicycleData;
 import common.DeployInfo;
 import common.RSThreadPool;
 import javax.servlet.ServletContextEvent;
@@ -34,6 +35,12 @@ public class StartProcess implements ServletContextListener {
         }
         try {
             common.RSLogger.Initial();
+        } catch (Exception e) {
+            common.RSLogger.SetUpLogInfo(String.format("start service error step RSLogger.Initial ,%s", e.getLocalizedMessage()));
+            common.RSLogger.ErrorLogInfo(String.format("start service error step RSLogger.Initial ,%s", e.getLocalizedMessage()), e);
+        }
+        try {
+            TaskBicycleData.TimingBrushBicycleData();
         } catch (Exception e) {
             common.RSLogger.SetUpLogInfo(String.format("start service error step RSLogger.Initial ,%s", e.getLocalizedMessage()));
             common.RSLogger.ErrorLogInfo(String.format("start service error step RSLogger.Initial ,%s", e.getLocalizedMessage()), e);

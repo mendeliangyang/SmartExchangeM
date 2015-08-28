@@ -9,7 +9,9 @@
     <bean id="ibikestationProcess" class="com.smart.smartexchangem.zst.ibikestationPorcess"/>
     <bean id="nearbyListIbikProcess" class="com.smart.smartexchangem.zst.NearbyListIbikestationProcess"/>
     <bean id="nearbyMapIbikProcess" class="com.smart.smartexchangem.zst.NearbyMapIbikestationProcess"/>
-    
+    <bean id="lendRecordIbikRequestProcess" class="com.smart.smartexchangem.zst.LendRecordIbikRequestProcess"/>
+    <bean id="lendRecordIbikResponseProcess" class="com.smart.smartexchangem.zst.LendRecordIbikResponseProcess"/>
+    <bean id="lendRecordibleSelfProcess" class="com.smart.smartexchangem.zst.LendRecordIbikSelfProcess"/>
    
     <routeContext id="zstRoutes" xmlns="http://camel.apache.org/schema/spring">
         
@@ -36,6 +38,17 @@
             <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/nearByMapIbik"></from>
             <removeHeaders pattern="CamelHttp*"/>
             <process ref="nearbyMapIbikProcess"/>
+        </route>
+        <route id="lendRecordIbik">
+            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/lendRecordIbik"></from>
+            <process ref="lendRecordIbikRequestProcess"/>
+            <removeHeaders pattern="CamelHttp*"/>
+            <to uri="http://218.93.33.59:84/zscx/Default.aspx"/>
+            <process ref="lendRecordIbikResponseProcess"/>
+        </route> 
+        <route id="lendRecordIbik1">
+            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/lendRecordIbik1"></from>
+            <process ref="lendRecordibleSelfProcess"/>
         </route>
     </routeContext>
  

@@ -25,13 +25,12 @@ public class ibikestationPorcess implements Processor {
         String str = exchng.getIn().getBody(String.class);
         System.out.println(str);
 
-        TaskBicycleData.loadBicycleData();
 
         exchng.getOut().setHeader("Content-Type", "application/json;chatset='utf-8'");
 
         JSONArray array = new JSONArray();
-        for (String bucycleKey : TaskBicycleData.bicycleMap.keySet()) {
-            array.add(TaskBicycleData.bicycleMap.get(bucycleKey));
+        for (JSONObject bucycleKey : TaskBicycleData.bicycleMap) {
+            array.add(bucycleKey);
         }
 
         JSONObject obj = new JSONObject();

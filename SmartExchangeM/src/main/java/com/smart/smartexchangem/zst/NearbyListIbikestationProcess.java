@@ -5,14 +5,13 @@
  */
 package com.smart.smartexchangem.zst;
 
+import com.smart.smartexchangem.zst.location.BycycleDataModel;
 import common.DeployInfo;
 import common.FormationResult;
 import common.model.ExecuteResultParam;
 import common.model.ResponseResultCode;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.camel.Exchange;
@@ -59,11 +58,12 @@ public class NearbyListIbikestationProcess implements Processor {
         paramLng -= (paramRide * TaskBicycleData.LAT_CARDINAL);
 
         JSONArray array = new JSONArray();
-        for (JSONObject value : TaskBicycleData.bicycleMap.values()) {
+  
+        for (JSONObject value : TaskBicycleData.bicycleMap) {
             doubleTempLat = Double.parseDouble(value.getString("lat"));
             doubleTempLng = Double.parseDouble(value.getString("lng"));
-            
-            // x表示当地的纬度,y表示当地的经度
+
+            // x表示当地的纬度lat,y表示当地的经度lng
             if (paramLng < doubleTempLng && doubleTempLng < paramLngPlus && paramLat < doubleTempLat && doubleTempLat < paramLatPlus) {
                 array.add(value.getString("id"));
             }
