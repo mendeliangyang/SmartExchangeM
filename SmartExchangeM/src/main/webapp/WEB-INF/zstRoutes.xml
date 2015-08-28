@@ -12,7 +12,7 @@
     <bean id="lendRecordIbikRequestProcess" class="com.smart.smartexchangem.zst.LendRecordIbikRequestProcess"/>
     <bean id="lendRecordIbikResponseProcess" class="com.smart.smartexchangem.zst.LendRecordIbikResponseProcess"/>
     <bean id="lendRecordibleSelfProcess" class="com.smart.smartexchangem.zst.LendRecordIbikSelfProcess"/>
-   
+    <bean id="overageRecordSelfProcess" class="com.smart.smartexchangem.zst.OverageRecordSelfProcess"  />  
     <routeContext id="zstRoutes" xmlns="http://camel.apache.org/schema/spring">
         
         <route id="ibikestation">
@@ -49,6 +49,10 @@
         <route id="lendRecordIbik1">
             <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/lendRecordIbik1"></from>
             <process ref="lendRecordibleSelfProcess"/>
+        </route>
+        <route id="overageRecord">
+            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/overageRecord1"></from>
+            <process ref="overageRecordSelfProcess"/>
         </route>
     </routeContext>
  

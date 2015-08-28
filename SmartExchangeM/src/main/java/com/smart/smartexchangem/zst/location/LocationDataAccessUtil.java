@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,7 +38,7 @@ public class LocationDataAccessUtil {
         for (int i = 0; i < bycycleDataModelList.size(); i++) {
             BycycleDataModel bycycleDataModel = bycycleDataModelList.get(i);
             //遍历每个级别
-            for (int level = 1; level <= 18; level++) {
+            for (int level = 10; level <= 18; level++) {
                 BycycleDataModel newBycycleDataModel;
                 try {
                     newBycycleDataModel = (BycycleDataModel) bycycleDataModel.clone();
@@ -78,8 +79,8 @@ public class LocationDataAccessUtil {
                         Double currentJuli = locationGrid.GetDistanceToCenter(xiangSuZuoBiao[0], xiangSuZuoBiao[1]);
                         if (Double.compare(oldJuli, currentJuli) >= 0) {//旧的距离大
                             SetRemoveById(resultSet, old.getId(), level);
-                            newBycycleDataModel.setTileX(xiangSuZuoBiao[0].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN));
-                            newBycycleDataModel.setTileY(xiangSuZuoBiao[1].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN));
+                            newBycycleDataModel.setTileX(new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue()));
+                            newBycycleDataModel.setTileY(new BigDecimal(xiangSuZuoBiao[1].divide(new BigDecimal(256)).intValue()));
                             resultSet.add(newBycycleDataModel);
                             old.setTileX(new BigDecimal(-1));
                             old.setTileY(new BigDecimal(-1));
@@ -90,8 +91,8 @@ public class LocationDataAccessUtil {
                         }
 
                     } else {//格子没有被使用
-                        newBycycleDataModel.setTileX(xiangSuZuoBiao[0].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN));
-                        newBycycleDataModel.setTileY(xiangSuZuoBiao[1].divide(new BigDecimal(256)).setScale(0, BigDecimal.ROUND_HALF_DOWN));
+                        newBycycleDataModel.setTileX(new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue()));
+                        newBycycleDataModel.setTileY(new BigDecimal(xiangSuZuoBiao[1].divide(new BigDecimal(256)).intValue()));
 
                         resultSet.add(newBycycleDataModel);
                     }

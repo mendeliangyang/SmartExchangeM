@@ -9,17 +9,13 @@ import common.DeployInfo;
 import common.FormationResult;
 import common.model.ExecuteResultParam;
 import common.model.ResponseResultCode;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
-
-import java.io.InputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
@@ -33,7 +29,7 @@ import org.jsoup.select.Elements;
  *
  * @author Administrator
  */
-public class LendRecordIbikSelfProcess implements Processor {
+public class OverageRecordSelfProcess implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
@@ -51,10 +47,10 @@ public class LendRecordIbikSelfProcess implements Processor {
 
         paramMap.put(paramKey_TBVipNo, null);
         paramMap.put(paramKey_TBCertNo, null);
-        paramMap.put(paramKey_TBStartNo, null);
-        paramMap.put(paramKey_TBRowCount, null);
-        paramMap.put(paramKey_tb_startTime, null);
-        paramMap.put(paramKey_tb_endTime, null);
+//        paramMap.put(paramKey_TBStartNo, null);
+//        paramMap.put(paramKey_TBRowCount, null);
+//        paramMap.put(paramKey_tb_startTime, null);
+//        paramMap.put(paramKey_tb_endTime, null);
 
         new AnalyzeParam().AnalyzeParamBodyToMap(strParam, paramMap);
         exchange.getOut().setHeader(Exchange.HTTP_METHOD, "POST");
@@ -68,9 +64,9 @@ public class LendRecordIbikSelfProcess implements Processor {
         postMethod.addParameter(paramKey_TBRowCount, "2000");
 //        postMethod.addParameter(paramKey_TBStartNo, common.UtileSmart.getStringFromMap(paramMap, paramKey_TBStartNo));
 //        postMethod.addParameter(paramKey_TBRowCount, common.UtileSmart.getStringFromMap(paramMap, paramKey_TBRowCount));
-        postMethod.addParameter(paramKey_tb_startTime, common.UtileSmart.getStringFromMap(paramMap, paramKey_tb_startTime));
-        postMethod.addParameter(paramKey_tb_endTime, common.UtileSmart.getStringFromMap(paramMap, paramKey_tb_endTime));
-        postMethod.addParameter("BtnQueryRecord", "查询借车记录");
+        postMethod.addParameter(paramKey_tb_startTime, "");
+        postMethod.addParameter(paramKey_tb_endTime, "");
+        postMethod.addParameter("Button1", "余额查询");
         postMethod.addParameter("hide_current_page", "0");
         postMethod.addParameter("__VIEWSTATE", "B8OMikzUdmqxiTvxCWRYiw8C6KeFokhVr5Pd4dB0ST+c7s0ETd27qHf0q0ouCJygBgwdfv4H5SDjGN6O6fp7rQzFBcYywy7s3prXeaGGDm60zUYg5LbKJ3o3UqYi6ipeTjaYalaR8GmMdlonBN/TREBhHf6CVVNylpS1YmdmIWr0NQDmfsb1XpevQVqAq55zg5grFFEEPOaHypG12iqMFakQrY5oAAi41R4HHRj40KbURBS5SByPWISdV3sjpH7IUjlmtR6eu0SWFBZ5+shvl8fNCjzoRM/N/brROBP/JVtj/szn5Uqe8Up+jDLRMnUP");
         postMethod.addParameter("__VIEWSTATEGENERATOR", "630104E7");
@@ -105,10 +101,9 @@ public class LendRecordIbikSelfProcess implements Processor {
                         for (Element elementTbodyTr : elementsTbodyTr) {
                             elementsTbodyTrTd = elementTbodyTr.getElementsByTag("td");
                             jsonObjectTemp = new JSONObject();
-                            jsonObjectTemp.accumulate("borrowAddress", elementsTbodyTrTd.get(0).text());
-                            jsonObjectTemp.accumulate("borrowTime", elementsTbodyTrTd.get(1).text());
-                            jsonObjectTemp.accumulate("backAddress", elementsTbodyTrTd.get(2).text());
-                            jsonObjectTemp.accumulate("backTime", elementsTbodyTrTd.get(3).text());
+                            jsonObjectTemp.accumulate("name", elementsTbodyTrTd.get(0).text());
+                            jsonObjectTemp.accumulate("cardNo", elementsTbodyTrTd.get(1).text());
+                            jsonObjectTemp.accumulate("overage", elementsTbodyTrTd.get(2).text());
                             jsonArray.add(jsonObjectTemp);
                         }
                     }
@@ -124,40 +119,6 @@ public class LendRecordIbikSelfProcess implements Processor {
             exchange.getOut().setHeader("Content-Type", "application/json;chatset='utf-8'");
             exchange.getOut().setBody(resultStr);
         }
-
     }
 
-    public static void sendReq(String url, String email, String fname) throws IOException {
-
-        HttpClient httpClient = new HttpClient();
-        PostMethod postMethod = new PostMethod(url);
-        postMethod.addParameter("Email", email);
-        postMethod.addParameter("fname", fname);
-        try {
-            httpClient.executeMethod(postMethod);
-        } catch (HttpException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (postMethod.getStatusCode() == HttpStatus.SC_OK) {
-            String resp = postMethod.getResponseBodyAsString();
-        } else {
-            //...postMethod.getStatusLine();
-        }
-    }
-
-    public static byte[] readInputStream(InputStream inStream) throws Exception {
-        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        int len = 0;
-        while ((len = inStream.read(buffer)) != -1) {
-            outStream.write(buffer, 0, len);
-        }
-        byte[] data = outStream.toByteArray();
-        outStream.close();
-        inStream.close();
-        return data;
-    }
 }

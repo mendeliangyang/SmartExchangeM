@@ -5,7 +5,6 @@
  */
 package com.smart.smartexchangem.zst;
 
-import com.smart.smartexchangem.zst.location.BycycleDataModel;
 import common.DeployInfo;
 import common.FormationResult;
 import common.model.ExecuteResultParam;

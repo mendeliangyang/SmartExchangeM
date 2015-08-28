@@ -143,8 +143,9 @@ public class TaskBicycleData {
                         // 数据变动，写数据到bicycle.json
                         if (dataChangedFlag) {
                             common.UtileSmart.writeFile(getBicycleDataPath(), bicycleMap.toString(), "utf-8");
-                            // common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
+                            common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
                         }
+                       // common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
                     }
                 } catch (HttpException e) {
                     common.RSLogger.ErrorLogInfo("TimingBrushBicycleData httpExcepiton " + e.getLocalizedMessage(), e);
