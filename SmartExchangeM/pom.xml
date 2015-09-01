@@ -87,14 +87,18 @@
             <artifactId>jsoup</artifactId>
             <version>1.8.3</version>
         </dependency>
-
-        
+       
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.6</version>
         </dependency>
-
+        
+        <dependency>
+            <groupId>com.smart</groupId>
+            <artifactId>SmartCommon</artifactId>
+            <version>1.0</version>
+        </dependency>
         
         <dependency>
             <groupId>json</groupId>

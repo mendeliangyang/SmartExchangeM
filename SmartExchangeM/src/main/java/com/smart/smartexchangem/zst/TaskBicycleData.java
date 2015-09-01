@@ -145,18 +145,21 @@ public class TaskBicycleData {
                             common.UtileSmart.writeFile(getBicycleDataPath(), bicycleMap.toString(), "utf-8");
                             common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
                         }
-                       // common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
+                        // common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
                     }
                 } catch (HttpException e) {
+                    System.out.println("TimingBrushBicycleData httpExcepiton" + e.getLocalizedMessage());
                     common.RSLogger.ErrorLogInfo("TimingBrushBicycleData httpExcepiton " + e.getLocalizedMessage(), e);
                 } catch (IOException e) {
+                    System.out.println("TimingBrushBicycleData IOException " + e.getLocalizedMessage());
                     common.RSLogger.ErrorLogInfo("TimingBrushBicycleData IOException " + e.getLocalizedMessage(), e);
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    System.out.println("TimingBrushBicycleData Exception " + ex.getLocalizedMessage());
+                    common.RSLogger.ErrorLogInfo("TimingBrushBicycleData Exception " + ex.getLocalizedMessage(), ex);
                 }
 
             }
-        }, 1, 999999, TimeUnit.SECONDS);
+        }, 1, 4, TimeUnit.MINUTES);
     }
 
     private static String PostHttpService(String url, Map<String, String> postData) throws Exception {

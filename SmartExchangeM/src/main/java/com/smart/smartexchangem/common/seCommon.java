@@ -10,8 +10,5 @@ package com.smart.smartexchangem.common;
  * @author Administrator
  */
 public class seCommon {
-
     public final static String baiduAk = "oMRm57DO72b40xgD1HABmwNd";
-
-    
 }

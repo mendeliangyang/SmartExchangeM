@@ -6,6 +6,7 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd 
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
     ">
+    <bean id="smartJettyHttpBinding" class="com.smart.smartexchangem.common.SmartJettyHttpBinding"/>
     <bean id="ibikestationProcess" class="com.smart.smartexchangem.zst.ibikestationPorcess"/>
     <bean id="nearbyListIbikProcess" class="com.smart.smartexchangem.zst.NearbyListIbikestationProcess"/>
     <bean id="nearbyMapIbikProcess" class="com.smart.smartexchangem.zst.NearbyMapIbikestationProcess"/>
@@ -16,7 +17,7 @@
     <routeContext id="zstRoutes" xmlns="http://camel.apache.org/schema/spring">
         
         <route id="ibikestation">
-            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/ibikestation"></from>
+            <from uri="jetty:http://0.0.0.0:8009/SmartExchange/ibikestation?enableCORS=true&amp;httpBindingRef=smartJettyHttpBinding"></from>
             <removeHeaders pattern="CamelHttp*"/>
             <!--<to uri="http://zsbicycle.com/zsbicycle/zsmap/ibikestation.asp"/>-->
             <!--<to uri="http://www.baidu.com"/>-->
@@ -28,30 +29,31 @@
             <removeHeaders pattern="CamelHttp*"/>
             <process ref="ibikestationProcess"/>
         </route>
+        
         <route id="nearByListIbik">
-            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/nearByListIbik"></from>
+            <from uri="jetty:http://0.0.0.0:8009/SmartExchange/nearByListIbik?enableCORS=true&amp;httpBindingRef=smartJettyHttpBinding"></from>
             <removeHeaders pattern="CamelHttp*"/>
             <process ref="nearbyListIbikProcess"/>
         </route>
         
         <route id="nearbyMapIbik">
-            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/nearByMapIbik"></from>
+            <from uri="jetty:http://0.0.0.0:8009/SmartExchange/nearByMapIbik?enableCORS=true&amp;httpBindingRef=smartJettyHttpBinding"></from>
             <removeHeaders pattern="CamelHttp*"/>
             <process ref="nearbyMapIbikProcess"/>
         </route>
         <route id="lendRecordIbik">
-            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/lendRecordIbik"></from>
+            <from uri="jetty:http://0.0.0.0:8009/SmartExchange/lendRecordIbik?enableCORS=true&amp;httpBindingRef=smartJettyHttpBinding"></from>
             <process ref="lendRecordIbikRequestProcess"/>
             <removeHeaders pattern="CamelHttp*"/>
             <to uri="http://218.93.33.59:84/zscx/Default.aspx"/>
             <process ref="lendRecordIbikResponseProcess"/>
         </route> 
         <route id="lendRecordIbik1">
-            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/lendRecordIbik1"></from>
+            <from uri="jetty:http://0.0.0.0:8009/SmartExchange/lendRecordIbik1?enableCORS=true&amp;httpBindingRef=smartJettyHttpBinding"></from>
             <process ref="lendRecordibleSelfProcess"/>
         </route>
         <route id="overageRecord">
-            <from uri="netty4-http:http://0.0.0.0:8009/SmartExchange/overageRecord1"></from>
+            <from uri="jetty:http://0.0.0.0:8009/SmartExchange/overageRecord1?enableCORS=true&amp;httpBindingRef=smartJettyHttpBinding"></from>
             <process ref="overageRecordSelfProcess"/>
         </route>
     </routeContext>
