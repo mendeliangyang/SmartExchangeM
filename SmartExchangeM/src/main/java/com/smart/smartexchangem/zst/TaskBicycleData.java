@@ -13,6 +13,8 @@ import common.model.ExecuteResultParam;
 import common.model.ResponseResultCode;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -37,6 +39,8 @@ public class TaskBicycleData {
     //var pointRatio = [0.009736, 0.008993];
     public final static double LNG_CARDINAL = 0.009736;
     public final static double LAT_CARDINAL = 0.008993;
+    public final static String LNG_ADD = "0.006450";//LNG_CARDINAL = 0.009736;
+    public final static String LAT_ADD = "0.005983";
 
     //生成根据 id，经纬度生成唯一标识
     //从百度map api上根据经纬度查询 address
@@ -116,7 +120,19 @@ public class TaskBicycleData {
                                 }
                             } else {
                                 for (JSONObject value : bicycleMap) {
+//                                    double tempLat = Double.parseDouble(tempJsonObj.getString("lat"));
+//                                    double tempLng = Double.parseDouble(tempJsonObj.getString("lng"));
+                                    BigDecimal tempBLat = new BigDecimal(tempJsonObj.getString("lat"));
+                                    BigDecimal tempBLng = new BigDecimal(tempJsonObj.getString("lng"));
+
+//                                    tempLat += LAT_ADD;
+//                                    tempLng += LNG_ADD;
+                                    tempJsonObj.remove("lat");
+                                    tempJsonObj.accumulate("lat", tempBLat.add(new BigDecimal(LAT_ADD)).setScale(6, BigDecimal.ROUND_HALF_UP).toString());
+                                    tempJsonObj.remove("lng");
+                                    tempJsonObj.accumulate("lng", tempBLng.add(new BigDecimal(LNG_ADD)).setScale(6, BigDecimal.ROUND_HALF_UP).toString());
                                     if (value.getString("id").equals(tempJsonObj.getString("id"))) {
+
                                         if (value.getString("lat").equals(tempJsonObj.getString("lat")) && value.getString("lng").equals(tempJsonObj.getString("lng"))) {
                                             tempJsonObj.replace("address", value.getString("address"));
 //                                            tempJsonObj.accumulate("address", value.getString("address"));
