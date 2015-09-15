@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy>
-    <systemSet id="SmartPayDB">
-        <dbAddress>192.168.169.217</dbAddress>
-        <dbPort>5000</dbPort>
-        <dbName>SmartPayDB</dbName>
-        <dbUser>sa</dbUser>
-        <dbpwd>123456</dbpwd>
+    <systemSet id="zstdata">
+        <dbType>mysql</dbType>
+        <dbAddress>218.204.174.24</dbAddress>
+        <dbPort>13306</dbPort>
+        <dbName>zstdata</dbName>
+        <dbUser>huaxin</dbUser>
+        <dbpwd>666666</dbpwd>
     </systemSet>
     <httpPath>http://220.231.153.66:80/ReviveSmartRS/</httpPath>
     <httpAddress>192.168.169.217</httpAddress>

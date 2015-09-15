@@ -15,7 +15,7 @@
     </properties>
     
     <dependencies>
-         <dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
@@ -136,7 +136,27 @@
             <artifactId>dbpool</artifactId>
             <version>7.0</version>
         </dependency>
-        
+        <!--sybase jdbc-->
+        <dependency>
+            <groupId>jconn</groupId>
+            <artifactId>jconn</artifactId>
+            <version>3</version>
+        </dependency>
+        <!-- end sybase jdbc -->
+        <!--net jtds mssql drive-->
+        <dependency>
+            <groupId>net.sourceforge.jtds</groupId>
+            <artifactId>jtds</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <!--end net jtds-->
+        <!--my sql drive-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.36</version>
+        </dependency>
+        <!--end my sql drive-->
 
     </dependencies>
 

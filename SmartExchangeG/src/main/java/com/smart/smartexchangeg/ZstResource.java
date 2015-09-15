@@ -5,14 +5,17 @@
  */
 package com.smart.smartexchangeg;
 
+import com.smart.common.DBHelper;
 import com.smart.common.DeployInfo;
 import com.smart.common.FormationResult;
 import com.smart.common.UtileSmart;
 import com.smart.common.model.ExecuteResultParam;
 import com.smart.common.model.ResponseResultCode;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.ws.rs.core.Context;
@@ -30,6 +33,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.io.FileReader;
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 
 /**
  * REST Web Service
@@ -49,6 +57,35 @@ public class ZstResource {
      * Creates a new instance of ZstResource
      */
     public ZstResource() {
+    }
+
+    @POST
+    @Path("getHouseInfo")
+    public String getHouseInfo(String param) {
+        try {
+            ScriptEngineManager manager = new ScriptEngineManager();
+            ScriptEngine engine = manager.getEngineByName("javascript");
+
+            String jsFileName = DeployInfo.GetDelplyRootPath() + File.separator + "mapLevelDataComputer.js";   // 读取js文件   
+
+            FileReader reader = new FileReader(jsFileName);   // 执行指定脚本   
+            engine.eval(reader);
+
+            if (engine instanceof Invocable) {
+                Invocable invoke = (Invocable) engine;    // 调用merge方法，并传入两个参数    
+
+// c = merge(2, 3);    
+                Object c = invoke.invokeFunction("mapLevelDataComputer");
+
+                System.out.println("c = " + c);
+            }
+
+            reader.close();
+
+        } catch (Exception e) {
+            return formationResult.formationResult(ResponseResultCode.Error, new ExecuteResultParam(e.getLocalizedMessage(), param, e));
+        }
+        return "";
     }
 
     @POST
