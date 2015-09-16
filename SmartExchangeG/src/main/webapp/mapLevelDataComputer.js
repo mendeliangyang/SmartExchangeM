@@ -1,8 +1,11 @@
-function mapLevelDataComputer(){
+
+
+function mapLevelDataComputer() {
     baiduAPI();
     return BMap;
 }
 function baiduAPI() {
+    var window = {};
     window.VTC = {
         "ditu": {
             "normal": {"version": "087", "updateDate": "20150915"},
@@ -74,7 +77,8 @@ function baiduAPI() {
         window[w.Q] = window[w.Q] || {};
         w.object = w.object || {};
         w.extend = w.object.extend = function (a, b) {
-            for (var c in b)b.hasOwnProperty(c) && (a[c] = b[c]);
+            for (var c in b)
+                b.hasOwnProperty(c) && (a[c] = b[c]);
             return a
         };
         w.B = w.B || {};
@@ -84,7 +88,8 @@ function baiduAPI() {
         w.N = w.rc = w.B.N;
         w.B.J = function (a) {
             a = w.B.N(a);
-            if (a === p)return a;
+            if (a === p)
+                return a;
             a.style.display = "none";
             return a
         };
@@ -100,12 +105,15 @@ function baiduAPI() {
         w.zj = w.B.zj;
         w.B.getElementsByClassName = function (a, b) {
             var c;
-            if (a.getElementsByClassName)c = a.getElementsByClassName(b); else {
+            if (a.getElementsByClassName)
+                c = a.getElementsByClassName(b);
+            else {
                 var d = a;
                 d == p && (d = document);
                 c = [];
                 var d = d.getElementsByTagName("*"), e = d.length, f = RegExp("(^|\\s)" + b + "(\\s|$)"), g, i;
-                for (i = g = 0; g < e; g++)f.test(d[g].className) && (c[i] = d[g], i++)
+                for (i = g = 0; g < e; g++)
+                    f.test(d[g].className) && (c[i] = d[g], i++)
             }
             return c
         };
@@ -129,8 +137,11 @@ function baiduAPI() {
         w.B.LF = la;
         w.B.CE = function (a, b, c) {
             a = w.B.N(a);
-            if (a === p)return a;
-            if ("style" == b)a.style.cssText = c; else {
+            if (a === p)
+                return a;
+            if ("style" == b)
+                a.style.cssText = c;
+            else {
                 b = w.B.LF[b] || b;
                 a.setAttribute(b, c)
             }
@@ -139,8 +150,10 @@ function baiduAPI() {
         w.CE = w.B.CE;
         w.B.DE = function (a, b) {
             a = w.B.N(a);
-            if (a === p)return a;
-            for (var c in b)w.B.CE(a, c, b[c]);
+            if (a === p)
+                return a;
+            for (var c in b)
+                w.B.CE(a, c, b[c]);
             return a
         };
         w.DE = w.B.DE;
@@ -167,13 +180,15 @@ function baiduAPI() {
         w.so = w.xk.so;
         w.B.Ob = function (a, b) {
             a = w.B.N(a);
-            if (a === p)return a;
+            if (a === p)
+                return a;
             for (var c = a.className.split(/\s+/), d = b.split(/\s+/), e, f = d.length, g, i = 0; i < f; ++i) {
                 g = 0;
-                for (e = c.length; g < e; ++g)if (c[g] == d[i]) {
-                    c.splice(g, 1);
-                    break
-                }
+                for (e = c.length; g < e; ++g)
+                    if (c[g] == d[i]) {
+                        c.splice(g, 1);
+                        break
+                    }
             }
             a.className = c.join(" ");
             return a
@@ -181,9 +196,12 @@ function baiduAPI() {
         w.Ob = w.B.Ob;
         w.B.Zw = function (a, b, c) {
             a = w.B.N(a);
-            if (a === p)return a;
+            if (a === p)
+                return a;
             var d;
-            if (a.insertAdjacentHTML)a.insertAdjacentHTML(b, c); else {
+            if (a.insertAdjacentHTML)
+                a.insertAdjacentHTML(b, c);
+            else {
                 d = a.ownerDocument.createRange();
                 b = b.toUpperCase();
                 if (b == "AFTERBEGIN" || b == "BEFOREEND") {
@@ -201,7 +219,8 @@ function baiduAPI() {
         w.Zw = w.B.Zw;
         w.B.show = function (a) {
             a = w.B.N(a);
-            if (a === p)return a;
+            if (a === p)
+                return a;
             a.style.display = "";
             return a
         };
@@ -212,8 +231,10 @@ function baiduAPI() {
         };
         w.B.Oa = function (a, b) {
             a = w.B.N(a);
-            if (a === p)return a;
-            for (var c = b.split(/\s+/), d = a.className, e = " " + d + " ", f = 0, g = c.length; f < g; f++)e.indexOf(" " + c[f] + " ") < 0 && (d = d + (" " + c[f]));
+            if (a === p)
+                return a;
+            for (var c = b.split(/\s+/), d = a.className, e = " " + d + " ", f = 0, g = c.length; f < g; f++)
+                e.indexOf(" " + c[f] + " ") < 0 && (d = d + (" " + c[f]));
             a.className = d;
             return a
         };
@@ -221,7 +242,9 @@ function baiduAPI() {
         w.B.XA = w.B.XA || {};
         w.B.ol = w.B.ol || [];
         w.B.ol.filter = function (a, b, c) {
-            for (var d = 0, e = w.B.ol, f; f = e[d]; d++)if (f = f[c])b = f(a, b);
+            for (var d = 0, e = w.B.ol, f; f = e[d]; d++)
+                if (f = f[c])
+                    b = f(a, b);
             return b
         };
         w.xk.lN = function (a) {
@@ -233,24 +256,30 @@ function baiduAPI() {
             w.B.ys(a, "expand") ? w.B.Ob(a, "expand") : w.B.Oa(a, "expand")
         };
         w.B.ys = function (a) {
-            if (arguments.length <= 0 || typeof a === "function")return this;
-            if (this.size() <= 0)return q;
+            if (arguments.length <= 0 || typeof a === "function")
+                return this;
+            if (this.size() <= 0)
+                return q;
             var a = a.replace(/^\s+/g, "").replace(/\s+$/g, "").replace(/\s+/g, " "), b = a.split(" "), c;
             w.forEach(this, function (a) {
-                for (var a = a.className, e = 0; e < b.length; e++)if (!~(" " + a + " ").indexOf(" " + b[e] + " ")) {
-                    c = q;
-                    return
-                }
+                for (var a = a.className, e = 0; e < b.length; e++)
+                    if (!~(" " + a + " ").indexOf(" " + b[e] + " ")) {
+                        c = q;
+                        return
+                    }
                 c !== q && (c = o)
             });
             return c
         };
         w.B.fj = function (a, b) {
             var c = w.B, a = c.N(a);
-            if (a === p)return a;
+            if (a === p)
+                return a;
             var b = w.xk.lN(b), d = a.style[b];
-            if (!d)var e = c.XA[b], d = a.currentStyle || (w.S.ba ? a.style : getComputedStyle(a, p)), d = e && e.get ? e.get(a, d) : d[e || b];
-            if (e = c.ol)d = e.filter(b, d, "get");
+            if (!d)
+                var e = c.XA[b], d = a.currentStyle || (w.S.ba ? a.style : getComputedStyle(a, p)), d = e && e.get ? e.get(a, d) : d[e || b];
+            if (e = c.ol)
+                d = e.filter(b, d, "get");
             return d
         };
         w.fj = w.B.fj;
@@ -260,11 +289,13 @@ function baiduAPI() {
         w.S.KD = "CSS1Compat" == document.compatMode;
         w.B.V = function (a) {
             a = w.B.N(a);
-            if (a === p)return a;
+            if (a === p)
+                return a;
             var b = w.B.ZC(a), c = w.S, d = w.B.fj;
             c.VW > 0 && b.getBoxObjectFor && d(a, "position");
             var e = {left: 0, top: 0}, f;
-            if (a == (c.ba && !c.KD ? b.body : b.documentElement))return e;
+            if (a == (c.ba && !c.KD ? b.body : b.documentElement))
+                return e;
             if (a.getBoundingClientRect) {
                 a = a.getBoundingClientRect();
                 e.left = Math.floor(a.left) + Math.max(b.documentElement.scrollLeft, b.body.scrollLeft);
@@ -290,10 +321,12 @@ function baiduAPI() {
                     }
                     f = f.offsetParent
                 } while (f && f != a);
-                if (c.opera > 0 || c.jL > 0 && d(a, "position") == "absolute")e.top = e.top - b.body.offsetTop;
-                for (f = a.offsetParent; f && f != b.body;) {
+                if (c.opera > 0 || c.jL > 0 && d(a, "position") == "absolute")
+                    e.top = e.top - b.body.offsetTop;
+                for (f = a.offsetParent; f && f != b.body; ) {
                     e.left = e.left - f.scrollLeft;
-                    if (!c.opera || f.tagName != "TR")e.top = e.top - f.scrollTop;
+                    if (!c.opera || f.tagName != "TR")
+                        e.top = e.top - f.scrollTop;
                     f = f.offsetParent
                 }
             }
@@ -307,11 +340,13 @@ function baiduAPI() {
         w.Yb = w.Yb || {};
         w.Yb.qb = function (a, b) {
             var c, d, e = a.length;
-            if ("function" == typeof b)for (d = 0; d < e; d++) {
-                c = a[d];
-                c = b.call(a, c, d);
-                if (c === q)break
-            }
+            if ("function" == typeof b)
+                for (d = 0; d < e; d++) {
+                    c = a[d];
+                    c = b.call(a, c, d);
+                    if (c === q)
+                        break
+                }
             return a
         };
         w.qb = w.Yb.qb;
@@ -354,7 +389,10 @@ function baiduAPI() {
             }
         };
         w.lang.qa.prototype.removeEventListener = function (a, b) {
-            if (w.lang.Gs(b))b = b.LK; else if (!w.lang.ig(b))return;
+            if (w.lang.Gs(b))
+                b = b.LK;
+            else if (!w.lang.ig(b))
+                return;
             !this.ti && (this.ti = {});
             a.indexOf("on") != 0 && (a = "on" + a);
             var c = this.ti;
@@ -364,13 +402,16 @@ function baiduAPI() {
             w.lang.ig(a) && (a = new w.lang.ty(a));
             !this.ti && (this.ti = {});
             var b = b || {}, c;
-            for (c in b)a[c] = b[c];
+            for (c in b)
+                a[c] = b[c];
             var d = this.ti, e = a.type;
             a.target = a.target || this;
             a.currentTarget = this;
             e.indexOf("on") != 0 && (e = "on" + e);
             w.lang.Gs(this[e]) && this[e].apply(this, arguments);
-            if (typeof d[e] == "object")for (c in d[e])d[e][c].apply(this, arguments);
+            if (typeof d[e] == "object")
+                for (c in d[e])
+                    d[e][c].apply(this, arguments);
             return a.returnValue
         };
         w.lang.ia = function (a, b, c) {
@@ -378,10 +419,12 @@ function baiduAPI() {
             e = new Function;
             e.prototype = b.prototype;
             e = a.prototype = new e;
-            for (d in f)e[d] = f[d];
+            for (d in f)
+                e[d] = f[d];
             a.prototype.constructor = a;
             a.dZ = b.prototype;
-            if ("string" == typeof c)e.nP = c
+            if ("string" == typeof c)
+                e.nP = c
         };
         w.ia = w.lang.ia;
         w.lang.Od = function (a) {
@@ -409,42 +452,45 @@ function baiduAPI() {
             a.altKey = b.altKey;
             if (b.touches) {
                 a.touches = [];
-                for (var c = 0; c < b.touches.length; c++)a.touches.push({
-                    clientX: b.touches[c].clientX,
-                    clientY: b.touches[c].clientY,
-                    screenX: b.touches[c].screenX,
-                    screenY: b.touches[c].screenY,
-                    pageX: b.touches[c].pageX,
-                    pageY: b.touches[c].pageY,
-                    target: b.touches[c].target,
-                    identifier: b.touches[c].identifier
-                })
+                for (var c = 0; c < b.touches.length; c++)
+                    a.touches.push({
+                        clientX: b.touches[c].clientX,
+                        clientY: b.touches[c].clientY,
+                        screenX: b.touches[c].screenX,
+                        screenY: b.touches[c].screenY,
+                        pageX: b.touches[c].pageX,
+                        pageY: b.touches[c].pageY,
+                        target: b.touches[c].target,
+                        identifier: b.touches[c].identifier
+                    })
             }
             if (b.changedTouches) {
                 a.changedTouches = [];
-                for (c = 0; c < b.changedTouches.length; c++)a.changedTouches.push({
-                    clientX: b.changedTouches[c].clientX,
-                    clientY: b.changedTouches[c].clientY,
-                    screenX: b.changedTouches[c].screenX,
-                    screenY: b.changedTouches[c].screenY,
-                    pageX: b.changedTouches[c].pageX,
-                    pageY: b.changedTouches[c].pageY,
-                    target: b.changedTouches[c].target,
-                    identifier: b.changedTouches[c].identifier
-                })
+                for (c = 0; c < b.changedTouches.length; c++)
+                    a.changedTouches.push({
+                        clientX: b.changedTouches[c].clientX,
+                        clientY: b.changedTouches[c].clientY,
+                        screenX: b.changedTouches[c].screenX,
+                        screenY: b.changedTouches[c].screenY,
+                        pageX: b.changedTouches[c].pageX,
+                        pageY: b.changedTouches[c].pageY,
+                        target: b.changedTouches[c].target,
+                        identifier: b.changedTouches[c].identifier
+                    })
             }
             if (b.targetTouches) {
                 a.targetTouches = [];
-                for (c = 0; c < b.targetTouches.length; c++)a.targetTouches.push({
-                    clientX: b.targetTouches[c].clientX,
-                    clientY: b.targetTouches[c].clientY,
-                    screenX: b.targetTouches[c].screenX,
-                    screenY: b.targetTouches[c].screenY,
-                    pageX: b.targetTouches[c].pageX,
-                    pageY: b.targetTouches[c].pageY,
-                    target: b.targetTouches[c].target,
-                    identifier: b.targetTouches[c].identifier
-                })
+                for (c = 0; c < b.targetTouches.length; c++)
+                    a.targetTouches.push({
+                        clientX: b.targetTouches[c].clientX,
+                        clientY: b.targetTouches[c].clientY,
+                        screenX: b.targetTouches[c].screenX,
+                        screenY: b.targetTouches[c].screenY,
+                        pageX: b.targetTouches[c].pageX,
+                        pageY: b.targetTouches[c].pageY,
+                        target: b.targetTouches[c].target,
+                        identifier: b.targetTouches[c].identifier
+                    })
             }
             a.rotation = b.rotation;
             a.scale = b.scale;
@@ -457,19 +503,22 @@ function baiduAPI() {
         };
         w.event = {};
         w.F = w.event.F = function (a, b, c) {
-            if (!(a = w.N(a)))return a;
+            if (!(a = w.N(a)))
+                return a;
             b = b.replace(/^on/, "");
             a.addEventListener ? a.addEventListener(b, c, q) : a.attachEvent && a.attachEvent("on" + b, c);
             return a
         };
         w.ke = w.event.ke = function (a, b, c) {
-            if (!(a = w.N(a)))return a;
+            if (!(a = w.N(a)))
+                return a;
             b = b.replace(/^on/, "");
             a.removeEventListener ? a.removeEventListener(b, c, q) : a.detachEvent && a.detachEvent("on" + b, c);
             return a
         };
         w.B.ys = function (a, b) {
-            if (!a || !a.className || typeof a.className != "string")return q;
+            if (!a || !a.className || typeof a.className != "string")
+                return q;
             var c = -1;
             try {
                 c = a.className == b || a.className.search(RegExp("(\\s|^)" + b + "(\\s|$)"))
@@ -494,23 +543,25 @@ function baiduAPI() {
                 }, move: function (a) {
                     pa(a);
                     var c = this.gk ? a.touches[0].clientY : a.clientY;
-                    if (10 < Math.abs((this.gk ? a.touches[0].clientX : a.clientX) - this.zt) || 10 < Math.abs(c - this.At))this.Zg = o
+                    if (10 < Math.abs((this.gk ? a.touches[0].clientX : a.clientX) - this.zt) || 10 < Math.abs(c - this.At))
+                        this.Zg = o
                 }, end: function (a) {
                     pa(a);
                     this.Zg || (a = document.createEvent("Event"), a.initEvent("tap", q, o), this.element.dispatchEvent(a));
                     this.element.removeEventListener(this.HC, this, q);
                     this.element.removeEventListener(this.GC, this, q)
                 }, handleEvent: function (a) {
-                    if (a)switch (a.type) {
-                        case this.WJ:
-                            this.start(a);
-                            break;
-                        case this.HC:
-                            this.move(a);
-                            break;
-                        case this.GC:
-                            this.end(a)
-                    }
+                    if (a)
+                        switch (a.type) {
+                            case this.WJ:
+                                this.start(a);
+                                break;
+                            case this.HC:
+                                this.move(a);
+                                break;
+                            case this.GC:
+                                this.end(a)
+                        }
                 }
             };
             return function (b) {
@@ -584,13 +635,16 @@ function baiduAPI() {
                 b.enableStreetEntrance === q && (c.D.Rl = b.enableStreetEntrance);
                 b.enableDeepZoom === q && (c.D.RJ = b.enableDeepZoom);
                 var d = c.D.PT;
-                if (G())for (var e = 0, f = d.length; e < f; e++)if (w.S[d[e]]) {
-                    c.D.devicePixelRatio = 1;
-                    break
-                }
+                if (G())
+                    for (var e = 0, f = d.length; e < f; e++)
+                        if (w.S[d[e]]) {
+                            c.D.devicePixelRatio = 1;
+                            break
+                        }
                 d = -1 < navigator.userAgent.toLowerCase().indexOf("android");
                 e = -1 < navigator.userAgent.toLowerCase().indexOf("mqqbrowser");
-                if (-1 < navigator.userAgent.toLowerCase().indexOf("UCBrowser") || d && e)c.D.aF = 99;
+                if (-1 < navigator.userAgent.toLowerCase().indexOf("UCBrowser") || d && e)
+                    c.D.aF = 99;
                 c.Ja = a;
                 c.QA(a);
                 a.unselectable = "on";
@@ -632,7 +686,8 @@ function baiduAPI() {
                 c.qu();
                 c.H = {yc: q, Zb: 0, Ks: 0, pL: 0, x1: 0, vB: q, pE: -1, Ae: []};
                 c.platform.style.cursor = c.D.Jb;
-                for (e = 0; e < z.Zq.length; e++)z.Zq[e](c);
+                for (e = 0; e < z.Zq.length; e++)
+                    z.Zq[e](c);
                 c.H.pE = e;
                 c.P();
                 J.load("map", function () {
@@ -698,7 +753,9 @@ function baiduAPI() {
             }, Pj: function (a, b, c, d) {
                 var e = this.la().Bc(this.U()), f = this.je, g = o;
                 c && H.bL(c) && (this.Se = new H(c.lng, c.lat), g = q);
-                if (c = c && d ? f.om(c, this.Ib) : this.jc)if (this.jc = new H(c.lng + a * e, c.lat - b * e), (a = f.Yg(this.jc, this.Ib)) && g)this.Se = a
+                if (c = c && d ? f.om(c, this.Ib) : this.jc)
+                    if (this.jc = new H(c.lng + a * e, c.lat - b * e), (a = f.Yg(this.jc, this.Ib)) && g)
+                        this.Se = a
             }, sg: function (a, b) {
                 if (Ua(a) && (this.qu(), this.dispatchEvent(new M("onzoomstart")), a = this.wn(a).zoom, a !== this.wa)) {
                     this.xc = this.wa;
@@ -757,16 +814,19 @@ function baiduAPI() {
                 }
             }, Hf: function (a) {
                 var b = this;
-                if (a instanceof H)b.di(a, {noAnimation: o}); else if (Xa(a))if (b.ub === Oa) {
-                    var c = F.yB[a];
-                    c && (pt = c.m, b.Hf(pt))
-                } else {
-                    var d = this.QG();
-                    d.IE(function (c) {
-                        0 === d.$l() && 2 === d.ta.result.type && (b.Hf(c.ek(0).point), Oa.$j(a) && b.EE(a))
-                    });
-                    d.search(a, {log: "center"})
-                }
+                if (a instanceof H)
+                    b.di(a, {noAnimation: o});
+                else if (Xa(a))
+                    if (b.ub === Oa) {
+                        var c = F.yB[a];
+                        c && (pt = c.m, b.Hf(pt))
+                    } else {
+                        var d = this.QG();
+                        d.IE(function (c) {
+                            0 === d.$l() && 2 === d.ta.result.type && (b.Hf(c.ek(0).point), Oa.$j(a) && b.EE(a))
+                        });
+                        d.search(a, {log: "center"})
+                    }
             }, ae: function (a, b) {
                 "[object Undefined]" !== Object.prototype.toString.call(b) && (b = parseInt(b));
                 va = G() ? Ya.qi.Vj(z.DI ? 102 : 101) : Ya.qi.Vj(1);
@@ -775,20 +835,22 @@ function baiduAPI() {
                 va.bc("script_loaded", sa - ra);
                 va.bc("centerAndZoom");
                 var c = this;
-                if (Xa(a))if (c.ub === Oa) {
-                    var d = F.yB[a];
-                    d && (pt = d.m, c.ae(pt, b))
-                } else {
-                    var e = c.QG();
-                    e.IE(function (d) {
-                        if (0 === e.$l() && (2 === e.ta.result.type || 11 === e.ta.result.type)) {
-                            var d = d.ek(0).point, f = b || O.UC(e.ta.content.level, c);
-                            c.ae(d, f);
-                            Oa.$j(a) && c.EE(a)
-                        }
-                    });
-                    e.search(a, {log: "center"})
-                } else if (a instanceof H && b) {
+                if (Xa(a))
+                    if (c.ub === Oa) {
+                        var d = F.yB[a];
+                        d && (pt = d.m, c.ae(pt, b))
+                    } else {
+                        var e = c.QG();
+                        e.IE(function (d) {
+                            if (0 === e.$l() && (2 === e.ta.result.type || 11 === e.ta.result.type)) {
+                                var d = d.ek(0).point, f = b || O.UC(e.ta.content.level, c);
+                                c.ae(d, f);
+                                Oa.$j(a) && c.EE(a)
+                            }
+                        });
+                        e.search(a, {log: "center"})
+                    }
+                else if (a instanceof H && b) {
                     b = c.wn(b).zoom;
                     c.xc = c.wa || b;
                     c.wa = b;
@@ -904,7 +966,8 @@ function baiduAPI() {
                 var c = map.Ib;
                 this.ub === Oa && c && (a.x += this.offsetX, a.y += this.offsetY, cb.qJ(a, this, b))
             }, Nd: function (a) {
-                if (!this.ax())return new db;
+                if (!this.ax())
+                    return new db;
                 var b = a || {}, a = b.margins || [0, 0, 0, 0], c = b.zoom || p, b = this.mb({
                     x: a[3],
                     y: this.height - a[2]
@@ -915,7 +978,8 @@ function baiduAPI() {
             }, CQ: function (a, b) {
                 for (var c = this.la(), d = b.margins || [10, 10, 10, 10], e = b.zoomFactor || 0, f = d[1] + d[3], d = d[0] + d[2], g = c.yo(), i = c = c.Wl(); i >= g; i--) {
                     var k = this.la().Bc(i);
-                    if (a.VE().lng / k < this.width - f && a.VE().lat / k < this.height - d)break
+                    if (a.VE().lng / k < this.width - f && a.VE().lat / k < this.height - d)
+                        break
                 }
                 i += e;
                 i < g && (i = g);
@@ -923,13 +987,17 @@ function baiduAPI() {
                 return i
             }, xs: function (a, b) {
                 var c = {center: this.Aa(), zoom: this.U()};
-                if (!a || !a instanceof db && 0 === a.length || a instanceof db && a.kj())return c;
+                if (!a || !a instanceof db && 0 === a.length || a instanceof db && a.kj())
+                    return c;
                 var d = [];
                 a instanceof db ? (d.push(a.Af()), d.push(a.De())) : d = a.slice(0);
-                for (var b = b || {}, e = [], f = 0, g = d.length; f < g; f++)e.push(this.je.om(d[f], this.Ib));
+                for (var b = b || {}, e = [], f = 0, g = d.length; f < g; f++)
+                    e.push(this.je.om(d[f], this.Ib));
                 d = new db;
-                for (f = e.length - 1; 0 <= f; f--)d.extend(e[f]);
-                if (d.kj())return c;
+                for (f = e.length - 1; 0 <= f; f--)
+                    d.extend(e[f]);
+                if (d.kj())
+                    return c;
                 c = d.Aa();
                 e = this.CQ(d, b);
                 b.margins && (d = b.margins, f = (d[1] - d[3]) / 2, d = (d[0] - d[2]) / 2, g = this.la().Bc(e), b.offset && (f = b.offset.width, d = b.offset.height), c.lng += g * f, c.lat += g * d);
@@ -944,26 +1012,33 @@ function baiduAPI() {
                     setTimeout(function () {
                         e.di(c.center, {duration: 210})
                     }, d)
-                } else this.ae(c.center, c.zoom)
+                } else
+                    this.ae(c.center, c.zoom)
             }, Cf: u("Zd"), Rg: function () {
                 return this.H.ab && this.H.ab.Ka() ? this.H.ab : p
             }, getDistance: function (a, b) {
                 if (a && b) {
-                    if (a.$a(b))return 0;
+                    if (a.$a(b))
+                        return 0;
                     var c = 0, c = Q.wo(a, b);
-                    if (c === p || c === j)c = 0;
+                    if (c === p || c === j)
+                        c = 0;
                     return c
                 }
             }, Lw: function () {
                 var a = [], b = this.ka, c = this.me;
-                if (b)for (var d in b)b[d]instanceof eb && a.push(b[d]);
+                if (b)
+                    for (var d in b)
+                        b[d]instanceof eb && a.push(b[d]);
                 if (c) {
                     d = 0;
-                    for (b = c.length; d < b; d++)a.push(c[d])
+                    for (b = c.length; d < b; d++)
+                        a.push(c[d])
                 }
                 return a
             }, la: u("ub"), Jy: function () {
-                for (var a = this.H.pE; a < z.Zq.length; a++)z.Zq[a](this);
+                for (var a = this.H.pE; a < z.Zq.length; a++)
+                    z.Zq[a](this);
                 this.H.pE = a
             }, EE: function (a) {
                 this.Ib = Oa.$j(a);
@@ -1045,7 +1120,8 @@ function baiduAPI() {
                     mapTypeControl: new lb
                 });
                 var b = this, c;
-                for (c in this.controls)b.uM(b.controls[c]);
+                for (c in this.controls)
+                    b.uM(b.controls[c]);
                 a = a || [];
                 w.Yb.qb(a, function (a) {
                     b.Iv(b.controls[a])
@@ -1094,7 +1170,8 @@ function baiduAPI() {
                     delete f.stylers;
                     w.extend(f, g);
                     var g = [], i;
-                    for (i in b)f[i] && ("elementType" === i ? g.push(b[i] + ":" + c[f[i]]) : g.push(b[i] + ":" + f[i]));
+                    for (i in b)
+                        f[i] && ("elementType" === i ? g.push(b[i] + ":" + c[f[i]]) : g.push(b[i] + ":" + f[i]));
                     2 < g.length && d.push(g.join("|"))
                 }
                 return d.join(",")
@@ -1103,7 +1180,8 @@ function baiduAPI() {
         function Pa(a, b) {
             if (a) {
                 var b = b || {}, c = "", d;
-                for (d in b)c = c + "&" + d + "=" + encodeURIComponent(b[d]);
+                for (d in b)
+                    c = c + "&" + d + "=" + encodeURIComponent(b[d]);
                 var e = function (a) {
                     a && (nb = o, setTimeout(function () {
                         ob.src = z.vc + "images/blank.gif?" + a.src
@@ -1197,14 +1275,17 @@ function baiduAPI() {
         function sb(a) {
             var b = {duration: 1E3, wc: 30, jo: 0, Xb: tb.tL, Rs: s()};
             this.Mf = [];
-            if (a)for (var c in a)b[c] = a[c];
+            if (a)
+                for (var c in a)
+                    b[c] = a[c];
             this.k = b;
             if (Ua(b.jo)) {
                 var d = this;
                 setTimeout(function () {
                     d.start()
                 }, b.jo)
-            } else b.jo != ub && this.start()
+            } else
+                b.jo != ub && this.start()
         }
 
         var ub = "INFINITE";
@@ -1225,7 +1306,8 @@ function baiduAPI() {
 
         sb.prototype.stop = function (a) {
             this.RE = o;
-            for (var b = 0; b < this.Mf.length; b++)this.Mf[b].stop(), this.Mf[b] = p;
+            for (var b = 0; b < this.Mf.length; b++)
+                this.Mf[b].stop(), this.Mf[b] = p;
             this.Mf.length = 0;
             this.qr && (clearTimeout(this.qr), this.qr = p);
             this.k.Rs(this.Mx);
@@ -1312,7 +1394,8 @@ function baiduAPI() {
             for (var b = {
                 left: 0,
                 top: 0
-            }; a && a.offsetParent;)b.left += a.offsetLeft, b.top += a.offsetTop, a = a.offsetParent;
+            }; a && a.offsetParent; )
+                b.left += a.offsetLeft, b.top += a.offsetTop, a = a.offsetParent;
             return b
         }
 
@@ -1338,14 +1421,16 @@ function baiduAPI() {
         }
 
         function Eb(a, b) {
-            if (a && b)return Math.round(Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2)))
+            if (a && b)
+                return Math.round(Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2)))
         }
 
         function Fb(a, b) {
             var c = [], b = b || function (a) {
-                    return a
-                }, d;
-            for (d in a)c.push(d + "=" + b(a[d]));
+                return a
+            }, d;
+            for (d in a)
+                c.push(d + "=" + b(a[d]));
             return c.join("&")
         }
 
@@ -1356,8 +1441,10 @@ function baiduAPI() {
         }
 
         function Ta(a) {
-            if (a.currentStyle)return a.currentStyle;
-            if (a.ownerDocument && a.ownerDocument.defaultView)return a.ownerDocument.defaultView.getComputedStyle(a, p)
+            if (a.currentStyle)
+                return a.currentStyle;
+            if (a.ownerDocument && a.ownerDocument.defaultView)
+                return a.ownerDocument.defaultView.getComputedStyle(a, p)
         }
 
         function Va(a) {
@@ -1385,9 +1472,12 @@ function baiduAPI() {
         function Jb(a) {
             var b = "", c, d, e = "", f, g = "", i = 0;
             f = /[^A-Za-z0-9\+\/\=]/g;
-            if (!a || f.exec(a))return a;
+            if (!a || f.exec(a))
+                return a;
             a = a.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-            do c = Ib.indexOf(a.charAt(i++)), d = Ib.indexOf(a.charAt(i++)), f = Ib.indexOf(a.charAt(i++)), g = Ib.indexOf(a.charAt(i++)), c = c << 2 | d >> 4, d = (d & 15) << 4 | f >> 2, e = (f & 3) << 6 | g, b += String.fromCharCode(c), 64 != f && (b += String.fromCharCode(d)), 64 != g && (b += String.fromCharCode(e)); while (i < a.length);
+            do
+                c = Ib.indexOf(a.charAt(i++)), d = Ib.indexOf(a.charAt(i++)), f = Ib.indexOf(a.charAt(i++)), g = Ib.indexOf(a.charAt(i++)), c = c << 2 | d >> 4, d = (d & 15) << 4 | f >> 2, e = (f & 3) << 6 | g, b += String.fromCharCode(c), 64 != f && (b += String.fromCharCode(d)), 64 != g && (b += String.fromCharCode(e));
+            while (i < a.length);
             return b
         }
 
@@ -1409,7 +1499,8 @@ function baiduAPI() {
             var a = document.body.appendChild(K("div"));
             a.innerHTML = '<v:shape id="vml_tester1" adj="1" />';
             var b = a.firstChild;
-            if (!b.style)return q;
+            if (!b.style)
+                return q;
             b.style.behavior = "url(#default#VML)";
             b = b ? "object" == typeof b.adj : o;
             a.parentNode.removeChild(a);
@@ -1471,22 +1562,30 @@ function baiduAPI() {
             }
 
             function b(a, b) {
-                if (a.length === +a.length)for (var c = 0, d = a.length; c < d && b.call(j, c, a[c], a) !== q; c++); else for (c in a)if (a.hasOwnProperty(c) && b.call(j, c, a[c], a) === q)break
+                if (a.length === +a.length)
+                    for (var c = 0, d = a.length; c < d && b.call(j, c, a[c], a) !== q; c++)
+                        ;
+                else
+                    for (c in a)
+                        if (a.hasOwnProperty(c) && b.call(j, c, a[c], a) === q)
+                            break
             }
 
             var c = [], d = {
                 push: function (a) {
                     c.push(a);
-                    if (window.localStorage && window.JSON)try {
-                        localStorage.setItem("WPO_NR", JSON.stringify(c))
-                    } catch (b) {
-                    }
+                    if (window.localStorage && window.JSON)
+                        try {
+                            localStorage.setItem("WPO_NR", JSON.stringify(c))
+                        } catch (b) {
+                        }
                 }, get: function (a) {
                     var b = [];
-                    if (window.localStorage)try {
-                        a && localStorage.removeItem("WPO_NR")
-                    } catch (d) {
-                    }
+                    if (window.localStorage)
+                        try {
+                            a && localStorage.removeItem("WPO_NR")
+                        } catch (d) {
+                        }
                     b = c;
                     a && (c = []);
                     return b
@@ -1549,7 +1648,7 @@ function baiduAPI() {
                 b.attachEvent("on" + a, c)
             });
             b.handle.click || (b.addEventListener("click", function (a) {
-                for (var c = a.target || a.srcElement; c != b;) {
+                for (var c = a.target || a.srcElement; c != b; ) {
                     Pb(b.rm, function (b, g) {
                         RegExp(g.filter).test(c.getAttribute("filter")) && g.Sl.call(c, a, c.getAttribute("filter"))
                     });
@@ -1559,8 +1658,10 @@ function baiduAPI() {
         }
 
         function Pb(a, b) {
-            for (var c = 0, d = a.length; c < d; c++)b(c, a[c])
-        };
+            for (var c = 0, d = a.length; c < d; c++)
+                b(c, a[c])
+        }
+        ;
         function Qb(a, b) {
             if (b) {
                 var c = (1E5 * Math.random()).toFixed(0);
@@ -1584,7 +1685,8 @@ function baiduAPI() {
                 document.getElementsByTagName("head")[0].appendChild(d);
                 d = p
             }, 1)
-        };
+        }
+        ;
         var Rb = {
             map: "catk2u",
             common: "sqvoet",
@@ -1639,7 +1741,8 @@ function baiduAPI() {
             return {
                 ZW: d, set: function (a, f) {
                     if (d) {
-                        for (var g = b + a + "_", i = c.length, k; i--;)k = c.key(i), -1 < k.indexOf(g) && c.removeItem(k);
+                        for (var g = b + a + "_", i = c.length, k; i--; )
+                            k = c.key(i), -1 < k.indexOf(g) && c.removeItem(k);
                         try {
                             c.setItem(b + a + "_" + Rb[a], f)
                         } catch (l) {
@@ -1698,7 +1801,9 @@ function baiduAPI() {
             Ad: {Wk: {}, $m: [], nv: []},
             load: function (a, b, c) {
                 var d = this.Va(a);
-                if (d.md == this.rj.Ap)c && b(); else {
+                if (d.md == this.rj.Ap)
+                    c && b();
+                else {
                     if (d.md == this.rj.yF) {
                         this.nJ(a);
                         this.rM(a);
@@ -1719,10 +1824,14 @@ function baiduAPI() {
                 }
             },
             nJ: function (a) {
-                if (a && this.pK()[a])for (var a = this.pK()[a], b = 0; b < a.length; b++)this.nJ(a[b]), this.Ad.Wk[a[b]] || this.rM(a[b])
+                if (a && this.pK()[a])
+                    for (var a = this.pK()[a], b = 0; b < a.length; b++)
+                        this.nJ(a[b]), this.Ad.Wk[a[b]] || this.rM(a[b])
             },
             rM: function (a) {
-                for (var b = 0; b < this.Ad.$m.length; b++)if (this.Ad.$m[b] == a)return;
+                for (var b = 0; b < this.Ad.$m.length; b++)
+                    if (this.Ad.$m[b] == a)
+                        return;
                 this.Ad.$m.push(a)
             },
             gY: function (a, b) {
@@ -1733,7 +1842,8 @@ function baiduAPI() {
                     return
                 }
                 c.md = this.rj.Ap;
-                for (var e = 0, f = c.nu.length; e < f; e++)c.nu[e]();
+                for (var e = 0, f = c.nu.length; e < f; e++)
+                    c.nu[e]();
                 c.nu.length = 0
             },
             gJ: function (a, b) {
@@ -1750,11 +1860,13 @@ function baiduAPI() {
                 delete this.Va(a)
             },
             dU: function (a, b) {
-                for (var c = this.Ad.nv, d = o, e = 0, f = c.length; e < f; e++)"" == c[e].ZD && (c[e].ML == a ? c[e].ZD = b : d = q);
+                for (var c = this.Ad.nv, d = o, e = 0, f = c.length; e < f; e++)
+                    "" == c[e].ZD && (c[e].ML == a ? c[e].ZD = b : d = q);
                 d && this.VJ()
             },
             VJ: function () {
-                for (var a = this.Ad.nv, b = 0, c = a.length; b < c; b++)this.gY(a[b].ML, a[b].ZD);
+                for (var a = this.Ad.nv, b = 0, c = a.length; b < c; b++)
+                    this.gY(a[b].ML, a[b].ZD);
                 this.Ad.nv.length = 0
             }
         });
@@ -1799,7 +1911,8 @@ function baiduAPI() {
         w.extend(Sb.prototype, {
             initialize: function (a) {
                 this.C = a;
-                if (this.A)return a.Ja.appendChild(this.A), this.A
+                if (this.A)
+                    return a.Ja.appendChild(this.A), this.A
             }, Ne: function (a) {
                 !this.A && (this.initialize && Va(this.initialize)) && (this.A = this.initialize(a));
                 this.k = this.k || {eh: q};
@@ -1827,7 +1940,8 @@ function baiduAPI() {
             }, gv: function () {
                 this.mc(this.k.anchor)
             }, mc: function (a) {
-                if (this.R_ || !Ua(a) || isNaN(a) || a < Tb || 3 < a)a = this.defaultAnchor;
+                if (this.R_ || !Ua(a) || isNaN(a) || a < Tb || 3 < a)
+                    a = this.defaultAnchor;
                 this.k = this.k || {eh: q};
                 this.k.pa = this.k.pa || this.defaultOffset;
                 var b = this.k.anchor;
@@ -1960,13 +2074,21 @@ function baiduAPI() {
             }, Jv: function (a) {
                 if (a && Ua(a.id) && !isNaN(a.id)) {
                     var b = {bounds: p, content: ""}, c;
-                    for (c in a)b[c] = a[c];
-                    if (a = this.Ul(a.id))for (var d in b)a[d] = b[d]; else this.Rb.push(b)
+                    for (c in a)
+                        b[c] = a[c];
+                    if (a = this.Ul(a.id))
+                        for (var d in b)
+                            a[d] = b[d];
+                    else
+                        this.Rb.push(b)
                 }
             }, Ul: function (a) {
-                for (var b = 0, c = this.Rb.length; b < c; b++)if (this.Rb[b].id == a)return this.Rb[b]
+                for (var b = 0, c = this.Rb.length; b < c; b++)
+                    if (this.Rb[b].id == a)
+                        return this.Rb[b]
             }, YC: u("Rb"), qE: function (a) {
-                for (var b = 0, c = this.Rb.length; b < c; b++)this.Rb[b].id == a && (r = this.Rb.splice(b, 1), b--, c = this.Rb.length)
+                for (var b = 0, c = this.Rb.length; b < c; b++)
+                    this.Rb[b].id == a && (r = this.Rb.splice(b, 1), b--, c = this.Rb.length)
             }, ff: function () {
                 var a = this;
                 J.load("copyrightctrl", function () {
@@ -2145,22 +2267,27 @@ function baiduAPI() {
                 this.C = this.al = p
             }, Lv: function (a) {
                 if (a && !("menuitem" != a.yb || "" == a.Fg || 0 >= a.Ni)) {
-                    for (var b = 0, c = this.na.length; b < c; b++)if (this.na[b] === a)return;
+                    for (var b = 0, c = this.na.length; b < c; b++)
+                        if (this.na[b] === a)
+                            return;
                     this.na.push(a);
                     this.pf.push(a)
                 }
             }, removeItem: function (a) {
                 if (a && "menuitem" == a.yb) {
-                    for (var b = 0, c = this.na.length; b < c; b++)this.na[b] === a && (this.na[b].remove(), this.na.splice(b, 1), c--);
+                    for (var b = 0, c = this.na.length; b < c; b++)
+                        this.na[b] === a && (this.na[b].remove(), this.na.splice(b, 1), c--);
                     b = 0;
-                    for (c = this.pf.length; b < c; b++)this.pf[b] === a && (this.pf[b].remove(), this.pf.splice(b, 1), c--)
+                    for (c = this.pf.length; b < c; b++)
+                        this.pf[b] === a && (this.pf[b].remove(), this.pf.splice(b, 1), c--)
                 }
             }, jB: function () {
                 this.na.push({yb: "divider", xj: this.ne.length});
                 this.ne.push({B: p})
             }, sE: function (a) {
                 if (this.ne[a]) {
-                    for (var b = 0, c = this.na.length; b < c; b++)this.na[b] && ("divider" == this.na[b].yb && this.na[b].xj == a) && (this.na.splice(b, 1), c--), this.na[b] && ("divider" == this.na[b].yb && this.na[b].xj > a) && this.na[b].xj--;
+                    for (var b = 0, c = this.na.length; b < c; b++)
+                        this.na[b] && ("divider" == this.na[b].yb && this.na[b].xj == a) && (this.na.splice(b, 1), c--), this.na[b] && ("divider" == this.na[b].yb && this.na[b].xj > a) && this.na[b].xj--;
                     this.ne.splice(a, 1)
                 }
             }, rd: u("A"), show: function () {
@@ -2229,7 +2356,8 @@ function baiduAPI() {
             }, Aa: function () {
                 return this.kj() ? p : new H((this.we + this.re) / 2, (this.ve + this.qe) / 2)
             }, Ds: function (a) {
-                if (!(a instanceof db) || Math.max(a.we, a.re) < Math.min(this.we, this.re) || Math.min(a.we, a.re) > Math.max(this.we, this.re) || Math.max(a.ve, a.qe) < Math.min(this.ve, this.qe) || Math.min(a.ve, a.qe) > Math.max(this.ve, this.qe))return p;
+                if (!(a instanceof db) || Math.max(a.we, a.re) < Math.min(this.we, this.re) || Math.min(a.we, a.re) > Math.max(this.we, this.re) || Math.max(a.ve, a.qe) < Math.min(this.ve, this.qe) || Math.min(a.ve, a.qe) > Math.max(this.ve, this.qe))
+                    return p;
                 var b = Math.max(this.we, a.we), c = Math.min(this.re, a.re), d = Math.max(this.ve, a.ve), a = Math.min(this.qe, a.qe);
                 return new db(new H(b, d), new H(c, a))
             }, Cr: function (a) {
@@ -2239,10 +2367,14 @@ function baiduAPI() {
                     var b = a.lng, a = a.lat;
                     this.pl || (this.pl = new H(0, 0));
                     this.Zk || (this.Zk = new H(0, 0));
-                    if (!this.we || this.we > b)this.pl.lng = this.we = b;
-                    if (!this.re || this.re < b)this.Zk.lng = this.re = b;
-                    if (!this.ve || this.ve > a)this.pl.lat = this.ve = a;
-                    if (!this.qe || this.qe < a)this.Zk.lat = this.qe = a
+                    if (!this.we || this.we > b)
+                        this.pl.lng = this.we = b;
+                    if (!this.re || this.re < b)
+                        this.Zk.lng = this.re = b;
+                    if (!this.ve || this.ve > a)
+                        this.pl.lat = this.ve = a;
+                    if (!this.qe || this.qe < a)
+                        this.Zk.lat = this.qe = a
                 }
             }, VE: function () {
                 return this.kj() ? new H(0, 0) : new H(Math.abs(this.re - this.we), Math.abs(this.qe - this.ve))
@@ -2273,7 +2405,8 @@ function baiduAPI() {
             aa("pointToLngLat\u65b9\u6cd5\u672a\u5b9e\u73b0")
         };
         function gc() {
-        };
+        }
+        ;
         var cb = {
             rJ: function (a, b, c) {
                 J.load("coordtransutils", function () {
@@ -2312,16 +2445,19 @@ function baiduAPI() {
             jO: [[1.410526172116255E-8, 8.98305509648872E-6, -1.9939833816331, 200.9824383106796, -187.2403703815547, 91.6087516669843, -23.38765649603339, 2.57121317296198, -0.03801003308653, 1.73379812E7], [-7.435856389565537E-9, 8.983055097726239E-6, -0.78625201886289, 96.32687599759846, -1.85204757529826, -59.36935905485877, 47.40033549296737, -16.50741931063887, 2.28786674699375, 1.026014486E7], [-3.030883460898826E-8, 8.98305509983578E-6, 0.30071316287616, 59.74293618442277, 7.357984074871, -25.38371002664745, 13.45380521110908, -3.29883767235584, 0.32710905363475, 6856817.37], [-1.981981304930552E-8, 8.983055099779535E-6, 0.03278182852591, 40.31678527705744, 0.65659298677277, -4.44255534477492, 0.85341911805263, 0.12923347998204, -0.04625736007561, 4482777.06], [3.09191371068437E-9, 8.983055096812155E-6, 6.995724062E-5, 23.10934304144901, -2.3663490511E-4, -0.6321817810242, -0.00663494467273, 0.03430082397953, -0.00466043876332, 2555164.4], [2.890871144776878E-9, 8.983055095805407E-6, -3.068298E-8, 7.47137025468032, -3.53937994E-6, -0.02145144861037, -1.234426596E-5, 1.0322952773E-4, -3.23890364E-6, 826088.5]],
             zF: [[-0.0015702102444, 111320.7020616939, 1704480524535203, -10338987376042340, 26112667856603880, -35149669176653700, 26595700718403920, -10725012454188240, 1800819912950474, 82.5], [8.277824516172526E-4, 111320.7020463578, 6.477955746671607E8, -4.082003173641316E9, 1.077490566351142E10, -1.517187553151559E10, 1.205306533862167E10, -5.124939663577472E9, 9.133119359512032E8, 67.5], [0.00337398766765, 111320.7020202162, 4481351.045890365, -2.339375119931662E7, 7.968221547186455E7, -1.159649932797253E8, 9.723671115602145E7, -4.366194633752821E7, 8477230.501135234, 52.5], [0.00220636496208, 111320.7020209128, 51751.86112841131, 3796837.749470245, 992013.7397791013, -1221952.21711287, 1340652.697009075, -620943.6990984312, 144416.9293806241, 37.5], [-3.441963504368392E-4, 111320.7020576856, 278.2353980772752, 2485758.690035394, 6070.750963243378, 54821.18345352118, 9540.606633304236, -2710.55326746645, 1405.483844121726, 22.5], [-3.218135878613132E-4, 111320.7020701615, 0.00369383431289, 823725.6402795718, 0.46104986909093, 2351.343141331292, 1.58060784298199, 8.77738589078284, 0.37238884252424, 7.45]],
             M0: function (a, b) {
-                if (!a || !b)return 0;
+                if (!a || !b)
+                    return 0;
                 var c, d, a = this.sb(a);
-                if (!a)return 0;
+                if (!a)
+                    return 0;
                 c = this.yk(a.lng);
                 d = this.yk(a.lat);
                 b = this.sb(b);
                 return !b ? 0 : this.Ce(c, this.yk(b.lng), d, this.yk(b.lat))
             },
             wo: function (a, b) {
-                if (!a || !b)return 0;
+                if (!a || !b)
+                    return 0;
                 a.lng = this.fD(a.lng, -180, 180);
                 a.lat = this.jD(a.lat, -74, 74);
                 b.lng = this.fD(b.lng, -180, 180);
@@ -2329,30 +2465,36 @@ function baiduAPI() {
                 return this.Ce(this.yk(a.lng), this.yk(b.lng), this.yk(a.lat), this.yk(b.lat))
             },
             sb: function (a) {
-                if (a === p || a === j)return new H(0, 0);
+                if (a === p || a === j)
+                    return new H(0, 0);
                 var b, c;
                 b = new H(Math.abs(a.lng), Math.abs(a.lat));
-                for (var d = 0; d < this.CF.length; d++)if (b.lat >= this.CF[d]) {
-                    c = this.jO[d];
-                    break
-                }
+                for (var d = 0; d < this.CF.length; d++)
+                    if (b.lat >= this.CF[d]) {
+                        c = this.jO[d];
+                        break
+                    }
                 a = this.sJ(a, c);
                 return a = new H(a.lng.toFixed(6), a.lat.toFixed(6))
             },
             Fb: function (a) {
-                if (a === p || a === j || 180 < a.lng || -180 > a.lng || 90 < a.lat || -90 > a.lat)return new H(0, 0);
+                if (a === p || a === j || 180 < a.lng || -180 > a.lng || 90 < a.lat || -90 > a.lat)
+                    return new H(0, 0);
                 var b, c;
                 a.lng = this.fD(a.lng, -180, 180);
                 a.lat = this.jD(a.lat, -74, 74);
                 b = new H(a.lng, a.lat);
-                for (var d = 0; d < this.Yt.length; d++)if (b.lat >= this.Yt[d]) {
-                    c = this.zF[d];
-                    break
-                }
-                if (!c)for (d = this.Yt.length - 1; 0 <= d; d--)if (b.lat <= -this.Yt[d]) {
-                    c = this.zF[d];
-                    break
-                }
+                for (var d = 0; d < this.Yt.length; d++)
+                    if (b.lat >= this.Yt[d]) {
+                        c = this.zF[d];
+                        break
+                    }
+                if (!c)
+                    for (d = this.Yt.length - 1; 0 <= d; d--)
+                        if (b.lat <= -this.Yt[d]) {
+                            c = this.zF[d];
+                            break
+                        }
                 a = this.sJ(a, c);
                 return a = new H(a.lng.toFixed(2), a.lat.toFixed(2))
             },
@@ -2377,8 +2519,10 @@ function baiduAPI() {
                 return a
             },
             fD: function (a, b, c) {
-                for (; a > c;)a -= c - b;
-                for (; a < b;)a += c - b;
+                for (; a > c; )
+                    a -= c - b;
+                for (; a < b; )
+                    a += c - b;
                 return a
             }
         });
@@ -2394,9 +2538,11 @@ function baiduAPI() {
                 a = new H(a.x, a.y);
                 return Q.sb(a)
             }, Vb: function (a, b, c, d, e) {
-                if (a)return a = this.om(a, e), b = this.Bc(b), new P(Math.round((a.lng - c.lng) / b + d.width / 2), Math.round((c.lat - a.lat) / b + d.height / 2))
+                if (a)
+                    return a = this.om(a, e), b = this.Bc(b), new P(Math.round((a.lng - c.lng) / b + d.width / 2), Math.round((c.lat - a.lat) / b + d.height / 2))
             }, mb: function (a, b, c, d, e) {
-                if (a)return b = this.Bc(b), this.Yg(new H(c.lng + b * (a.x - d.width / 2), c.lat - b * (a.y - d.height / 2)), e)
+                if (a)
+                    return b = this.Bc(b), this.Yg(new H(c.lng + b * (a.x - d.width / 2), c.lat - b * (a.y - d.height / 2)), e)
             }, Bc: function (a) {
                 return Math.pow(2, 18 - a)
             }
@@ -2452,7 +2598,8 @@ function baiduAPI() {
         };
         w.extend(ic.prototype, {
             Ne: function (a) {
-                if (!this.K && Va(this.initialize) && (this.K = this.initialize(a)))this.K.style.WebkitUserSelect = "none";
+                if (!this.K && Va(this.initialize) && (this.K = this.initialize(a)))
+                    this.K.style.WebkitUserSelect = "none";
                 this.draw()
             }, initialize: function () {
                 aa("initialize\u65b9\u6cd5\u672a\u5b9e\u73b0")
@@ -2518,7 +2665,8 @@ function baiduAPI() {
                 return !this.K ? q : !!this.Ea
             }, Fa: u("K"), KM: function (a) {
                 var a = a || {}, b;
-                for (b in a)this.z[b] = a[b]
+                for (b in a)
+                    this.z[b] = a[b]
             }, lt: ba("zIndex"), Zi: function () {
                 this.z.Zi = o
             }, RU: function () {
@@ -2556,26 +2704,35 @@ function baiduAPI() {
             });
             a.addEventListener("addoverlay", function (a) {
                 a = a.target;
-                if (a instanceof eb)b.ka[a.Q] || (b.ka[a.Q] = a); else {
-                    for (var d = q, e = 0, f = b.me.length; e < f; e++)if (b.me[e] === a) {
-                        d = o;
-                        break
-                    }
+                if (a instanceof eb)
+                    b.ka[a.Q] || (b.ka[a.Q] = a);
+                else {
+                    for (var d = q, e = 0, f = b.me.length; e < f; e++)
+                        if (b.me[e] === a) {
+                            d = o;
+                            break
+                        }
                     d || b.me.push(a)
                 }
             });
             a.addEventListener("removeoverlay", function (a) {
                 a = a.target;
-                if (a instanceof eb)delete b.ka[a.Q]; else for (var d = 0, e = b.me.length; d < e; d++)if (b.me[d] === a) {
-                    b.me.splice(d, 1);
-                    break
-                }
+                if (a instanceof eb)
+                    delete b.ka[a.Q];
+                else
+                    for (var d = 0, e = b.me.length; d < e; d++)
+                        if (b.me[d] === a) {
+                            b.me.splice(d, 1);
+                            break
+                        }
             });
             a.addEventListener("clearoverlays", function () {
                 this.Lc();
-                for (var a in b.ka)b.ka[a].z.Zi && (b.ka[a].remove(), delete b.ka[a]);
+                for (var a in b.ka)
+                    b.ka[a].z.Zi && (b.ka[a].remove(), delete b.ka[a]);
                 a = 0;
-                for (var d = b.me.length; a < d; a++)b.me[a].Zi != q && (b.me[a].remove(), b.me[a] = p, b.me.splice(a, 1), a--, d--)
+                for (var d = b.me.length; a < d; a++)
+                    b.me[a].Zi != q && (b.me[a].remove(), b.me[a] = p, b.me.splice(a, 1), a--, d--)
             });
             a.addEventListener("infowindowopen", function () {
                 var a = this.kb;
@@ -2593,7 +2750,8 @@ function baiduAPI() {
                 var b = z.Ep.is(this.map);
                 "canvas" == b.yb && b.canvas && b.qP(b.canvas.getContext("2d"))
             }
-            for (var c in this.ka)this.ka[c].draw(a);
+            for (var c in this.ka)
+                this.ka[c].draw(a);
             w.Yb.qb(this.me, function (a) {
                 a.draw()
             });
@@ -2618,8 +2776,10 @@ function baiduAPI() {
                 Xh: a.icons && 0 < a.icons.length ? a.icons : p
             };
             0 >= this.z.$b && (this.z.$b = 5);
-            if (0 > this.z.cd || 1 < this.z.cd)this.z.cd = 0.65;
-            if (0 > this.z.eg || 1 < this.z.eg)this.z.eg = 0.65;
+            if (0 > this.z.cd || 1 < this.z.cd)
+                this.z.cd = 0.65;
+            if (0 > this.z.eg || 1 < this.z.eg)
+                this.z.eg = 0.65;
             "solid" != this.z.strokeStyle && "dashed" != this.z.strokeStyle && (this.z.strokeStyle = "solid");
             this.K = p;
             this.ku = new db(0, 0);
@@ -2631,7 +2791,8 @@ function baiduAPI() {
         w.lang.ia(kc, eb, "Graph");
         kc.Cw = function (a) {
             var b = [];
-            if (!a)return b;
+            if (!a)
+                return b;
             Xa(a) && w.Yb.qb(a.split(";"), function (a) {
                 a = a.split(",");
                 b.push(new H(a[0], a[1]))
@@ -2828,7 +2989,8 @@ function baiduAPI() {
         });
         function oc(a, b, c, d) {
             a && (this.Zu = {}, this.aK = d ? !!d : q, this.Jc = [], this.eZ = a instanceof nc ? a : p, this.KH = b === j ? o : !!(b.indexOf("%") + 1), this.Ij = isNaN(parseFloat(b)) ? 1 : this.KH ? parseFloat(b) / 100 : parseFloat(b), this.LH = !!(c.indexOf("%") + 1), this.repeat = c != j ? this.LH ? parseFloat(c) / 100 : parseFloat(c) : 0)
-        };
+        }
+        ;
         function pc(a, b) {
             w.lang.qa.call(this);
             this.content = a;
@@ -2855,9 +3017,12 @@ function baiduAPI() {
                 Tw: b.headerContent || "",
                 yC: b.enableContentScroll || q
             };
-            if (0 != this.z.width && (220 > this.z.width && (this.z.width = 220), 730 < this.z.width))this.z.width = 730;
-            if (0 != this.z.height && (60 > this.z.height && (this.z.height = 60), 650 < this.z.height))this.z.height = 650;
-            if (0 != this.z.maxWidth && (220 > this.z.maxWidth && (this.z.maxWidth = 220), 730 < this.z.maxWidth))this.z.maxWidth = 730;
+            if (0 != this.z.width && (220 > this.z.width && (this.z.width = 220), 730 < this.z.width))
+                this.z.width = 730;
+            if (0 != this.z.height && (60 > this.z.height && (this.z.height = 60), 650 < this.z.height))
+                this.z.height = 650;
+            if (0 != this.z.maxWidth && (220 > this.z.maxWidth && (this.z.maxWidth = 220), 730 < this.z.maxWidth))
+                this.z.maxWidth = 730;
             this.Pd = q;
             this.pi = F.ea;
             this.Qa = p;
@@ -2906,7 +3071,8 @@ function baiduAPI() {
             }, Ug: function () {
                 return this.Ka()
             }, Ka: da(q), V: function () {
-                if (this.Qa && this.Qa.V)return this.Qa.V()
+                if (this.Qa && this.Qa.V)
+                    return this.Qa.V()
             }, Bf: function () {
                 return this.z.pa
             }
@@ -3048,8 +3214,10 @@ function baiduAPI() {
                 color: b.color || "#fa937e",
                 Zi: o
             }, this.AA = [], this.$d = [], J.load("pointcollection", function () {
-                for (var a = 0, b; b = c.AA[a]; a++)c[b.method].apply(c, b.arguments);
-                for (a = 0; b = c.$d[a]; a++)c[b.method].apply(c, b.arguments)
+                for (var a = 0, b; b = c.AA[a]; a++)
+                    c[b.method].apply(c, b.arguments);
+                for (a = 0; b = c.$d[a]; a++)
+                    c[b.method].apply(c, b.arguments)
             }))
         }
 
@@ -3111,7 +3279,8 @@ function baiduAPI() {
         w.lang.ia(S, eb, "Marker");
         w.extend(S.prototype, {
             Pb: function (a) {
-                if (a instanceof mc || a instanceof nc)this.z.hj = a
+                if (a instanceof mc || a instanceof nc)
+                    this.z.hj = a
             }, xo: function () {
                 return this.z.hj
             }, Rx: function (a) {
@@ -3201,7 +3370,8 @@ function baiduAPI() {
             }, xK: u("ma"), cf: function (a) {
                 this.ma = Math.abs(a)
             }, Cu: function (a, b) {
-                if (!a || !b || !this.map)return [];
+                if (!a || !b || !this.map)
+                    return [];
                 for (var c = [], d = b / 6378800, e = Math.PI / 180 * a.lat, f = Math.PI / 180 * a.lng, g = 0; 360 > g; g += 9) {
                     var i = Math.PI / 180 * g, k = Math.asin(Math.sin(e) * Math.cos(d) + Math.cos(e) * Math.sin(d) * Math.cos(i)), i = new H(((f - Math.atan2(Math.sin(i) * Math.sin(d) * Math.cos(e), Math.cos(d) - Math.sin(e) * Math.sin(k)) + Math.PI) % (2 * Math.PI) - Math.PI) * (180 / Math.PI), k * (180 / Math.PI));
                     c.push(i)
@@ -3262,10 +3432,11 @@ function baiduAPI() {
                 })
             }, jx: function () {
                 var a = this;
-                if (w.S.ba)try {
-                    document.execCommand("BackgroundImageCache", q, o)
-                } catch (b) {
-                }
+                if (w.S.ba)
+                    try {
+                        document.execCommand("BackgroundImageCache", q, o)
+                    } catch (b) {
+                    }
                 this.loaded || a.Yw();
                 a.Ff();
                 this.loaded || (this.loaded = o, J.load("tile", function () {
@@ -3306,12 +3477,13 @@ function baiduAPI() {
                 a.loaded || (Ec(a), a.tb = p, a.sm = p)
             }, bm: function (a, b, c) {
                 var d = this.map, e = d.la(), f = d.wa, g = d.jc, i = e.Bc(f), k = this.nK(), l = k[0], m = k[1], n = k[2], t = k[3], v = k[4], c = "undefined" != typeof c ? c : 0, e = e.k.Cb, k = d.Q.replace(/^TANGRAM_/, "");
-                for (this.Fc ? this.Fc.length = 0 : this.Fc = []; l < n; l++)for (var x = m; x < t; x++) {
-                    var y = l, B = x;
-                    this.Fc.push([y, B]);
-                    y = k + "_" + b + "_" + y + "_" + B + "_" + f;
-                    this.yJ[y] = y
-                }
+                for (this.Fc ? this.Fc.length = 0 : this.Fc = []; l < n; l++)
+                    for (var x = m; x < t; x++) {
+                        var y = l, B = x;
+                        this.Fc.push([y, B]);
+                        y = k + "_" + b + "_" + y + "_" + B + "_" + f;
+                        this.yJ[y] = y
+                    }
                 this.Fc.sort(function (a) {
                     return function (b, c) {
                         return 0.4 * Math.abs(b[0] - a[0]) + 0.6 * Math.abs(b[1] - a[1]) - (0.4 * Math.abs(c[0] - a[0]) + 0.6 * Math.abs(c[1] - a[1]))
@@ -3323,28 +3495,37 @@ function baiduAPI() {
                 a.style.top = l + "px";
                 this.xe ? this.xe.length = 0 : this.xe = [];
                 l = 0;
-                for (d = a.childNodes.length; l < d; l++)x = a.childNodes[l], x.Dq = q, this.xe.push(x);
-                if (l = this.vm)for (var A in l)delete l[A]; else this.vm = {};
+                for (d = a.childNodes.length; l < d; l++)
+                    x = a.childNodes[l], x.Dq = q, this.xe.push(x);
+                if (l = this.vm)
+                    for (var A in l)
+                        delete l[A];
+                else
+                    this.vm = {};
                 this.ye ? this.ye.length = 0 : this.ye = [];
                 l = 0;
                 for (d = this.Fc.length; l < d; l++) {
                     A = this.Fc[l][0];
                     i = this.Fc[l][1];
                     x = 0;
-                    for (m = this.xe.length; x < m; x++)if (n = this.xe[x], n.id == k + "_" + b + "_" + A + "_" + i + "_" + f) {
-                        n.Dq = o;
-                        this.vm[n.id] = n;
-                        break
-                    }
+                    for (m = this.xe.length; x < m; x++)
+                        if (n = this.xe[x], n.id == k + "_" + b + "_" + A + "_" + i + "_" + f) {
+                            n.Dq = o;
+                            this.vm[n.id] = n;
+                            break
+                        }
                 }
                 l = 0;
-                for (d = this.xe.length; l < d; l++)n = this.xe[l], n.Dq || this.ye.push(n);
+                for (d = this.xe.length; l < d; l++)
+                    n = this.xe[l], n.Dq || this.ye.push(n);
                 this.Om = [];
                 x = (e + c) * this.map.D.devicePixelRatio;
                 l = 0;
-                for (d = this.Fc.length; l < d; l++)A = this.Fc[l][0], i = this.Fc[l][1], t = A * e + g[0] - c / 2, v = (-1 - i) * e + g[1] - c / 2, y = k + "_" + b + "_" + A + "_" + i + "_" + f, m = this.vm[y], n = p, m ? (n = m.style, n.left = t + "px", n.top = v + "px", m.Le || this.Om.push([A, i, m])) : (0 < this.ye.length ? (m = this.ye.shift(), m.getContext("2d").clearRect(-c / 2, -c / 2, x, x), n = m.style) : (m = document.createElement("canvas"), n = m.style, n.position = "absolute", n.width = e + c + "px", n.height = e + c + "px", this.dx() && (n.WebkitTransform = "scale(1.001)"), m.setAttribute("width", x), m.setAttribute("height", x), a.appendChild(m)), m.id = y, n.left = t + "px", n.top = v + "px", -1 < y.indexOf("bg") && (t = "#F3F1EC", this.map.D.Zn && (t = this.map.D.Zn), n.background = t ? t : ""), this.Om.push([A, i, m])), m.style.visibility = "";
+                for (d = this.Fc.length; l < d; l++)
+                    A = this.Fc[l][0], i = this.Fc[l][1], t = A * e + g[0] - c / 2, v = (-1 - i) * e + g[1] - c / 2, y = k + "_" + b + "_" + A + "_" + i + "_" + f, m = this.vm[y], n = p, m ? (n = m.style, n.left = t + "px", n.top = v + "px", m.Le || this.Om.push([A, i, m])) : (0 < this.ye.length ? (m = this.ye.shift(), m.getContext("2d").clearRect(-c / 2, -c / 2, x, x), n = m.style) : (m = document.createElement("canvas"), n = m.style, n.position = "absolute", n.width = e + c + "px", n.height = e + c + "px", this.dx() && (n.WebkitTransform = "scale(1.001)"), m.setAttribute("width", x), m.setAttribute("height", x), a.appendChild(m)), m.id = y, n.left = t + "px", n.top = v + "px", -1 < y.indexOf("bg") && (t = "#F3F1EC", this.map.D.Zn && (t = this.map.D.Zn), n.background = t ? t : ""), this.Om.push([A, i, m])), m.style.visibility = "";
                 l = 0;
-                for (d = this.ye.length; l < d; l++)this.ye[l].style.visibility = "hidden";
+                for (d = this.ye.length; l < d; l++)
+                    this.ye[l].style.visibility = "hidden";
                 return this.Om
             }, dx: function () {
                 return /M040/i.test(navigator.userAgent)
@@ -3400,29 +3581,37 @@ function baiduAPI() {
                 a.loaded || (Ic(b), Ec(a), a.tb = p, a.sm = p)
             }, Ff: function (a) {
                 var b = this;
-                if (b.map.la() == Oa)J.load("coordtrans", function () {
-                    b.map.Ib || (b.map.Ib = Oa.$j(b.map.eo), b.map.Xv = Oa.lK(b.map.Ib));
-                    b.rH()
-                }, o); else {
-                    if (a && a)for (var c in this.Ri)delete this.Ri[c];
+                if (b.map.la() == Oa)
+                    J.load("coordtrans", function () {
+                        b.map.Ib || (b.map.Ib = Oa.$j(b.map.eo), b.map.Xv = Oa.lK(b.map.Ib));
+                        b.rH()
+                    }, o);
+                else {
+                    if (a && a)
+                        for (var c in this.Ri)
+                            delete this.Ri[c];
                     b.rH(a)
                 }
             }, rH: function (a) {
                 for (var b = this.pm.concat(this.If), c = b.length, d = 0; d < c; d++) {
                     var e = b[d];
-                    if (e.Ub && l.wa < e.Ub)break;
+                    if (e.Ub && l.wa < e.Ub)
+                        break;
                     if (e.Rv) {
                         var f = this.Db = e.Db;
                         if (a) {
                             var g = f;
-                            if (g && g.childNodes)for (var i = g.childNodes.length, k = i - 1; 0 <= k; k--)i = g.childNodes[k], g.removeChild(i), i = p
+                            if (g && g.childNodes)
+                                for (var i = g.childNodes.length, k = i - 1; 0 <= k; k--)
+                                    i = g.childNodes[k], g.removeChild(i), i = p
                         }
                         if (this.map.Hb()) {
                             this.Yc.style.display = "block";
                             f.style.display = "none";
                             this.map.dispatchEvent(new M("vectorchanged"), {isvector: o});
                             continue
-                        } else f.style.display = "block", this.Yc.style.display = "none", this.map.dispatchEvent(new M("vectorchanged"), {isvector: q})
+                        } else
+                            f.style.display = "block", this.Yc.style.display = "none", this.map.dispatchEvent(new M("vectorchanged"), {isvector: q})
                     }
                     if (!e.iH && !(e.Oo && !this.map.Hb() || e.iL && this.map.Hb())) {
                         var l = this.map, m = l.la(), f = m.Do(), i = l.wa, n = l.jc;
@@ -3440,7 +3629,9 @@ function baiduAPI() {
                         A = -l.offsetY + l.height / 2;
                         e.Db && (e.Db.style.left = Math.ceil(v + y) - t[0] + "px", e.Db.style.top = Math.ceil(x + A) - t[1] + "px", e.Db.style.WebkitTransform = "translate3d(0,0,0)");
                         v = [];
-                        for (l.dB = []; k < g; k++)for (x = f; x < m; x++)v.push([k, x]), l.dB.push({x: k, y: x});
+                        for (l.dB = []; k < g; k++)
+                            for (x = f; x < m; x++)
+                                v.push([k, x]), l.dB.push({x: k, y: x});
                         v.sort(function (a) {
                             return function (b, c) {
                                 return 0.4 * Math.abs(b[0] - a[0]) + 0.6 * Math.abs(b[1] - a[1]) - (0.4 * Math.abs(c[0] - a[0]) + 0.6 * Math.abs(c[1] - a[1]))
@@ -3448,34 +3639,48 @@ function baiduAPI() {
                         }([i[0] - 1, i[1] - 1]));
                         i = v.length;
                         this.$g += i;
-                        for (k = 0; k < i; k++)this.UY([v[k][0], v[k][1], n], t, e, a)
+                        for (k = 0; k < i; k++)
+                            this.UY([v[k][0], v[k][1], n], t, e, a)
                     }
                 }
             }, Ig: function (a) {
                 var b = this, c = a.target, a = b.map.Hb();
-                if (c instanceof bb)a && !c.jm && (c.fa(this.map, this.Yc), c.jm = o); else if (c.Jf && this.map.Ig(c.Jf), c.Oo) {
-                    for (a = 0; a < b.rg.length; a++)if (b.rg[a] == c)return;
+                if (c instanceof bb)
+                    a && !c.jm && (c.fa(this.map, this.Yc), c.jm = o);
+                else if (c.Jf && this.map.Ig(c.Jf), c.Oo) {
+                    for (a = 0; a < b.rg.length; a++)
+                        if (b.rg[a] == c)
+                            return;
                     J.load("vector", function () {
                         c.fa(b.map, b.Yc);
                         b.rg.push(c)
                     }, o)
                 } else {
-                    for (a = 0; a < b.If.length; a++)if (b.If[a] == c)return;
+                    for (a = 0; a < b.If.length; a++)
+                        if (b.If[a] == c)
+                            return;
                     c.fa(this.map, this.$k);
                     b.If.push(c)
                 }
             }, hh: function (a) {
                 var a = a.target, b = this.map.Hb();
-                if (a instanceof bb)b && a.jm && (a.remove(), a.jm = q); else {
+                if (a instanceof bb)
+                    b && a.jm && (a.remove(), a.jm = q);
+                else {
                     a.Jf && this.map.hh(a.Jf);
-                    if (a.Oo)for (var b = 0, c = this.rg.length; b < c; b++)a == this.rg[b] && this.rg.splice(b, 1); else {
+                    if (a.Oo)
+                        for (var b = 0, c = this.rg.length; b < c; b++)
+                            a == this.rg[b] && this.rg.splice(b, 1);
+                    else {
                         b = 0;
-                        for (c = this.If.length; b < c; b++)a == this.If[b] && this.If.splice(b, 1)
+                        for (c = this.If.length; b < c; b++)
+                            a == this.If[b] && this.If.splice(b, 1)
                     }
                     a.remove()
                 }
             }, og: function () {
-                for (var a = this.pm, b = 0, c = a.length; b < c; b++)a[b].remove();
+                for (var a = this.pm, b = 0, c = a.length; b < c; b++)
+                    a[b].remove();
                 delete this.Db;
                 this.pm = [];
                 this.Ri = this.kg = {};
@@ -3490,14 +3695,16 @@ function baiduAPI() {
                 }, 10)
             }, N2: s(), gt: function (a) {
                 var b = this.map.la();
-                if (!this.map.Hb() && (a ? this.map.D.bZ = a : a = this.map.D.bZ, a))for (var c = p, c = "2" == z.gy ? [z.url.proto + z.url.domain.main_domain_cdn.other[0] + "/"] : [z.url.proto + z.url.domain.main_domain_cdn.baidu[0] + "/", z.url.proto + z.url.domain.main_domain_cdn.baidu[1] + "/", z.url.proto + z.url.domain.main_domain_cdn.baidu[2] + "/"], d = 0, e; e = this.pm[d]; d++)if (e.QY == o) {
-                    b.k.Mb = 18;
-                    e.getTilesUrl = function (b, d) {
-                        var e = b.x, k = b.y, l = "customimage/tile?&x=" + e + "&y=" + k + "&z=" + d + "&udt=20150601", l = a.styleStr ? l + ("&styles=" + encodeURIComponent(a.styleStr)) : l + ("&customid=" + a.style);
-                        return c[Math.abs(e + k) % c.length] + l
-                    };
-                    break
-                }
+                if (!this.map.Hb() && (a ? this.map.D.bZ = a : a = this.map.D.bZ, a))
+                    for (var c = p, c = "2" == z.gy ? [z.url.proto + z.url.domain.main_domain_cdn.other[0] + "/"] : [z.url.proto + z.url.domain.main_domain_cdn.baidu[0] + "/", z.url.proto + z.url.domain.main_domain_cdn.baidu[1] + "/", z.url.proto + z.url.domain.main_domain_cdn.baidu[2] + "/"], d = 0, e; e = this.pm[d]; d++)
+                        if (e.QY == o) {
+                            b.k.Mb = 18;
+                            e.getTilesUrl = function (b, d) {
+                                var e = b.x, k = b.y, l = "customimage/tile?&x=" + e + "&y=" + k + "&z=" + d + "&udt=20150601", l = a.styleStr ? l + ("&styles=" + encodeURIComponent(a.styleStr)) : l + ("&customid=" + a.style);
+                                return c[Math.abs(e + k) % c.length] + l
+                            };
+                            break
+                        }
             }
         });
         function Hc(a, b, c, d, e) {
@@ -3533,11 +3740,13 @@ function baiduAPI() {
                     }
                     if (g.tb && !zb(g.tb) && e.Db) {
                         e.Db.appendChild(g.tb);
-                        if (w.S.ba <= 6 && w.S.ba > 0 && g.tI)g.tb.style.cssText = g.tb.style.cssText + (';filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' + g.src + '",sizingMethod=scale);')
+                        if (w.S.ba <= 6 && w.S.ba > 0 && g.tI)
+                            g.tb.style.cssText = g.tb.style.cssText + (';filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' + g.src + '",sizingMethod=scale);')
                     }
                     var c = a.oE - a.$T, d;
                     for (d in b) {
-                        if (c <= 0)break;
+                        if (c <= 0)
+                            break;
                         if (!a.kg[d]) {
                             b[d].sm = p;
                             var f = b[d].tb;
@@ -3554,7 +3763,8 @@ function baiduAPI() {
                     }
                     Jc && new sb({
                         wc: 20, duration: 200, ja: function (a) {
-                            if (g.tb && g.tb.style)g.tb.style.opacity = a * 1
+                            if (g.tb && g.tb.style)
+                                g.tb.style.opacity = a * 1
                         }, finish: function () {
                             g.tb && g.tb.style && delete g.tb.style.opacity
                         }
@@ -3584,7 +3794,8 @@ function baiduAPI() {
             this.tb.src = 0 < w.S.ba && 6 >= w.S.ba && this.tI ? F.ea + "blank.gif" : "" !== this.src && this.tb.src == this.src ? this.src + "&t = " + Date.now() : this.src
         };
         function Ec(a) {
-            for (var b = 0; b < a.ou.length; b++)a.ou[b]();
+            for (var b = 0; b < a.ou.length; b++)
+                a.ou[b]();
             a.ou.length = 0
         }
 
@@ -3594,11 +3805,13 @@ function baiduAPI() {
                 var b = a.attributes, c, d, e;
                 if (b) {
                     d = b.length;
-                    for (c = 0; c < d; c += 1)e = b[c].name, Va(a[e]) && (a[e] = p)
+                    for (c = 0; c < d; c += 1)
+                        e = b[c].name, Va(a[e]) && (a[e] = p)
                 }
                 if (b = a.children) {
                     d = b.length;
-                    for (c = 0; c < d; c += 1)Ic(a.children[c])
+                    for (c = 0; c < d; c += 1)
+                        Ic(a.children[c])
                 }
             }
         }
@@ -3705,7 +3918,8 @@ function baiduAPI() {
         function bb(a) {
             this.aU = [z.url.proto + z.url.domain.TILE_ONLINE_URLS[1] + "/gvd/?", z.url.proto + z.url.domain.TILE_ONLINE_URLS[2] + "/gvd/?", z.url.proto + z.url.domain.TILE_ONLINE_URLS[3] + "/gvd/?", z.url.proto + z.url.domain.TILE_ONLINE_URLS[4] + "/gvd/?"];
             this.k = {$J: q};
-            for (var b in a)this.k[b] = a[b];
+            for (var b in a)
+                this.k[b] = a[b];
             this.Ih = this.qh = this.La = this.A = this.C = p;
             this.oL = 0;
             var c = this;
@@ -3729,8 +3943,10 @@ function baiduAPI() {
             this.Jf = new Lc;
             this.Jf.ey = this;
             if (this.k.predictDate) {
-                if (1 > this.k.predictDate.weekday || 7 < this.k.predictDate.weekday)this.k.predictDate = 1;
-                if (0 > this.k.predictDate.hour || 23 < this.k.predictDate.hour)this.k.predictDate.hour = 0
+                if (1 > this.k.predictDate.weekday || 7 < this.k.predictDate.weekday)
+                    this.k.predictDate = 1;
+                if (0 > this.k.predictDate.hour || 23 < this.k.predictDate.hour)
+                    this.k.predictDate.hour = 0
             }
             this.lT = z.url.proto + z.url.domain.traffic + ":8002/traffic/"
         }
@@ -3873,9 +4089,12 @@ function baiduAPI() {
             return Math.pow(2, 20 - a)
         };
         Oa.$j = function (a) {
-            if (!a)return "";
+            if (!a)
+                return "";
             var b = F.yB, c;
-            for (c in b)if (-1 < a.search(c))return b[c].Cx;
+            for (c in b)
+                if (-1 < a.search(c))
+                    return b[c].Cx;
             return ""
         };
         Oa.lK = function (a) {
@@ -4001,7 +4220,8 @@ function baiduAPI() {
                 this.update = o;
                 a = {page: 1, Ie: 100, sd: 100, Gf: 4, YI: "pg", update: o};
                 c || (c = a);
-                for (var d in c)"undefined" != typeof c[d] && (this[d] = c[d]);
+                for (var d in c)
+                    "undefined" != typeof c[d] && (this[d] = c[d]);
                 this.ja()
             }
         }
@@ -4033,13 +4253,16 @@ function baiduAPI() {
                     }
                     a.push('<span style="margin-right:3px"><a style="color:#7777cc" href="javascript:void(0)" onclick="{temp2}">\u4e0a\u4e00\u9875</a></span>'.replace("{temp2}", "BMap.I('" + this.Q + "').toPage(" + b + ");"))
                 }
-                if (this.page < this.Gf)d = 0 == this.page % this.Gf ? this.page - this.Gf - 1 : this.page - this.page % this.Gf + 1, b = d + this.Gf - 1; else {
+                if (this.page < this.Gf)
+                    d = 0 == this.page % this.Gf ? this.page - this.Gf - 1 : this.page - this.page % this.Gf + 1, b = d + this.Gf - 1;
+                else {
                     d = Math.floor(this.Gf / 2);
                     var e = this.Gf % 2 - 1, b = this.sd > this.page + d ? this.page + d : this.sd;
                     d = this.page - d - e
                 }
                 this.page > this.sd - this.Gf && this.page >= this.Gf && (d = this.sd - this.Gf + 1, b = this.sd);
-                for (e = d; e <= b; e++)0 < e && (e == this.page ? a.push('<span style="margin-right:3px">' + e + "</span>") : 1 <= e && e <= this.sd && (d = '<span><a style="color:#7777cc;margin-right:3px" href="javascript:void(0)" onclick="{temp3}">[' + e + "]</a></span>", a.push(d.replace("{temp3}", "BMap.I('" + this.Q + "').toPage(" + e + ");"))));
+                for (e = d; e <= b; e++)
+                    0 < e && (e == this.page ? a.push('<span style="margin-right:3px">' + e + "</span>") : 1 <= e && e <= this.sd && (d = '<span><a style="color:#7777cc;margin-right:3px" href="javascript:void(0)" onclick="{temp3}">[' + e + "]</a></span>", a.push(d.replace("{temp3}", "BMap.I('" + this.Q + "').toPage(" + e + ");"))));
                 c > this.sd || a.push('<span><a style="color:#7777cc" href="javascript:void(0)" onclick="{temp4}">\u4e0b\u4e00\u9875</a></span>'.replace("{temp4}", "BMap.I('" + this.Q + "').toPage(" + c + ");"));
                 a.push("</p>");
                 return a.join("")
@@ -4218,20 +4441,20 @@ function baiduAPI() {
             this.Zs = [0, 0, 0, 0, 0, 0, 0];
             this.bp = [0, 0, 0, 0, 0, 0, 0];
             this.Ca = [{o: "", wf: 0, Qm: 0, x: 0, y: 0, oc: -1}, {o: "", wf: 0, Qm: 0, x: 0, y: 0, oc: -1}, {
-                o: "",
-                wf: 0,
-                Qm: 0,
-                x: 0,
-                y: 0,
-                oc: -1
-            }, {o: "", wf: 0, Qm: 0, x: 0, y: 0, oc: -1}, {o: "", wf: 0, Qm: 0, x: 0, y: 0, oc: -1}, {
-                o: "",
-                wf: 0,
-                Qm: 0,
-                x: 0,
-                y: 0,
-                oc: -1
-            }, {o: "", wf: 0, Qm: 0, x: 0, y: 0, oc: -1}];
+                    o: "",
+                    wf: 0,
+                    Qm: 0,
+                    x: 0,
+                    y: 0,
+                    oc: -1
+                }, {o: "", wf: 0, Qm: 0, x: 0, y: 0, oc: -1}, {o: "", wf: 0, Qm: 0, x: 0, y: 0, oc: -1}, {
+                    o: "",
+                    wf: 0,
+                    Qm: 0,
+                    x: 0,
+                    y: 0,
+                    oc: -1
+                }, {o: "", wf: 0, Qm: 0, x: 0, y: 0, oc: -1}];
             this.Ph = -1;
             this.Ft = [];
             this.Gt = [];
@@ -4281,7 +4504,8 @@ function baiduAPI() {
             this.$d = [];
             var b = this;
             J.load("othersearch", function () {
-                for (var a = 0, d; d = b.$d[a]; a++)b[d.method].apply(b, d.arguments)
+                for (var a = 0, d; d = b.$d[a]; a++)
+                    b[d.method].apply(b, d.arguments)
             })
         }
 
@@ -4404,7 +4628,8 @@ function baiduAPI() {
                 copyrightControlOptions: {}
             };
             var b = b || {}, d;
-            for (d in b)this.k[d] = b[d];
+            for (d in b)
+                this.k[d] = b[d];
             this.za = {heading: 0, pitch: 0};
             this.An = [];
             this.xb = this.Na = p;
@@ -4468,7 +4693,9 @@ function baiduAPI() {
                 b = a.style;
                 c = Ta(a).position;
                 "absolute" != c && "relative" != c && (b.position = "relative", b.zIndex = 0);
-                if ("absolute" === c || "relative" === c)if (a = Ta(a).zIndex, !a || "auto" === a)b.zIndex = 0
+                if ("absolute" === c || "relative" === c)
+                    if (a = Ta(a).zIndex, !a || "auto" === a)
+                        b.zIndex = 0
             },
             RV: u("An"),
             Kb: u("Na"),
@@ -4500,7 +4727,9 @@ function baiduAPI() {
                 a != this.Ac && (a > Ed && (a = Ed), a < Fd && (a = Fd), a != this.Ac && (this.Ac = a))
             },
             OA: function () {
-                if (this.C)for (var a = this.C.Lw(), b = 0; b < a.length; b++)(a[b]instanceof S || a[b]instanceof qc) && a[b].point && this.ka.push(a[b])
+                if (this.C)
+                    for (var a = this.C.Lw(), b = 0; b < a.length; b++)
+                        (a[b]instanceof S || a[b]instanceof qc) && a[b].point && this.ka.push(a[b])
             },
             FE: ba("C"),
             it: function (a) {
@@ -4508,7 +4737,11 @@ function baiduAPI() {
             },
             kp: function (a) {
                 for (var b in a) {
-                    if ("object" == typeof a[b])for (var c in a[b])this.k[b][c] = a[b][c]; else this.k[b] = a[b];
+                    if ("object" == typeof a[b])
+                        for (var c in a[b])
+                            this.k[b][c] = a[b][c];
+                    else
+                        this.k[b] = a[b];
                     switch (b) {
                         case "linksControl":
                             this.dispatchEvent(new M("onlinks_visible_changed"));
@@ -4587,7 +4820,8 @@ function baiduAPI() {
                         panoid: b,
                         from: "api"
                     }, c;
-                    for (c in b)a += c + "=" + b[c] + "&"
+                    for (c in b)
+                        a += c + "=" + b[c] + "&"
                 }
                 return a.slice(0, -1)
             },
@@ -4604,11 +4838,13 @@ function baiduAPI() {
                     }
                 }
 
-                for (var c = a.getPanoMethodList(), d = "", e = 0, f = c.length; e < f; e++)d = c[e], this[d] = b(this, d);
+                for (var c = a.getPanoMethodList(), d = "", e = 0, f = c.length; e < f; e++)
+                    d = c[e], this[d] = b(this, d);
                 this.Bg.push(a)
             },
             rE: function (a) {
-                for (var b = this.Bg.length; b--;)this.Bg[b] === a && this.Bg.splice(b, 1)
+                for (var b = this.Bg.length; b--; )
+                    this.Bg[b] === a && this.Bg.splice(b, 1)
             }
         });
         var Hd = Na.prototype;
@@ -4671,7 +4907,8 @@ function baiduAPI() {
         function Jd(a, b) {
             Id.call(this);
             var c = {position: p, altitude: 2, displayDistance: o}, b = b || {}, d;
-            for (d in b)c[d] = b[d];
+            for (d in b)
+                c[d] = b[d];
             this.xb = c.position;
             this.vj = a;
             this.Rp = c.altitude;
@@ -4692,12 +4929,15 @@ function baiduAPI() {
             }, uo: u("Rp"), sa: function () {
                 var a = this.V(), b = p, c = p;
                 this.G && (c = this.G.V());
-                if (a && c)if (a.$a(c))b = this.G.sa(); else {
-                    b = {};
-                    b.heading = Kd(a.lng - c.lng, a.lat - c.lat) || 0;
-                    var a = b, c = this.uo(), d = this.vn();
-                    a.pitch = Math.round(180 * (Math.atan(c / d) / Math.PI)) || 0
-                }
+                if (a && c)
+                    if (a.$a(c))
+                        b = this.G.sa();
+                    else {
+                        b = {};
+                        b.heading = Kd(a.lng - c.lng, a.lat - c.lat) || 0;
+                        var a = b, c = this.uo(), d = this.vn();
+                        a.pitch = Math.round(180 * (Math.atan(c / d) / Math.PI)) || 0
+                    }
                 return b
             }, vn: function () {
                 var a = 0, b, c;
@@ -4724,7 +4964,8 @@ function baiduAPI() {
         function Md(a, b) {
             Id.call(this);
             var c = {icon: "", title: "", panoInfo: p, altitude: 2}, b = b || {}, d;
-            for (d in b)c[d] = b[d];
+            for (d in b)
+                c[d] = b[d];
             this.xb = a;
             this.$G = c.icon;
             this.rI = c.title;
@@ -4753,7 +4994,8 @@ function baiduAPI() {
                     var a = this.G.V(), b = this.V(), a = Kd(b.lng - a.lng, b.lat - a.lat);
                     isNaN(a) && (a = 0);
                     a = {heading: a, pitch: 0}
-                } else a = this.za;
+                } else
+                    a = this.za;
                 return a
             }, sf: s()
         });
@@ -4778,13 +5020,16 @@ function baiduAPI() {
                 0 > a && 0 > b && (d = 180);
                 0 > a && 0 < b && (d = 270);
                 c = (c + 90) % 90 + d
-            } else 0 === a ? c = 0 > b ? 180 : 0 : 0 === b && (c = 0 < a ? 90 : 270);
+            } else
+                0 === a ? c = 0 > b ? 180 : 0 : 0 === b && (c = 0 < a ? 90 : 270);
             return Math.round(c)
         }
 
         function Gd() {
-            if ("boolean" === typeof Od)return Od;
-            if (!window.WebGLRenderingContext || w.platform.km && -1 == navigator.userAgent.indexOf("Android 5"))return Od = q;
+            if ("boolean" === typeof Od)
+                return Od;
+            if (!window.WebGLRenderingContext || w.platform.km && -1 == navigator.userAgent.indexOf("Android 5"))
+                return Od = q;
             var a = document.createElement("canvas"), b = p;
             try {
                 b = a.getContext("webgl")
@@ -4827,19 +5072,21 @@ function baiduAPI() {
                             b.UM(a.id);
                             b.R = a;
                             b.Na != p && (b.Uk = b._position);
-                            for (var c in a)if (a.hasOwnProperty(c))switch (b["_" + c] = a[c], c) {
-                                case "position":
-                                    b.xb = a[c];
-                                    break;
-                                case "id":
-                                    b.Na = a[c];
-                                    break;
-                                case "links":
-                                    b.An = a[c];
-                                    break;
-                                case "zoom":
-                                    b.Ac = a[c]
-                            }
+                            for (var c in a)
+                                if (a.hasOwnProperty(c))
+                                    switch (b["_" + c] = a[c], c) {
+                                        case "position":
+                                            b.xb = a[c];
+                                            break;
+                                        case "id":
+                                            b.Na = a[c];
+                                            break;
+                                        case "links":
+                                            b.An = a[c];
+                                            break;
+                                        case "zoom":
+                                            b.Ac = a[c]
+                                    }
                             if (b.Uk) {
                                 var f = b.Uk, g = b._position;
                                 c = f.lat;
@@ -4855,7 +5102,8 @@ function baiduAPI() {
                             b.dispatchEvent(new M("oncopyright_changed"), {copyright: a.copyright});
                             a.Fl && b.k.closeControl ? w.B.show(b.oQ) : w.B.J(b.oQ)
                         }
-                    } else b.Na = b.Tk, b.xb = b.Uk, b.dispatchEvent(new M("onnoresult"))
+                    } else
+                        b.Na = b.Tk, b.xb = b.Uk, b.dispatchEvent(new M("onnoresult"))
                 }
 
                 var b = this.G, c = this;
@@ -4867,10 +5115,11 @@ function baiduAPI() {
                         if (b && b.result && 0 == b.result.error) {
                             var b = b.content[0].interinfo, e = {};
                             e.Fl = b.BreakID;
-                            for (var f = b.Defaultfloor, g = p, i = 0; i < b.Floors.length; i++)if (b.Floors[i].Floor == f) {
-                                g = b.Floors[i];
-                                break
-                            }
+                            for (var f = b.Defaultfloor, g = p, i = 0; i < b.Floors.length; i++)
+                                if (b.Floors[i].Floor == f) {
+                                    g = b.Floors[i];
+                                    break
+                                }
                             e.id = g.StartID || g.Points[0].PID;
                             c.Bo(e.id, a, e)
                         }
@@ -4931,7 +5180,9 @@ function baiduAPI() {
         Sd.Xt = {width: 220, height: 60};
         w.extend(Sd, {
             Mo: function (a, b, c, d) {
-                if (!b || !c || !c.lngLat || !c.panoInstance)d(); else {
+                if (!b || !c || !c.lngLat || !c.panoInstance)
+                    d();
+                else {
                     this.Gn === j && (this.Gn = new ac(p, {zf: "api"}));
                     var e = this;
                     this.Gn.wB(b, function (b) {
@@ -4979,10 +5230,11 @@ function baiduAPI() {
         });
         var Td = document, Ud = Math, Vd = Td.createElement("div").style, Wd;
         a:{
-            for (var Xd = ["t", "webkitT", "MozT", "msT", "OT"], Yd, ae = 0, be = Xd.length; ae < be; ae++)if (Yd = Xd[ae] + "ransform", Yd in Vd) {
-                Wd = Xd[ae].substr(0, Xd[ae].length - 1);
-                break a
-            }
+            for (var Xd = ["t", "webkitT", "MozT", "msT", "OT"], Yd, ae = 0, be = Xd.length; ae < be; ae++)
+                if (Yd = Xd[ae] + "ransform", Yd in Vd) {
+                    Wd = Xd[ae].substr(0, Xd[ae].length - 1);
+                    break a
+                }
             Wd = q
         }
         var ce = Wd ? "-" + Wd.toLowerCase() + "-" : "", ee = de("transform"), fe = de("transitionProperty"), ge = de("transitionDuration"), he = de("transformOrigin"), ie = de("transitionTimingFunction"), je = de("transitionDelay"), wd = /android/gi.test(navigator.appVersion), ke = /iphone|ipad/gi.test(navigator.appVersion), le = /hp-tablet/gi.test(navigator.appVersion), ne = de("perspective")in Vd, oe = "ontouchstart"in window && !le, pe = Wd !== q, qe = de("transition")in Vd, re = "onorientationchange"in window ? "orientationchange" : "resize", se = oe ? "touchstart" : "mousedown", te = oe ? "touchmove" : "mousemove", ue = oe ? "touchend" : "mouseup", ve = oe ? "touchcancel" : "mouseup", we = Wd === q ? q : {
@@ -4992,8 +5244,8 @@ function baiduAPI() {
             O: "otransitionend",
             ms: "MSTransitionEnd"
         }[Wd], xe = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (a) {
-                return setTimeout(a, 1)
-            }, ye = window.cancelRequestAnimationFrame || window.U2 || window.webkitCancelRequestAnimationFrame || window.mozCancelRequestAnimationFrame || window.oCancelRequestAnimationFrame || window.msCancelRequestAnimationFrame || clearTimeout, ze = ne ? " translateZ(0)" : "";
+            return setTimeout(a, 1)
+        }, ye = window.cancelRequestAnimationFrame || window.U2 || window.webkitCancelRequestAnimationFrame || window.mozCancelRequestAnimationFrame || window.oCancelRequestAnimationFrame || window.msCancelRequestAnimationFrame || clearTimeout, ze = ne ? " translateZ(0)" : "";
 
         function Ae(a, b) {
             var c = this, d;
@@ -5042,7 +5294,8 @@ function baiduAPI() {
                 hM: p,
                 Uo: p
             };
-            for (d in b)c.options[d] = b[d];
+            for (d in b)
+                c.options[d] = b[d];
             c.x = c.options.x;
             c.y = c.options.y;
             c.options.zk = pe && c.options.zk;
@@ -5070,8 +5323,8 @@ function baiduAPI() {
             }, document.body.addEventListener = function (a, b, c) {
                 var d = Node.prototype.addEventListener;
                 a === "click" ? d.call(document.body, a, b.OK || (b.OK = function (a) {
-                        a.VX || b(a)
-                    }), c) : d.call(document.body, a, b, c)
+                    a.VX || b(a)
+                }), c) : d.call(document.body, a, b, c)
             }), c.P("click", document.body, o))
         }
 
@@ -5090,7 +5343,8 @@ function baiduAPI() {
             handleEvent: function (a) {
                 switch (a.type) {
                     case se:
-                        if (!oe && 0 !== a.button)break;
+                        if (!oe && 0 !== a.button)
+                            break;
                         this.lv(a);
                         break;
                     case te:
@@ -5135,16 +5389,22 @@ function baiduAPI() {
                 this[a + "Scrollbar"] && (c *= this[a + "ScrollbarProp"], 0 > c ? (this.options.KC || (c = this[a + "ScrollbarIndicatorSize"] + Ud.round(3 * c), 8 > c && (c = 8), this[a + "ScrollbarIndicator"].style["h" == a ? "width" : "height"] = c + "px"), c = 0) : c > this[a + "ScrollbarMaxScroll"] && (this.options.KC ? c = this[a + "ScrollbarMaxScroll"] : (c = this[a + "ScrollbarIndicatorSize"] - Ud.round(3 * (c - this[a + "ScrollbarMaxScroll"])), 8 > c && (c = 8), this[a + "ScrollbarIndicator"].style["h" == a ? "width" : "height"] = c + "px", c = this[a + "ScrollbarMaxScroll"] + (this[a + "ScrollbarIndicatorSize"] - c))), this[a + "ScrollbarWrapper"].style[je] = "0", this[a + "ScrollbarWrapper"].style.opacity = b && this.options.Vw ? "0" : "1", this[a + "ScrollbarIndicator"].style[ee] = "translate(" + ("h" == a ? c + "px,0)" : "0," + c + "px)") + ze)
             },
             tP: function (a) {
-                if (a.pQ === o)return this.fB = a.target, this.xw = Date.now(), o;
+                if (a.pQ === o)
+                    return this.fB = a.target, this.xw = Date.now(), o;
                 if (this.fB && this.xw) {
-                    if (600 < Date.now() - this.xw)return this.xw = this.fB = p, o
+                    if (600 < Date.now() - this.xw)
+                        return this.xw = this.fB = p, o
                 } else {
-                    for (var b = a.target; b != this.Bb && b != document.body;)b = b.parentNode;
-                    if (b == document.body)return o
+                    for (var b = a.target; b != this.Bb && b != document.body; )
+                        b = b.parentNode;
+                    if (b == document.body)
+                        return o
                 }
-                for (b = a.target; 1 != b.nodeType;)b = b.parentNode;
+                for (b = a.target; 1 != b.nodeType; )
+                    b = b.parentNode;
                 b = b.tagName.toLowerCase();
-                if ("select" != b && "input" != b && "textarea" != b)return a.stopImmediatePropagation ? a.stopImmediatePropagation() : a.VX = o, a.stopPropagation(), a.preventDefault(), this.xw = this.fB = p, q
+                if ("select" != b && "input" != b && "textarea" != b)
+                    return a.stopImmediatePropagation ? a.stopImmediatePropagation() : a.VX = o, a.stopPropagation(), a.preventDefault(), this.xw = this.fB = p, q
             },
             lv: function (a) {
                 var b = oe ? a.touches[0] : a, c, d;
@@ -5154,7 +5414,8 @@ function baiduAPI() {
                     this.Bk = this.zl = this.Zg = q;
                     this.aC = this.$B = this.Dv = this.Cv = this.gC = this.fC = 0;
                     this.options.zoom && (oe && 1 < a.touches.length) && (d = Ud.abs(a.touches[0].pageX - a.touches[1].pageX), c = Ud.abs(a.touches[0].pageY - a.touches[1].pageY), this.qZ = Ud.sqrt(d * d + c * c), this.wx = Ud.abs(a.touches[0].pageX + a.touches[1].pageX - 2 * this.cF) / 2 - this.x, this.xx = Ud.abs(a.touches[0].pageY + a.touches[1].pageY - 2 * this.dF) / 2 - this.y, this.options.Vo && this.options.Vo.call(this, a));
-                    if (this.options.nx && (this.options.zk ? (c = getComputedStyle(this.Bb, p)[ee].replace(/[^0-9\-.,]/g, "").split(","), d = +(c[12] || c[4]), c = +(c[13] || c[5])) : (d = +getComputedStyle(this.Bb, p).left.replace(/[^0-9-]/g, ""), c = +getComputedStyle(this.Bb, p).top.replace(/[^0-9-]/g, "")), d != this.x || c != this.y))this.options.ki ? this.Hd(we) : ye(this.nB), this.mj = [], this.Vq(d, c), this.options.ux && this.options.ux.call(this);
+                    if (this.options.nx && (this.options.zk ? (c = getComputedStyle(this.Bb, p)[ee].replace(/[^0-9\-.,]/g, "").split(","), d = +(c[12] || c[4]), c = +(c[13] || c[5])) : (d = +getComputedStyle(this.Bb, p).left.replace(/[^0-9-]/g, ""), c = +getComputedStyle(this.Bb, p).top.replace(/[^0-9-]/g, "")), d != this.x || c != this.y))
+                        this.options.ki ? this.Hd(we) : ye(this.nB), this.mj = [], this.Vq(d, c), this.options.ux && this.options.ux.call(this);
                     this.Ev = this.x;
                     this.Fv = this.y;
                     this.zt = this.x;
@@ -5171,11 +5432,15 @@ function baiduAPI() {
             OR: function (a) {
                 var b = oe ? a.touches[0] : a, c = b.pageX - this.bh, d = b.pageY - this.dh, e = this.x + c, f = this.y + d, g = a.timeStamp || Date.now();
                 this.options.UL && this.options.UL.call(this, a);
-                if (this.options.zoom && oe && 1 < a.touches.length)e = Ud.abs(a.touches[0].pageX - a.touches[1].pageX), f = Ud.abs(a.touches[0].pageY - a.touches[1].pageY), this.pZ = Ud.sqrt(e * e + f * f), this.Bk = o, b = 1 / this.qZ * this.pZ * this.scale, b < this.options.Ak ? b = 0.5 * this.options.Ak * Math.pow(2, b / this.options.Ak) : b > this.options.yp && (b = 2 * this.options.yp * Math.pow(0.5, this.options.yp / b)), this.Po = b / this.scale, e = this.wx - this.wx * this.Po + this.x, f = this.xx - this.xx * this.Po + this.y, this.Bb.style[ee] = "translate(" + e + "px," + f + "px) scale(" + b + ")" + ze, this.options.hM && this.options.hM.call(this, a); else {
+                if (this.options.zoom && oe && 1 < a.touches.length)
+                    e = Ud.abs(a.touches[0].pageX - a.touches[1].pageX), f = Ud.abs(a.touches[0].pageY - a.touches[1].pageY), this.pZ = Ud.sqrt(e * e + f * f), this.Bk = o, b = 1 / this.qZ * this.pZ * this.scale, b < this.options.Ak ? b = 0.5 * this.options.Ak * Math.pow(2, b / this.options.Ak) : b > this.options.yp && (b = 2 * this.options.yp * Math.pow(0.5, this.options.yp / b)), this.Po = b / this.scale, e = this.wx - this.wx * this.Po + this.x, f = this.xx - this.xx * this.Po + this.y, this.Bb.style[ee] = "translate(" + e + "px," + f + "px) scale(" + b + ")" + ze, this.options.hM && this.options.hM.call(this, a);
+                else {
                     this.bh = b.pageX;
                     this.dh = b.pageY;
-                    if (0 < e || e < this.Td)e = this.options.ao ? this.x + c / 2 : 0 <= e || 0 <= this.Td ? 0 : this.Td;
-                    if (f > this.$e || f < this.$c)f = this.options.ao ? this.y + d / 2 : f >= this.$e || 0 <= this.$c ? this.$e : this.$c;
+                    if (0 < e || e < this.Td)
+                        e = this.options.ao ? this.x + c / 2 : 0 <= e || 0 <= this.Td ? 0 : this.Td;
+                    if (f > this.$e || f < this.$c)
+                        f = this.options.ao ? this.y + d / 2 : f >= this.$e || 0 <= this.$c ? this.$e : this.$c;
                     this.fC += c;
                     this.gC += d;
                     this.Cv = Ud.abs(this.fC);
@@ -5195,25 +5460,33 @@ function baiduAPI() {
                     b.Hd(ue, window);
                     b.Hd(ve, window);
                     b.options.TL && b.options.TL.call(b, a);
-                    if (b.Bk)d = b.scale * b.Po, d = Math.max(b.options.Ak, d), d = Math.min(b.options.yp, d), b.Po = d / b.scale, b.scale = d, b.x = b.wx - b.wx * b.Po + b.x, b.y = b.xx - b.xx * b.Po + b.y, b.Bb.style[ge] = "200ms", b.Bb.style[ee] = "translate(" + b.x + "px," + b.y + "px) scale(" + b.scale + ")" + ze, b.Bk = q, b.refresh(), b.options.Uo && b.options.Uo.call(b, a); else {
+                    if (b.Bk)
+                        d = b.scale * b.Po, d = Math.max(b.options.Ak, d), d = Math.min(b.options.yp, d), b.Po = d / b.scale, b.scale = d, b.x = b.wx - b.wx * b.Po + b.x, b.y = b.xx - b.xx * b.Po + b.y, b.Bb.style[ge] = "200ms", b.Bb.style[ee] = "translate(" + b.x + "px," + b.y + "px) scale(" + b.scale + ")" + ze, b.Bk = q, b.refresh(), b.options.Uo && b.options.Uo.call(b, a);
+                    else {
                         if (b.Zg) {
                             if (300 > i && b.options.nx) {
                                 f = d ? b.qH(d - b.zt, i, -b.x, b.Nx - b.Pt + b.x, b.options.ao ? b.Pt : 0) : f;
                                 g = e ? b.qH(e - b.At, i, -b.y, 0 > b.$c ? b.fp - b.Um + b.y - b.$e : 0, b.options.ao ? b.Um : 0) : g;
                                 d = b.x + f.oa;
                                 e = b.y + g.oa;
-                                if (0 < b.x && 0 < d || b.x < b.Td && d < b.Td)f = {oa: 0, time: 0};
-                                if (b.y > b.$e && e > b.$e || b.y < b.$c && e < b.$c)g = {oa: 0, time: 0}
+                                if (0 < b.x && 0 < d || b.x < b.Td && d < b.Td)
+                                    f = {oa: 0, time: 0};
+                                if (b.y > b.$e && e > b.$e || b.y < b.$c && e < b.$c)
+                                    g = {oa: 0, time: 0}
                             }
                             f.oa || g.oa ? (c = Ud.max(Ud.max(f.time, g.time), 10), b.options.wt && (f = d - b.Ev, g = e - b.Fv, Ud.abs(f) < b.options.Xx && Ud.abs(g) < b.options.Xx ? b.scrollTo(b.Ev, b.Fv, 200) : (f = b.jI(d, e), d = f.x, e = f.y, c = Ud.max(f.time, c))), b.scrollTo(Ud.round(d), Ud.round(e), c)) : b.options.wt ? (f = d - b.Ev, g = e - b.Fv, Ud.abs(f) < b.options.Xx && Ud.abs(g) < b.options.Xx ? b.scrollTo(b.Ev, b.Fv, 200) : (f = b.jI(b.x, b.y), (f.x != b.x || f.y != b.y) && b.scrollTo(f.x, f.y, f.time))) : b.In(200)
                         } else {
-                            if (oe)if (b.GJ && b.options.zoom)clearTimeout(b.GJ), b.GJ = p, b.options.Vo && b.options.Vo.call(b, a), b.zoom(b.bh, b.dh, 1 == b.scale ? b.options.VU : 1), b.options.Uo && setTimeout(function () {
-                                b.options.Uo.call(b, a)
-                            }, 200); else if (this.options.Sw) {
-                                for (d = c.target; 1 != d.nodeType;)d = d.parentNode;
-                                e = d.tagName.toLowerCase();
-                                "select" != e && "input" != e && "textarea" != e ? (e = Td.createEvent("MouseEvents"), e.initMouseEvent("click", o, o, a.view, 1, c.screenX, c.screenY, c.clientX, c.clientY, a.ctrlKey, a.altKey, a.shiftKey, a.metaKey, 0, p), e.pQ = o, d.dispatchEvent(e)) : d.focus()
-                            }
+                            if (oe)
+                                if (b.GJ && b.options.zoom)
+                                    clearTimeout(b.GJ), b.GJ = p, b.options.Vo && b.options.Vo.call(b, a), b.zoom(b.bh, b.dh, 1 == b.scale ? b.options.VU : 1), b.options.Uo && setTimeout(function () {
+                                        b.options.Uo.call(b, a)
+                                    }, 200);
+                                else if (this.options.Sw) {
+                                    for (d = c.target; 1 != d.nodeType; )
+                                        d = d.parentNode;
+                                    e = d.tagName.toLowerCase();
+                                    "select" != e && "input" != e && "textarea" != e ? (e = Td.createEvent("MouseEvents"), e.initMouseEvent("click", o, o, a.view, 1, c.screenX, c.screenY, c.clientX, c.clientY, a.ctrlKey, a.altKey, a.shiftKey, a.metaKey, 0, p), e.pQ = o, d.dispatchEvent(e)) : d.focus()
+                                }
                             b.In(400)
                         }
                         b.options.gM && b.options.gM.call(b, a)
@@ -5223,18 +5496,29 @@ function baiduAPI() {
             In: function (a) {
                 var b = 0 <= this.x ? 0 : this.x < this.Td ? this.Td : this.x, c = this.y >= this.$e || 0 < this.$c ? this.$e : this.y < this.$c ? this.$c : this.y;
                 if (b == this.x && c == this.y) {
-                    if (this.Zg && (this.Zg = q, this.options.ux && this.options.ux.call(this)), this.Wh && this.options.Vw && ("webkit" == Wd && (this.KK.style[je] = "300ms"), this.KK.style.opacity = "0"), this.li && this.options.Vw)"webkit" == Wd && (this.GN.style[je] = "300ms"), this.GN.style.opacity = "0"
-                } else this.scrollTo(b, c, a || 0)
+                    if (this.Zg && (this.Zg = q, this.options.ux && this.options.ux.call(this)), this.Wh && this.options.Vw && ("webkit" == Wd && (this.KK.style[je] = "300ms"), this.KK.style.opacity = "0"), this.li && this.options.Vw)
+                        "webkit" == Wd && (this.GN.style[je] = "300ms"), this.GN.style.opacity = "0"
+                } else
+                    this.scrollTo(b, c, a || 0)
             },
             sT: function (a) {
                 var b = this, c, d;
-                if ("wheelDeltaX"in a)c = a.wheelDeltaX / 12, d = a.wheelDeltaY / 12; else if ("wheelDelta"in a)c = d = a.wheelDelta / 12; else if ("detail"in a)c = d = 3 * -a.detail; else return;
+                if ("wheelDeltaX"in a)
+                    c = a.wheelDeltaX / 12, d = a.wheelDeltaY / 12;
+                else if ("wheelDelta"in a)
+                    c = d = a.wheelDelta / 12;
+                else if ("detail"in a)
+                    c = d = 3 * -a.detail;
+                else
+                    return;
                 if ("zoom" == b.options.NN) {
-                    if (d = b.scale * Math.pow(2, 1 / 3 * (d ? d / Math.abs(d) : 0)), d < b.options.Ak && (d = b.options.Ak), d > b.options.yp && (d = b.options.yp), d != b.scale)!b.iy && b.options.Vo && b.options.Vo.call(b, a), b.iy++, b.zoom(a.pageX, a.pageY, d, 400), setTimeout(function () {
-                        b.iy--;
-                        !b.iy && b.options.Uo && b.options.Uo.call(b, a)
-                    }, 400)
-                } else c = b.x + c, d = b.y + d, 0 < c ? c = 0 : c < b.Td && (c = b.Td), d > b.$e ? d = b.$e : d < b.$c && (d = b.$c), 0 > b.$c && b.scrollTo(c, d, 0)
+                    if (d = b.scale * Math.pow(2, 1 / 3 * (d ? d / Math.abs(d) : 0)), d < b.options.Ak && (d = b.options.Ak), d > b.options.yp && (d = b.options.yp), d != b.scale)
+                        !b.iy && b.options.Vo && b.options.Vo.call(b, a), b.iy++, b.zoom(a.pageX, a.pageY, d, 400), setTimeout(function () {
+                            b.iy--;
+                            !b.iy && b.options.Uo && b.options.Uo.call(b, a)
+                        }, 400)
+                } else
+                    c = b.x + c, d = b.y + d, 0 < c ? c = 0 : c < b.Td && (c = b.Td), d > b.$e ? d = b.$e : d < b.$c && (d = b.$c), 0 > b.$c && b.scrollTo(c, d, 0)
             },
             oT: function (a) {
                 a.target == this.Bb && (this.Hd(we), this.UA())
@@ -5254,7 +5538,8 @@ function baiduAPI() {
                         i = (e.x - b) * f + b;
                         k = (e.y - c) * f + c;
                         a.Vq(i, k);
-                        if (a.zl)a.nB = xe(g)
+                        if (a.zl)
+                            a.nB = xe(g)
                     }
                 }, g()) : a.In(400))
             },
@@ -5270,7 +5555,8 @@ function baiduAPI() {
                 return {oa: f * (0 > a ? -1 : 1), time: Ud.round(b / 6.0E-4)}
             },
             Ij: function (a) {
-                for (var b = -a.offsetLeft, c = -a.offsetTop; a = a.offsetParent;)b -= a.offsetLeft, c -= a.offsetTop;
+                for (var b = -a.offsetLeft, c = -a.offsetTop; a = a.offsetParent; )
+                    b -= a.offsetLeft, c -= a.offsetTop;
                 a != this.Tm && (b *= this.scale, c *= this.scale);
                 return {left: b, top: c}
             },
@@ -5278,19 +5564,21 @@ function baiduAPI() {
                 var c, d, e;
                 e = this.Ee.length - 1;
                 c = 0;
-                for (d = this.Ee.length; c < d; c++)if (a >= this.Ee[c]) {
-                    e = c;
-                    break
-                }
+                for (d = this.Ee.length; c < d; c++)
+                    if (a >= this.Ee[c]) {
+                        e = c;
+                        break
+                    }
                 e == this.RB && (0 < e && 0 > this.$B) && e--;
                 a = this.Ee[e];
                 d = (d = Ud.abs(a - this.Ee[this.RB])) ? 500 * (Ud.abs(this.x - a) / d) : 0;
                 this.RB = e;
                 e = this.bf.length - 1;
-                for (c = 0; c < e; c++)if (b >= this.bf[c]) {
-                    e = c;
-                    break
-                }
+                for (c = 0; c < e; c++)
+                    if (b >= this.bf[c]) {
+                        e = c;
+                        break
+                    }
                 e == this.SB && (0 < e && 0 > this.aC) && e--;
                 b = this.bf[e];
                 c = (c = Ud.abs(b - this.bf[this.SB])) ? 500 * (Ud.abs(this.y - b) / c) : 0;
@@ -5330,12 +5618,15 @@ function baiduAPI() {
                     this.bf = [];
                     c = this.Bb.querySelectorAll(this.options.wt);
                     a = 0;
-                    for (b = c.length; a < b; a++)d = this.Ij(c[a]), d.left += this.cF, d.top += this.dF, this.Ee[a] = d.left < this.Td ? this.Td : d.left * this.scale, this.bf[a] = d.top < this.$c ? this.$c : d.top * this.scale
+                    for (b = c.length; a < b; a++)
+                        d = this.Ij(c[a]), d.left += this.cF, d.top += this.dF, this.Ee[a] = d.left < this.Td ? this.Td : d.left * this.scale, this.bf[a] = d.top < this.$c ? this.$c : d.top * this.scale
                 } else if (this.options.wt) {
-                    for (this.Ee = []; d >= this.Td;)this.Ee[b] = d, d -= this.Pt, b++;
+                    for (this.Ee = []; d >= this.Td; )
+                        this.Ee[b] = d, d -= this.Pt, b++;
                     this.Td % this.Pt && (this.Ee[this.Ee.length] = this.Td - this.Ee[this.Ee.length - 1] + this.Ee[this.Ee.length - 1]);
                     b = d = 0;
-                    for (this.bf = []; d >= this.$c;)this.bf[b] = d, d -= this.Um, b++;
+                    for (this.bf = []; d >= this.$c; )
+                        this.bf[b] = d, d -= this.Um, b++;
                     this.$c % this.Um && (this.bf[this.bf.length] = this.$c - this.bf[this.bf.length - 1] + this.bf[this.bf.length - 1])
                 }
                 this.bv("h");
@@ -5347,11 +5638,12 @@ function baiduAPI() {
                 this.stop();
                 e.length || (e = [{x: a, y: b, time: c, WX: d}]);
                 a = 0;
-                for (b = e.length; a < b; a++)e[a].WX && (e[a].x = this.x - e[a].x, e[a].y = this.y - e[a].y), this.mj.push({
-                    x: e[a].x,
-                    y: e[a].y,
-                    time: e[a].time || 0
-                });
+                for (b = e.length; a < b; a++)
+                    e[a].WX && (e[a].x = this.x - e[a].x, e[a].y = this.y - e[a].y), this.mj.push({
+                        x: e[a].x,
+                        y: e[a].y,
+                        time: e[a].time || 0
+                    });
                 this.UA()
             },
             disable: function () {
@@ -5376,7 +5668,8 @@ function baiduAPI() {
             }
         };
         function de(a) {
-            if ("" === Wd)return a;
+            if ("" === Wd)
+                return a;
             a = a.charAt(0).toUpperCase() + a.substr(1);
             return Wd + a
         }
@@ -5385,7 +5678,8 @@ function baiduAPI() {
         function Be(a) {
             this.k = {anchor: Vb, offset: new L(0, 0), maxWidth: "100%", imageHeight: 80};
             var a = a || {}, b;
-            for (b in a)this.k[b] = a[b];
+            for (b in a)
+                this.k[b] = a[b];
             this.ll = new ac(p, {zf: "api"});
             this.Jj = [];
             this.G = p;
@@ -5413,7 +5707,8 @@ function baiduAPI() {
         G() && (Ce = 1);
         w.extend(Be.prototype, {
             kp: function (a) {
-                for (var b in a)this.k[b] = a[b];
+                for (var b in a)
+                    this.k[b] = a[b];
                 a = this.k.imageHeight + "px";
                 this.mc(this.k.anchor);
                 this.A.style.width = isNaN(Number(this.k.maxWidth)) === o ? this.k.maxWidth : this.k.maxWidth + "px";
@@ -5458,14 +5753,18 @@ function baiduAPI() {
                 this.Mj.style.width = this.Sf.width - 6 + "px";
                 this.mc(this.k.anchor)
             }, LG: function (a) {
-                for (var b = this.Jj, c = b.length - 1; 0 <= c; c--)if (b[c].panoId == a)return c;
+                for (var b = this.Jj, c = b.length - 1; 0 <= c; c--)
+                    if (b[c].panoId == a)
+                        return c;
                 return -1
             }, Hx: function (a, b) {
                 if (b || !this.Jj[this.Mc] || !(this.Jj[this.Mc].panoId == a && 3 !== this.Jj[this.Mc].recoType)) {
                     var c = this, d = this.LG(a);
                     !b && -1 !== d && this.Jj[d] && 3 !== this.Jj[d].recoType ? this.jp(d) : this.fW(function (a) {
-                        for (var b = {}, d, i, k = q, l = [], m = 0, n = a.length; m < n; m++)d = a[m].catlog, i = a[m].floor, j !== d && ("" === d && j !== i ? (k = o, b[i] || (b[i] = []), b[i].push(a[m])) : (b[De[d]] || (b[De[d]] = []), b[De[d]].push(a[m])));
-                        for (var t in b)k ? l.push({data: t + "F", index: t}) : l.push({data: Ee[t], index: t});
+                        for (var b = {}, d, i, k = q, l = [], m = 0, n = a.length; m < n; m++)
+                            d = a[m].catlog, i = a[m].floor, j !== d && ("" === d && j !== i ? (k = o, b[i] || (b[i] = []), b[i].push(a[m])) : (b[De[d]] || (b[De[d]] = []), b[De[d]].push(a[m])));
+                        for (var t in b)
+                            k ? l.push({data: t + "F", index: t}) : l.push({data: Ee[t], index: t});
                         c.dG = b;
                         c.Bi = l;
                         c.hl(a);
@@ -5482,24 +5781,29 @@ function baiduAPI() {
                     a.style.cssText = "position:absolute;top:-25px;background:rgb(37,37,37);background:rgba(37,37,37,0.9);border-bottom:1px solid #4e596a;width:100%;line-height:25px;height:25px;overflow:scroll;outline:0";
                     new Ae(a, {ao: q, nx: o, Wh: q, li: q, Rm: q, SD: o, Wv: o, Sw: o});
                     this.A.appendChild(a);
-                    for (var c = this, d = b.getElementsByTagName("span"), e = 0, f = d.length; e < f; e++)b = d[e], w.F(b, "click", function () {
-                        if (this.getAttribute("dataindex")) {
-                            c.hl(c.dG[this.getAttribute("dataindex")]);
-                            for (var a = 0, b = d.length; a < b; a++)d[a].style.color = "#FFFFFF";
-                            this.style.color = "#3383FF"
-                        }
-                    });
+                    for (var c = this, d = b.getElementsByTagName("span"), e = 0, f = d.length; e < f; e++)
+                        b = d[e], w.F(b, "click", function () {
+                            if (this.getAttribute("dataindex")) {
+                                c.hl(c.dG[this.getAttribute("dataindex")]);
+                                for (var a = 0, b = d.length; a < b; a++)
+                                    d[a].style.color = "#FFFFFF";
+                                this.style.color = "#3383FF"
+                            }
+                        });
                     this.xi = a
                 }
             }, zU: function () {
-                if (this.xi)a = this.kK(this.Bi), this.iP.innerHTML = a; else {
+                if (this.xi)
+                    a = this.kK(this.Bi), this.iP.innerHTML = a;
+                else {
                     var a = this.kK(this.Bi), b = K("ul"), c = this;
                     b.style.cssText = "list-style: none;padding:0px;margin:0px;display:block;width:60px;position:absolute;top:7px";
                     b.innerHTML = a;
                     w.F(b, "click", function (a) {
                         if (a = (a.srcElement || a.target).getAttribute("dataindex")) {
                             c.hl(c.dG[a]);
-                            for (var d = b.getElementsByTagName("li"), e = 0, f = d.length; e < f; e++)d[e].childNodes[0].getAttribute("dataindex") === a ? w.B.Oa(d[e], "pano_catlogLiActive") : w.B.Ob(d[e], "pano_catlogLiActive")
+                            for (var d = b.getElementsByTagName("li"), e = 0, f = d.length; e < f; e++)
+                                d[e].childNodes[0].getAttribute("dataindex") === a ? w.B.Oa(d[e], "pano_catlogLiActive") : w.B.Ob(d[e], "pano_catlogLiActive")
                         }
                     });
                     var a = K("div"), d = K("a"), e = K("span"), f = K("a"), g = K("span"), i = ["background:url(" + F.ea + "panorama/catlog_icon.png) no-repeat;", "display:block;width:10px;height:7px;margin:0 auto;"].join("");
@@ -5580,13 +5884,16 @@ function baiduAPI() {
                 a = this.LG(this.G.Kb(), this.I_);
                 -1 !== a && this.jp(a)
             }, UV: function (a) {
-                for (var b = "", c, d = 0, e = a.length; d < e; d++)c = '<div style="color:white;opacity:0.5;margin:0 35px;float:left;text-align: center"><span  dataIndex="' + a[d].index + '">' + a[d].data + "</span></div>", b += c;
+                for (var b = "", c, d = 0, e = a.length; d < e; d++)
+                    c = '<div style="color:white;opacity:0.5;margin:0 35px;float:left;text-align: center"><span  dataIndex="' + a[d].index + '">' + a[d].data + "</span></div>", b += c;
                 return b
             }, kK: function (a) {
-                for (var b = "", c, d = 0, e = a.length; d < e; d++)c = '<li class="pano_catlogLi"><span style="display:block;width:100%;" dataIndex="' + a[d].index + '">' + a[d].data + "</span></li>", b += c;
+                for (var b = "", c, d = 0, e = a.length; d < e; d++)
+                    c = '<li class="pano_catlogLi"><span style="display:block;width:100%;" dataIndex="' + a[d].index + '">' + a[d].data + "</span></li>", b += c;
                 return b
             }, OV: function (a) {
-                for (var b, c, d, e, f = [], g = this.Sf.height, i = this.Sf.width, k = 0; k < a.length; k++)b = a[k], recoType = b.recoType, d = b.panoId, e = b.name, c = b.heading, b = b.pitch, c = Sd.vK(d, c, b, 198, 108), b = '<a href="javascript:void(0);" class="pano_photo_item" data-index="' + k + '"><img style="width:' + (i - 2) + "px;height:" + (g - 2) + 'px;" data-index="' + k + '" name="' + e + '" src="' + c + '" alt="' + e + '"/><span class="pano_photo_decs" data-index="' + k + '" style="width:' + i + "px;font-size:" + Math.floor(g / 6) + "px; line-height:" + Math.floor(g / 6) + 'px;"><em class="pano_poi_' + recoType + '"></em>' + e + "</span></a>", 3 === recoType ? Sa() ? (this.qz = b, this.jV = d, a.splice(k, 1), k--) : (b = '<a href="javascript:void(0);" class="pano_photo_item" data-index="' + k + '"><img style="width:' + (i - 2) + "px;height:" + (g - 2) + 'px;" data-index="' + k + '" name="' + e + '" src="' + c + '" alt="' + e + '"/><div style="background:rgba(37,37,37,0.5);position:absolute;top:0px;left:0px;width:100%;height:100%;text-align: center;line-height:' + this.k.imageHeight + 'px;" data-index="' + k + '"><img src="' + F.ea + 'panorama/photoexit.png" style="border:none;vertical-align:middle;" data-index="' + k + '" alt=""/></div></a>', f.push(b)) : f.push(b);
+                for (var b, c, d, e, f = [], g = this.Sf.height, i = this.Sf.width, k = 0; k < a.length; k++)
+                    b = a[k], recoType = b.recoType, d = b.panoId, e = b.name, c = b.heading, b = b.pitch, c = Sd.vK(d, c, b, 198, 108), b = '<a href="javascript:void(0);" class="pano_photo_item" data-index="' + k + '"><img style="width:' + (i - 2) + "px;height:" + (g - 2) + 'px;" data-index="' + k + '" name="' + e + '" src="' + c + '" alt="' + e + '"/><span class="pano_photo_decs" data-index="' + k + '" style="width:' + i + "px;font-size:" + Math.floor(g / 6) + "px; line-height:" + Math.floor(g / 6) + 'px;"><em class="pano_poi_' + recoType + '"></em>' + e + "</span></a>", 3 === recoType ? Sa() ? (this.qz = b, this.jV = d, a.splice(k, 1), k--) : (b = '<a href="javascript:void(0);" class="pano_photo_item" data-index="' + k + '"><img style="width:' + (i - 2) + "px;height:" + (g - 2) + 'px;" data-index="' + k + '" name="' + e + '" src="' + c + '" alt="' + e + '"/><div style="background:rgba(37,37,37,0.5);position:absolute;top:0px;left:0px;width:100%;height:100%;text-align: center;line-height:' + this.k.imageHeight + 'px;" data-index="' + k + '"><img src="' + F.ea + 'panorama/photoexit.png" style="border:none;vertical-align:middle;" data-index="' + k + '" alt=""/></div></a>', f.push(b)) : f.push(b);
                 return f.join("")
             }, fW: function (a) {
                 var b = this, c = this.G.Kb();
@@ -5594,7 +5901,8 @@ function baiduAPI() {
                     b.G.Kb() === c && a(d)
                 })
             }, mc: function (a) {
-                if (!Ua(a) || isNaN(a) || a < Tb || 3 < a)a = this.defaultAnchor;
+                if (!Ua(a) || isNaN(a) || a < Tb || 3 < a)
+                    a = this.defaultAnchor;
                 var b = this.A, c = this.k.offset.width, d = this.k.offset.height;
                 b.style.left = b.style.top = b.style.right = b.style.bottom = "auto";
                 switch (a) {
@@ -5621,7 +5929,8 @@ function baiduAPI() {
                     a.stopPropagation()
                 });
                 w.F(this.Nj, "click", function (b) {
-                    if ((b = (b.srcElement || b.target).getAttribute("data-index")) && b != a.Mc)a.jp(b), a.G.cc(a.Jj[b].panoId)
+                    if ((b = (b.srcElement || b.target).getAttribute("data-index")) && b != a.Mc)
+                        a.jp(b), a.G.cc(a.Jj[b].panoId)
                 });
                 w.F(this.Gh, "mouseover", function (b) {
                     b = (b.srcElement || b.target).getAttribute("data-index");
@@ -5778,7 +6087,8 @@ function baiduAPI() {
         z.PanoramaCoverageLayer = $b;
         z.PanoramaFlashInterface = Qd;
         function R(a, b) {
-            for (var c in b)a[c] = b[c]
+            for (var c in b)
+                a[c] = b[c]
         }
 
         R(window, {

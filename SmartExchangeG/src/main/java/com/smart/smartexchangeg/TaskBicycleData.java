@@ -38,7 +38,8 @@ public class TaskBicycleData {
     //生成根据 id，经纬度生成唯一标识
     //从百度map api上根据经纬度查询 address
     //保存本地json
-    public static Set<JSONObject> bicycleMap = new HashSet<>();
+//    public static Set<JSONObject> bicycleMap = new HashSet<>();
+    public static JSONArray bicycleMap = new JSONArray();
 
 //    public static Set<BycycleDataModel> bicycleSet = null;
     private static String bicycleDataPath = null;

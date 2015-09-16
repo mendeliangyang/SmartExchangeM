@@ -9,8 +9,10 @@ import com.smart.common.DBHelper;
 import com.smart.common.DeployInfo;
 import com.smart.common.FormationResult;
 import com.smart.common.UtileSmart;
+import com.smart.common.base.commonAnalyzeParam;
 import com.smart.common.model.ExecuteResultParam;
 import com.smart.common.model.ResponseResultCode;
+import com.smart.smartexchangeg.calc.CalcLocation;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -63,29 +65,58 @@ public class ZstResource {
     @Path("getHouseInfo")
     public String getHouseInfo(String param) {
         try {
-            ScriptEngineManager manager = new ScriptEngineManager();
-            ScriptEngine engine = manager.getEngineByName("javascript");
+            HttpClient httpClient = new HttpClient();
+            PostMethod postMethod = new PostMethod("http://218.204.174.24:8052/ZST/house/getNewHouseData?beginDate=1997-01-01&endDate=2020-01-01");
 
-            String jsFileName = DeployInfo.GetDelplyRootPath() + File.separator + "mapLevelDataComputer.js";   // 读取js文件   
+            try {
+                httpClient.executeMethod(postMethod);
+            } catch (HttpException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String resp = null;
+            if (postMethod.getStatusCode() == HttpStatus.SC_OK) {
+                resp = postMethod.getResponseBodyAsString();
+                //解析数据
+                JSONObject jsonObj = JSONObject.fromObject(resp);
+                JSONArray array = jsonObj.getJSONArray("data");
 
-            FileReader reader = new FileReader(jsFileName);   // 执行指定脚本   
-            engine.eval(reader);
+                Map<String, JSONArray> mapArray = CalcLocation.LocationDataAccess1(array, "lat", "lng");
 
-            if (engine instanceof Invocable) {
-                Invocable invoke = (Invocable) engine;    // 调用merge方法，并传入两个参数    
+                JSONObject obj = new JSONObject();
+                obj.accumulate(DeployInfo.ResultDataTag, mapArray);
+                String resultStr = new FormationResult().formationResult(ResponseResultCode.Success, "", new ExecuteResultParam(obj));
+                return resultStr;
 
-// c = merge(2, 3);    
-                Object c = invoke.invokeFunction("mapLevelDataComputer");
-
-                System.out.println("c = " + c);
+            } else {
+                String resultStr = new FormationResult().formationResult(ResponseResultCode.Error, "", new ExecuteResultParam("未知错误原因", "未知错误原因"));
+//            exchange.getOut().setHeader("Content-Type", "application/json;chatset='utf-8'");
+//            exchange.getOut().setBody(resultStr);
+                return resultStr;
             }
 
-            reader.close();
-
+//            ScriptEngineManager manager = new ScriptEngineManager();
+//            ScriptEngine engine = manager.getEngineByName("javascript");
+//
+//            String jsFileName = DeployInfo.GetDelplyRootPath() + File.separator + "mapLevelDataComputer.js";   // 读取js文件   
+//
+//            FileReader reader = new FileReader(jsFileName);   // 执行指定脚本   
+//            engine.eval(reader);
+//
+//            if (engine instanceof Invocable) {
+//                Invocable invoke = (Invocable) engine;    // 调用merge方法，并传入两个参数    
+//
+//// c = merge(2, 3);    
+//                Object c = invoke.invokeFunction("mapLevelDataComputer");
+//
+//                System.out.println("c = " + c);
+//            }
+//
+//            reader.close();
         } catch (Exception e) {
             return formationResult.formationResult(ResponseResultCode.Error, new ExecuteResultParam(e.getLocalizedMessage(), param, e));
         }
-        return "";
     }
 
     @POST
@@ -93,7 +124,7 @@ public class ZstResource {
     public String ibikestation(String param) {
         try {
             JSONArray array = new JSONArray();
-            for (JSONObject bucycleKey : TaskBicycleData.bicycleMap) {
+            for (Object bucycleKey : TaskBicycleData.bicycleMap) {
                 array.add(bucycleKey);
             }
             JSONObject obj = new JSONObject();
@@ -138,7 +169,8 @@ public class ZstResource {
             Set<String> nearSet = new HashSet<>();
             JSONArray array = new JSONArray();
 
-            for (JSONObject value : TaskBicycleData.bicycleMap) {
+            for (Object valueTemp : TaskBicycleData.bicycleMap) {
+                JSONObject value = JSONObject.fromObject(valueTemp);
                 doubleTempLat = Double.parseDouble(value.getString("lat"));
                 doubleTempLng = Double.parseDouble(value.getString("lng"));
 

@@ -49,7 +49,8 @@ public class AutoTaskBicycleData implements Runnable {
                 JSONObject tempJsonObj = null;
 
                 boolean dataChangedFlag = false;
-                Set<JSONObject> bicycleMapTemp = new HashSet<>();
+//                Set<JSONObject> bicycleMapTemp = new HashSet<>();
+                JSONArray bicycleMapTemp = new JSONArray();
                 for (Object tempobj : jsonArray) {
                     tempJsonObj = JSONObject.fromObject(tempobj);
                     if (Double.parseDouble(tempJsonObj.getString("lat")) == 0 || Double.parseDouble(tempJsonObj.getString("lng")) == 0) {
@@ -68,7 +69,9 @@ public class AutoTaskBicycleData implements Runnable {
                             }
                         }
                     } else {
-                        for (JSONObject value : bicycleMap) {
+//                        for (JSONObject value : bicycleMap) {
+                        for (Object valueObject : bicycleMap) {
+                            JSONObject value = JSONObject.fromObject(valueObject);
                             if (value.getString("id").equals(tempJsonObj.getString("id"))) {
                                 if (value.getString("lat").equals(tempJsonObj.getString("lat")) && value.getString("lng").equals(tempJsonObj.getString("lng"))) {
                                     tempJsonObj.replace("address", value.getString("address"));
