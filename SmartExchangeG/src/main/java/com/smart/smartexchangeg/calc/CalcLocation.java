@@ -24,11 +24,11 @@ public class CalcLocation {
     static String titleyKey = "titleyKey";// 图块
     static String icoTypeKey = "icoTypeKey";//1单数，2复数
 
-    public static Map<String, JSONArray> LocationDataAccess1(JSONArray jsonArrays, String latKey, String lngKey) {
+    public static JSONObject LocationDataAccess1(JSONArray jsonArrays, String latKey, String lngKey) {
         if (jsonArrays == null) {
             return null;
         }
-        Map<String, JSONArray> map = new HashMap<String, JSONArray>();
+        JSONObject resultObject = new JSONObject();
         for (int level = 10; level <= 19; level++) {
             JSONArray jsonArrayLevel = new JSONArray();
             for (Object jsonArray : jsonArrays) {
@@ -48,75 +48,46 @@ public class CalcLocation {
                 if (jsonObj.containsKey(titleHyKey)) {
                     jsonObj.remove(titleHyKey);
                 }
-                jsonObj.accumulate(titleHyKey, xiangSuZuoBiao[0]);
-                //获取改像素坐标所在图块的起始坐标
-                BigDecimal[] beginZuoBiao = caculateBeginXiangSu(xiangSuZuoBiao[0], xiangSuZuoBiao[1]);
-                //计算该起始坐标的16个空格的中心坐标
-                LocationGrid[] grids = getGrideByZuoBiao(beginZuoBiao[0], beginZuoBiao[1]);
-                //遍历数据该图块的16个格子
-                for (LocationGrid locationGrid : grids) {
-                    if (!locationGrid.isIntheGrid(beginZuoBiao[0], beginZuoBiao[1])) {//不在格子内
-                        continue;
-                    }
-                    //判断格子是否被使用
-                    Integer user = GridIsUsered1(jsonArrayLevel, locationGrid);
-                    if (user != null) {//格子已经被使用
-                        JSONObject existObj = JSONObject.fromObject(jsonArrayLevel.get(user));
-                        //获取占用点的平面坐标
-                        BigDecimal[] oldPingMianZuoBiao = CoordinateConversionProxy.baidulatlon2UTM(Double.parseDouble(existObj.getString(latKey)), Double.parseDouble(existObj.getString(lngKey)));
-                        //获取占用点的像素坐标// x表示当地的纬度lat,y表示当地的经度lng
-                        BigDecimal[] oldPSuZuoBiao = cacutalteXiangSuZuoBiao(oldPingMianZuoBiao[0], oldPingMianZuoBiao[1], level);
-
-                        Double oldJuli = locationGrid.GetDistanceToCenter(oldPSuZuoBiao[0], oldPSuZuoBiao[1]);
-                        Double currentJuli = locationGrid.GetDistanceToCenter(xiangSuZuoBiao[0], xiangSuZuoBiao[1]);
-                        if (Double.compare(oldJuli, currentJuli) >= 0) {//旧的距离大
-                            jsonArrayLevel.remove(user);
-                            if (jsonObj.containsKey(titlexKey)) {
-                                jsonObj.remove(titlexKey);
-                            }
-                            if (jsonObj.containsKey(titleyKey)) {
-                                jsonObj.remove(titleyKey);
-                            }
-                            if (jsonObj.containsKey(icoTypeKey)) {
-                                jsonObj.remove(icoTypeKey);
-
-                            }
-                            jsonObj.accumulate(titlexKey, new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue()));
-                            jsonObj.accumulate(titleyKey, new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue()));
-                            jsonObj.accumulate(icoTypeKey, 2);
-                        } else {
-                            //新的距离大
-                            jsonArrayLevel.remove(user);
-                            if (jsonObj.containsKey(icoTypeKey)) {
-                                jsonObj.remove(icoTypeKey);
-
-                            }
-                            jsonObj.accumulate(icoTypeKey, 2);
-                            jsonArrayLevel.add(jsonObj);
-                        }
-
-                    } else {
-                        if (jsonObj.containsKey(titlexKey)) {
-                            jsonObj.remove(titlexKey);
-                        }
-                        if (jsonObj.containsKey(titleyKey)) {
-                            jsonObj.remove(titleyKey);
-                        }
-                        if (jsonObj.containsKey(icoTypeKey)) {
-                            jsonObj.remove(icoTypeKey);
-
-                        }
-                        jsonObj.accumulate(titlexKey, new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue()));
-                        jsonObj.accumulate(titleyKey, new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue()));
-                        jsonObj.accumulate(icoTypeKey, 1);
-                        jsonArrayLevel.add(jsonObj);
+                jsonObj.accumulate(titleHyKey, xiangSuZuoBiao[1]);
+                BigDecimal titlex = new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue());
+                BigDecimal titley = new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue());
+                boolean isExistDom = false;
+                JSONObject jsonLevelTemp = null;
+                int iLevelTemp = 0;
+                for (; iLevelTemp < jsonArrayLevel.size(); iLevelTemp++) {
+                    jsonLevelTemp = JSONObject.fromObject(jsonArrayLevel.get(iLevelTemp));
+                    if (jsonLevelTemp.getString(titlexKey).equals(titlex.toString()) && jsonLevelTemp.getString(titleyKey).equals(titley.toString())) {
+                        isExistDom = true;
+                        break;
                     }
                 }
+
+                if (isExistDom) {
+                    jsonArrayLevel.remove(jsonLevelTemp);
+                    jsonLevelTemp.remove(icoTypeKey);
+                    jsonLevelTemp.accumulate(icoTypeKey, 2);
+                    continue;
+                }
+                if (jsonObj.containsKey(titlexKey)) {
+                    jsonObj.remove(titlexKey);
+                }
+                if (jsonObj.containsKey(titleyKey)) {
+                    jsonObj.remove(titleyKey);
+                }
+                if (jsonObj.containsKey(icoTypeKey)) {
+                    jsonObj.remove(icoTypeKey);
+
+                }
+                jsonObj.accumulate(titlexKey, new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue()));
+                jsonObj.accumulate(titleyKey, new BigDecimal(xiangSuZuoBiao[1].divide(new BigDecimal(256)).intValue()));
+                jsonObj.accumulate(icoTypeKey, 1);
+                jsonArrayLevel.add(jsonObj);
+
             }
-            map.put(level + "", jsonArrayLevel);
+            resultObject.accumulate(level + "", jsonArrayLevel);
         }
 
-        return map;
+        return resultObject;
     }
 
     private static BigDecimal[] cacutalteXiangSuZuoBiao(BigDecimal lat, BigDecimal lng, int level) {

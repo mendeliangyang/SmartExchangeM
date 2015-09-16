@@ -94,8 +94,8 @@ public class AutoTaskBicycleData implements Runnable {
                     }
                     bicycleMapTemp.add(tempJsonObj);
                 }
-                Map<String, JSONArray> mapArray = CalcLocation.LocationDataAccess1(bicycleMapTemp, "lat", "lng");
-                UtileSmart.writeFile(TaskBicycleData.getBicycleXYDataPath(), mapArray.toString(), "utf-8");
+                JSONObject resultObject = CalcLocation.LocationDataAccess1(bicycleMapTemp, "lat", "lng");
+                UtileSmart.writeFile(TaskBicycleData.getBicycleXYDataPath(), resultObject.toString(), "utf-8");
                 // 数据变动，写数据到bicycle.json
                 if (dataChangedFlag) {
                     bicycleMap.clear();

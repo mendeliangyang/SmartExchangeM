@@ -82,10 +82,10 @@ public class ZstResource {
                 JSONObject jsonObj = JSONObject.fromObject(resp);
                 JSONArray array = jsonObj.getJSONArray("data");
 
-                Map<String, JSONArray> mapArray = CalcLocation.LocationDataAccess1(array, "lat", "lng");
+                JSONObject resultObject = CalcLocation.LocationDataAccess1(array, "lat", "lng");
 
                 JSONObject obj = new JSONObject();
-                obj.accumulate(DeployInfo.ResultDataTag, mapArray);
+                obj.accumulate(DeployInfo.ResultDataTag, resultObject);
                 String resultStr = new FormationResult().formationResult(ResponseResultCode.Success, "", new ExecuteResultParam(obj));
                 return resultStr;
 

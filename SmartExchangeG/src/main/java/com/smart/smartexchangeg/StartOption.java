@@ -44,14 +44,14 @@ public class StartOption implements ServletContextListener {
             RSLogger.SetUpLogInfo(String.format("start service error step RSLogger.Initial ,%s", e.getLocalizedMessage()));
             RSLogger.ErrorLogInfo(String.format("start service error step RSLogger.Initial ,%s", e.getLocalizedMessage()), e);
         }
-        try {
-            if (!DBHelper.initializePool()) {
-                throw new Exception("db initializePool error .");
-            }
-        } catch (Exception e) {
-            RSLogger.SetUpLogInfo(String.format("start service error step initializePool,%s", e.getLocalizedMessage()));
-            RSLogger.ErrorLogInfo(String.format("start service error step initializePool,%s", e.getLocalizedMessage()), e);
-        }
+//        try {
+//            if (!DBHelper.initializePool()) {
+//                throw new Exception("db initializePool error .");
+//            }
+//        } catch (Exception e) {
+//            RSLogger.SetUpLogInfo(String.format("start service error step initializePool,%s", e.getLocalizedMessage()));
+//            RSLogger.ErrorLogInfo(String.format("start service error step initializePool,%s", e.getLocalizedMessage()), e);
+//        }
         try {
             TaskBicycleData.TimingBrushBicycleData();
         } catch (Exception e) {

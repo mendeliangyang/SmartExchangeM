@@ -90,6 +90,9 @@ public class TaskBicycleData {
 
         ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
         exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 1, 300, TimeUnit.SECONDS);
+
+        ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
+        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 1, 300, TimeUnit.SECONDS);
     }
 
     private static String PostHttpService(String url, Map<String, String> postData) throws Exception {
