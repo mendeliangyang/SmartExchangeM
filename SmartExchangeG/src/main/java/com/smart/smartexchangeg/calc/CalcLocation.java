@@ -50,24 +50,34 @@ public class CalcLocation {
                 }
                 jsonObj.accumulate(titleHyKey, xiangSuZuoBiao[1]);
                 BigDecimal titlex = new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue());
-                BigDecimal titley = new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue());
+                BigDecimal titley = new BigDecimal(xiangSuZuoBiao[1].divide(new BigDecimal(256)).intValue());
                 boolean isExistDom = false;
                 JSONObject jsonLevelTemp = null;
                 int iLevelTemp = 0;
-                for (; iLevelTemp < jsonArrayLevel.size(); iLevelTemp++) {
-                    jsonLevelTemp = JSONObject.fromObject(jsonArrayLevel.get(iLevelTemp));
-                    if (jsonLevelTemp.getString(titlexKey).equals(titlex.toString()) && jsonLevelTemp.getString(titleyKey).equals(titley.toString())) {
-                        isExistDom = true;
-                        break;
+                int effect=4;
+                if (level <= 18) {
+                    for (; iLevelTemp < jsonArrayLevel.size(); iLevelTemp++) {
+                        jsonLevelTemp = JSONObject.fromObject(jsonArrayLevel.get(iLevelTemp));
+
+//                        if (new BigDecimal(jsonLevelTemp.getString(titleHxKey)).divide(new BigDecimal(256)).divide(new BigDecimal(effect)).toString().equals(xiangSuZuoBiao[0].divide(new BigDecimal(256)).divide(new BigDecimal(effect)).toString())
+//                                && new BigDecimal(jsonLevelTemp.getString(titleHyKey)).divide(new BigDecimal(256)).divide(new BigDecimal(effect)).toString().equals(xiangSuZuoBiao[1].divide(new BigDecimal(256)).divide(new BigDecimal(effect)).toString())) {
+//                            isExistDom = true;
+//                            break;
+//                        }
+                        if (jsonLevelTemp.getString(titlexKey).equals(titlex.toString()) && jsonLevelTemp.getString(titleyKey).equals(titley.toString())) {
+                                isExistDom = true;
+                                break;
+                            }
+                    }
+                    if (isExistDom) {
+                        jsonArrayLevel.remove(iLevelTemp);
+                        jsonLevelTemp.remove(icoTypeKey);
+                        jsonLevelTemp.accumulate(icoTypeKey, 2);
+                        jsonArrayLevel.add(jsonLevelTemp);
+                        continue;
                     }
                 }
 
-                if (isExistDom) {
-                    jsonArrayLevel.remove(jsonLevelTemp);
-                    jsonLevelTemp.remove(icoTypeKey);
-                    jsonLevelTemp.accumulate(icoTypeKey, 2);
-                    continue;
-                }
                 if (jsonObj.containsKey(titlexKey)) {
                     jsonObj.remove(titlexKey);
                 }

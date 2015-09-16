@@ -43,41 +43,40 @@ public class TaskBicycleData {
 
 //    public static Set<BycycleDataModel> bicycleSet = null;
     private static String bicycleDataPath = null;
+    private static String bicyclexyDataPath = null;
+    private static String houseDataPath = null;
+    private static String housexyDataPath = null;
 
     public static String getBicycleDataPath() throws Exception {
         if (bicycleDataPath == null) {
-            bicycleDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath())
-                    .append(File.separator).append("WEB-INF").append(File.separator).append("zstData")
+            bicycleDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath()).append(File.separator).append("zstData")
                     .append(File.separator).append("bicycle.json").toString();
         }
         return bicycleDataPath;
     }
 
     public static String getBicycleXYDataPath() throws Exception {
-        if (bicycleDataPath == null) {
-            bicycleDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath())
-                    .append(File.separator).append("WEB-INF").append(File.separator).append("zstData")
+        if (bicyclexyDataPath == null) {
+            bicyclexyDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath()).append(File.separator).append("zstData")
                     .append(File.separator).append("bicyclexy.json").toString();
         }
-        return bicycleDataPath;
+        return bicyclexyDataPath;
     }
 
     public static String getHouseDataPath() throws Exception {
-        if (bicycleDataPath == null) {
-            bicycleDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath())
-                    .append(File.separator).append("WEB-INF").append(File.separator).append("zstData")
+        if (houseDataPath == null) {
+            houseDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath()).append(File.separator).append("zstData")
                     .append(File.separator).append("house.json").toString();
         }
-        return bicycleDataPath;
+        return houseDataPath;
     }
 
     public static String getHousexyDataPath() throws Exception {
-        if (bicycleDataPath == null) {
-            bicycleDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath())
-                    .append(File.separator).append("WEB-INF").append(File.separator).append("zstData")
+        if (housexyDataPath == null) {
+            housexyDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath()).append(File.separator).append("zstData")
                     .append(File.separator).append("housexy.json").toString();
         }
-        return bicycleDataPath;
+        return housexyDataPath;
     }
 
     public static void TimingBrushBicycleData() {
@@ -91,8 +90,8 @@ public class TaskBicycleData {
         ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
         exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 1, 300, TimeUnit.SECONDS);
 
-        ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
-        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 1, 300, TimeUnit.SECONDS);
+//        ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
+//        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 1, 300, TimeUnit.SECONDS);
     }
 
     private static String PostHttpService(String url, Map<String, String> postData) throws Exception {
