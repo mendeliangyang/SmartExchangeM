@@ -57,7 +57,25 @@ public class TaskBicycleData {
         if (bicycleDataPath == null) {
             bicycleDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath())
                     .append(File.separator).append("WEB-INF").append(File.separator).append("zstData")
-                    .append(File.separator).append("bicycleXY.json").toString();
+                    .append(File.separator).append("bicyclexy.json").toString();
+        }
+        return bicycleDataPath;
+    }
+
+    public static String getHouseDataPath() throws Exception {
+        if (bicycleDataPath == null) {
+            bicycleDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath())
+                    .append(File.separator).append("WEB-INF").append(File.separator).append("zstData")
+                    .append(File.separator).append("house.json").toString();
+        }
+        return bicycleDataPath;
+    }
+
+    public static String getHousexyDataPath() throws Exception {
+        if (bicycleDataPath == null) {
+            bicycleDataPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath())
+                    .append(File.separator).append("WEB-INF").append(File.separator).append("zstData")
+                    .append(File.separator).append("housexy.json").toString();
         }
         return bicycleDataPath;
     }
