@@ -5,19 +5,15 @@
  */
 package com.smart.smartexchangeg;
 
-import com.smart.common.DBHelper;
 import com.smart.common.DeployInfo;
 import com.smart.common.FormationResult;
 import com.smart.common.UtileSmart;
-import com.smart.common.base.commonAnalyzeParam;
 import com.smart.common.model.ExecuteResultParam;
 import com.smart.common.model.ResponseResultCode;
 import com.smart.smartexchangeg.calc.CalcLocation;
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.ws.rs.core.Context;
@@ -26,7 +22,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import org.apache.camel.Exchange;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
@@ -35,11 +30,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import java.io.FileReader;
-import javax.script.Invocable;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 
 /**
  * REST Web Service
