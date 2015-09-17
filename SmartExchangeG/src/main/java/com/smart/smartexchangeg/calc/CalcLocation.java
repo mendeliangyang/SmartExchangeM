@@ -6,8 +6,6 @@
 package com.smart.smartexchangeg.calc;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -23,6 +21,11 @@ public class CalcLocation {
     static String titlexKey = "titlexKey";// 图块
     static String titleyKey = "titleyKey";// 图块
     static String icoTypeKey = "icoTypeKey";//1单数，2复数
+    static String titleCellxKey = "titleCellxKey"; // 像素坐标除以图标（伪图块）
+    static String titleCellyKey = "titleCellyKey"; // 像素坐标除以图标（伪图块）
+
+    static BigDecimal tkeffect = new BigDecimal("256");
+    static BigDecimal effect = new BigDecimal("32");
 
     public static JSONObject LocationDataAccess1(JSONArray jsonArrays, String latKey, String lngKey) {
         if (jsonArrays == null) {
@@ -49,25 +52,25 @@ public class CalcLocation {
                     jsonObj.remove(titleHyKey);
                 }
                 jsonObj.accumulate(titleHyKey, xiangSuZuoBiao[1]);
-                BigDecimal titlex = new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue());
-                BigDecimal titley = new BigDecimal(xiangSuZuoBiao[1].divide(new BigDecimal(256)).intValue());
+//                BigDecimal titlex = new BigDecimal(xiangSuZuoBiao[0].divide(tkeffect).intValue());
+//                BigDecimal titley = new BigDecimal(xiangSuZuoBiao[1].divide(tkeffect).intValue());
+
+                BigDecimal titleCellx = new BigDecimal(xiangSuZuoBiao[0].divide(effect).intValue());
+                BigDecimal titleCelly = new BigDecimal(xiangSuZuoBiao[1].divide(effect).intValue());
                 boolean isExistDom = false;
                 JSONObject jsonLevelTemp = null;
                 int iLevelTemp = 0;
-                int effect=4;
                 if (level <= 18) {
                     for (; iLevelTemp < jsonArrayLevel.size(); iLevelTemp++) {
                         jsonLevelTemp = JSONObject.fromObject(jsonArrayLevel.get(iLevelTemp));
-
-//                        if (new BigDecimal(jsonLevelTemp.getString(titleHxKey)).divide(new BigDecimal(256)).divide(new BigDecimal(effect)).toString().equals(xiangSuZuoBiao[0].divide(new BigDecimal(256)).divide(new BigDecimal(effect)).toString())
-//                                && new BigDecimal(jsonLevelTemp.getString(titleHyKey)).divide(new BigDecimal(256)).divide(new BigDecimal(effect)).toString().equals(xiangSuZuoBiao[1].divide(new BigDecimal(256)).divide(new BigDecimal(effect)).toString())) {
+                        if (jsonLevelTemp.getString(titleCellxKey).equals(titleCellx.toString()) && jsonLevelTemp.getString(titleCellyKey).equals(titleCelly.toString())) {
+                            isExistDom = true;
+                            break;
+                        }
+//                        if (jsonLevelTemp.getString(titlexKey).equals(titlex.toString()) && jsonLevelTemp.getString(titleyKey).equals(titley.toString())) {
 //                            isExistDom = true;
 //                            break;
 //                        }
-                        if (jsonLevelTemp.getString(titlexKey).equals(titlex.toString()) && jsonLevelTemp.getString(titleyKey).equals(titley.toString())) {
-                                isExistDom = true;
-                                break;
-                            }
                     }
                     if (isExistDom) {
                         jsonArrayLevel.remove(iLevelTemp);
@@ -78,18 +81,20 @@ public class CalcLocation {
                     }
                 }
 
-                if (jsonObj.containsKey(titlexKey)) {
-                    jsonObj.remove(titlexKey);
+                if (jsonObj.containsKey(titleCellxKey)) {
+                    jsonObj.remove(titleCellxKey);
                 }
-                if (jsonObj.containsKey(titleyKey)) {
-                    jsonObj.remove(titleyKey);
+                if (jsonObj.containsKey(titleCellyKey)) {
+                    jsonObj.remove(titleCellyKey);
                 }
                 if (jsonObj.containsKey(icoTypeKey)) {
                     jsonObj.remove(icoTypeKey);
 
                 }
-                jsonObj.accumulate(titlexKey, new BigDecimal(xiangSuZuoBiao[0].divide(new BigDecimal(256)).intValue()));
-                jsonObj.accumulate(titleyKey, new BigDecimal(xiangSuZuoBiao[1].divide(new BigDecimal(256)).intValue()));
+//                jsonObj.accumulate(titlexKey, new BigDecimal(xiangSuZuoBiao[0].divide(tkeffect).intValue()));
+//                jsonObj.accumulate(titleyKey, new BigDecimal(xiangSuZuoBiao[1].divide(tkeffect).intValue()));
+                jsonObj.accumulate(titleCellxKey, new BigDecimal(xiangSuZuoBiao[0].divide(effect).intValue()));
+                jsonObj.accumulate(titleCellyKey, new BigDecimal(xiangSuZuoBiao[1].divide(effect).intValue()));
                 jsonObj.accumulate(icoTypeKey, 1);
                 jsonArrayLevel.add(jsonObj);
 

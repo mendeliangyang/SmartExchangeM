@@ -8,17 +8,16 @@ package com.smart.smartexchangeg;
 import com.smart.common.DeployInfo;
 import com.smart.common.RSLogger;
 import com.smart.common.UtileSmart;
+import com.smart.common.model.SmartDecodingEnum;
+import com.smart.smartexchangeg.calc.CalcLocation;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -87,11 +86,12 @@ public class TaskBicycleData {
             e.printStackTrace();
         }
 
+//        CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
         ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
         exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 1, 300, TimeUnit.SECONDS);
 
-//        ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
-//        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 1, 300, TimeUnit.SECONDS);
+        ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
+        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 1, 300, TimeUnit.SECONDS);
     }
 
     private static String PostHttpService(String url, Map<String, String> postData) throws Exception {
@@ -126,7 +126,7 @@ public class TaskBicycleData {
     public static void loadBicycleData() throws Exception {
 
         try {
-            String bicycleStr = UtileSmart.readFile(getBicycleDataPath(), "utf-8");
+            String bicycleStr = UtileSmart.readFile(getBicycleDataPath(), SmartDecodingEnum.utf8);
             //common.UtileSmart.cleanMapTDString(bicycleMap);
             bicycleMap.clear();
             JSONArray bicycleArray = JSONArray.fromObject(bicycleStr);

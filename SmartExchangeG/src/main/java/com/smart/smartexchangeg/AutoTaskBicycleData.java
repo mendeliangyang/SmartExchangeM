@@ -7,10 +7,10 @@ package com.smart.smartexchangeg;
 
 import com.smart.common.RSLogger;
 import com.smart.common.UtileSmart;
+import com.smart.common.model.SmartDecodingEnum;
 import static com.smart.smartexchangeg.TaskBicycleData.bicycleMap;
 import com.smart.smartexchangeg.calc.CalcLocation;
 import java.io.IOException;
-import java.util.Map;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
@@ -95,13 +95,13 @@ public class AutoTaskBicycleData implements Runnable {
                     bicycleMapTemp.add(tempJsonObj);
                 }
                 JSONObject resultObject = CalcLocation.LocationDataAccess1(bicycleMapTemp, "lat", "lng");
-                UtileSmart.writeFile(TaskBicycleData.getBicycleXYDataPath(), resultObject.toString(), "utf-8");
+                UtileSmart.writeFile(TaskBicycleData.getBicycleXYDataPath(), resultObject.toString(), SmartDecodingEnum.utf8);
                 // 数据变动，写数据到bicycle.json
                 if (dataChangedFlag) {
                     bicycleMap.clear();
                     bicycleMap = bicycleMapTemp;
                     bicycleMapTemp = null;
-                    UtileSmart.writeFile(TaskBicycleData.getBicycleDataPath(), bicycleMap.toString(), "utf-8");
+                    UtileSmart.writeFile(TaskBicycleData.getBicycleDataPath(), bicycleMap.toString(), SmartDecodingEnum.utf8);
 //                            common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");
                 }
                 // common.UtileSmart.writeFile(getBicycleXYDataPath(), com.alibaba.fastjson.JSON.toJSON(bicycleSet).toString(), "utf-8");

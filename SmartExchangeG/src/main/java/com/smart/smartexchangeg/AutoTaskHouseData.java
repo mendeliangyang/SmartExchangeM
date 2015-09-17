@@ -5,12 +5,11 @@
  */
 package com.smart.smartexchangeg;
 
+import com.smart.common.RSLogger;
 import com.smart.common.UtileSmart;
+import com.smart.common.model.SmartDecodingEnum;
 import com.smart.smartexchangeg.calc.CalcLocation;
 import java.io.IOException;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
@@ -23,7 +22,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
  * @author Administrator
  */
 public class AutoTaskHouseData implements Runnable {
-    
+
     @Override
     public void run() {
         HttpClient httpClient = new HttpClient();
@@ -36,18 +35,21 @@ public class AutoTaskHouseData implements Runnable {
                 //解析数据
                 JSONObject jsonObj = JSONObject.fromObject(resp);
                 JSONArray array = jsonObj.getJSONArray("data");
-                UtileSmart.writeFile(TaskBicycleData.getHouseDataPath(), array.toString(), "utf-8");
+                UtileSmart.writeFile(TaskBicycleData.getHouseDataPath(), array.toString(), SmartDecodingEnum.utf8);
                 JSONObject resultObject = CalcLocation.LocationDataAccess1(array, "lat", "lng");
-                UtileSmart.writeFile(TaskBicycleData.getHousexyDataPath(), resultObject.toString(), "utf-8");
+                UtileSmart.writeFile(TaskBicycleData.getHousexyDataPath(), resultObject.toString(), SmartDecodingEnum.utf8);
             }
         } catch (HttpException e) {
-            e.printStackTrace();
+            System.out.println("AutoTaskHouseData httpExcepiton" + e.getLocalizedMessage());
+            RSLogger.ErrorLogInfo("AutoTaskHouseData httpExcepiton " + e.getLocalizedMessage(), e);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("AutoTaskHouseData IOException " + e.getLocalizedMessage());
+            RSLogger.ErrorLogInfo("AutoTaskHouseData IOException " + e.getLocalizedMessage(), e);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("AutoTaskHouseData Exception " + e.getLocalizedMessage());
+            RSLogger.ErrorLogInfo("AutoTaskHouseData Exception " + e.getLocalizedMessage(), e);
         }
-        
+
     }
-    
+
 }
