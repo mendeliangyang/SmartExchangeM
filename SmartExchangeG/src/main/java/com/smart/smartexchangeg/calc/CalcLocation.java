@@ -6,6 +6,7 @@
 package com.smart.smartexchangeg.calc;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -25,7 +26,7 @@ public class CalcLocation {
     static String titleCellyKey = "titleCellyKey"; // 像素坐标除以图标（伪图块）
 
     static BigDecimal tkeffect = new BigDecimal("256");
-    static BigDecimal effect = new BigDecimal("32");
+    static BigDecimal effect = new BigDecimal("86");
 
     public static JSONObject LocationDataAccess1(JSONArray jsonArrays, String latKey, String lngKey) {
         if (jsonArrays == null) {
@@ -55,8 +56,8 @@ public class CalcLocation {
 //                BigDecimal titlex = new BigDecimal(xiangSuZuoBiao[0].divide(tkeffect).intValue());
 //                BigDecimal titley = new BigDecimal(xiangSuZuoBiao[1].divide(tkeffect).intValue());
 
-                BigDecimal titleCellx = new BigDecimal(xiangSuZuoBiao[0].divide(effect).intValue());
-                BigDecimal titleCelly = new BigDecimal(xiangSuZuoBiao[1].divide(effect).intValue());
+                BigDecimal titleCellx = new BigDecimal(xiangSuZuoBiao[0].divide(effect, 0, RoundingMode.HALF_DOWN).intValue());
+                BigDecimal titleCelly = new BigDecimal(xiangSuZuoBiao[1].divide(effect, 0, RoundingMode.HALF_DOWN).intValue());
                 boolean isExistDom = false;
                 JSONObject jsonLevelTemp = null;
                 int iLevelTemp = 0;
@@ -93,8 +94,8 @@ public class CalcLocation {
                 }
 //                jsonObj.accumulate(titlexKey, new BigDecimal(xiangSuZuoBiao[0].divide(tkeffect).intValue()));
 //                jsonObj.accumulate(titleyKey, new BigDecimal(xiangSuZuoBiao[1].divide(tkeffect).intValue()));
-                jsonObj.accumulate(titleCellxKey, new BigDecimal(xiangSuZuoBiao[0].divide(effect).intValue()));
-                jsonObj.accumulate(titleCellyKey, new BigDecimal(xiangSuZuoBiao[1].divide(effect).intValue()));
+                jsonObj.accumulate(titleCellxKey, new BigDecimal(xiangSuZuoBiao[0].divide(effect, 0, RoundingMode.HALF_DOWN).intValue()));
+                jsonObj.accumulate(titleCellyKey, new BigDecimal(xiangSuZuoBiao[1].divide(effect, 0, RoundingMode.HALF_DOWN).intValue()));
                 jsonObj.accumulate(icoTypeKey, 1);
                 jsonArrayLevel.add(jsonObj);
 

@@ -50,8 +50,8 @@ public class AutoTaskBicycleData implements Runnable {
                     RSLogger.ErrorLogInfo("TimingBrushBicycleData Analyze json Exception " + e.getLocalizedMessage(), e);
                 }
                 if (obj == null || jsonArray == null) {
-//                    jsonArray = bicycleMap;
-                    return;
+                    jsonArray = bicycleMap;
+//                    return;
                 }
 
                 JSONObject tempJsonObj = null;
@@ -109,8 +109,8 @@ public class AutoTaskBicycleData implements Runnable {
                     bicycleMapTemp = null;
                     UtileSmart.writeFile(TaskBicycleData.getBicycleDataPath(), bicycleMap.toString(), SmartDecodingEnum.utf8);
                     JSONObject resultObject = CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
-                    RSLogger.LogInfo("TimingBrushBicycleData dataChanged. " + resultObject);
                     UtileSmart.writeFile(TaskBicycleData.getBicycleXYDataPath(), resultObject.toString(), SmartDecodingEnum.utf8);
+                    RSLogger.LogInfo("TimingBrushBicycleData dataChanged. ");
                 }
             }
         } catch (HttpException e) {

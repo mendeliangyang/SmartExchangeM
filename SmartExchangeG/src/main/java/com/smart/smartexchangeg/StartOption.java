@@ -5,10 +5,8 @@
  */
 package com.smart.smartexchangeg;
 
-import com.smart.common.DBHelper;
 import com.smart.common.DeployInfo;
 import com.smart.common.RSLogger;
-import com.smart.common.RSThreadPool;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 

@@ -9,11 +9,14 @@ import com.smart.common.DeployInfo;
 import com.smart.common.RSLogger;
 import com.smart.common.UtileSmart;
 import com.smart.common.model.SmartDecodingEnum;
+import com.smart.smartexchangeg.calc.CalcLocation;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
@@ -85,12 +88,19 @@ public class TaskBicycleData {
             e.printStackTrace();
         }
 
+//        JSONObject resultObject = CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
+//
+//        try {
+//            UtileSmart.writeFile(TaskBicycleData.getBicycleXYDataPath(), resultObject.toString(), SmartDecodingEnum.utf8);
+//        } catch (Exception ex) {
+//            Logger.getLogger(TaskBicycleData.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 //        CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
         ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
-        exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 10, 120, TimeUnit.SECONDS);
+        exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 120, 240, TimeUnit.SECONDS);
 
         ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
-        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 10, 120, TimeUnit.SECONDS);
+        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 120, 240, TimeUnit.SECONDS);
     }
 
     private static String PostHttpService(String url, Map<String, String> postData) throws Exception {
