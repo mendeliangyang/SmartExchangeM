@@ -9,7 +9,6 @@ import com.smart.common.DeployInfo;
 import com.smart.common.RSLogger;
 import com.smart.common.UtileSmart;
 import com.smart.common.model.SmartDecodingEnum;
-import com.smart.smartexchangeg.calc.CalcLocation;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -88,10 +87,10 @@ public class TaskBicycleData {
 
 //        CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
         ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
-        exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 1, 300, TimeUnit.SECONDS);
+        exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 10, 120, TimeUnit.SECONDS);
 
         ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
-        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 1, 300, TimeUnit.SECONDS);
+        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 10, 120, TimeUnit.SECONDS);
     }
 
     private static String PostHttpService(String url, Map<String, String> postData) throws Exception {

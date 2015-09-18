@@ -38,17 +38,24 @@ public class AutoTaskBicycleData implements Runnable {
 
                 resp = postMethod.getResponseBodyAsString();
                 resp = resp.substring(11, resp.length());
-//                        if (bicycleSet != null) {
-//                            bicycleSet.clear();
-//                        }
-//                        bicycleSet = LocationDataAccessUtil.LocationDataAccess(resp);
 
-                JSONObject obj = JSONObject.fromObject(resp);
-                JSONArray jsonArray = obj.getJSONArray("station");
+                JSONObject obj = null;
+                JSONArray jsonArray = null;
+                try {
+
+                    obj = JSONObject.fromObject(resp);
+                    jsonArray = obj.getJSONArray("station");
+                } catch (Exception e) {
+                    System.out.println("TimingBrushBicycleData Analyze json Exception " + e.getLocalizedMessage());
+                    RSLogger.ErrorLogInfo("TimingBrushBicycleData Analyze json Exception " + e.getLocalizedMessage(), e);
+                }
+                if (obj == null || jsonArray == null) {
+//                    jsonArray = bicycleMap;
+                    return;
+                }
+
                 JSONObject tempJsonObj = null;
-
-                boolean dataChangedFlag = false;
-//                Set<JSONObject> bicycleMapTemp = new HashSet<>();
+                boolean dataChangedFlag = true;
                 JSONArray bicycleMapTemp = new JSONArray();
                 for (Object tempobj : jsonArray) {
                     tempJsonObj = JSONObject.fromObject(tempobj);
@@ -57,41 +64,41 @@ public class AutoTaskBicycleData implements Runnable {
                     }
                     tempJsonObj.replace("lat", String.format("%.6f", (Double.parseDouble(tempJsonObj.getString("lat")) + TaskBicycleData.LAT_ADD)));
                     tempJsonObj.replace("lng", String.format("%.6f", (Double.parseDouble(tempJsonObj.getString("lng")) + TaskBicycleData.LON_ADD)));
-
-                    if (bicycleMap.size() == 0) {
-                        dataChangedFlag = true;
-                        tempAddress = TaskBicycleData.GetHttpService(String.format("http://api.map.baidu.com/geocoder/v2/?ak=oMRm57DO72b40xgD1HABmwNd&location=%s,%s&output=json&pois=0", tempJsonObj.getString("lat"), tempJsonObj.getString("lng")));
-                        if (tempAddress != null) {
-                            JSONObject jsonAddress = JSONObject.fromObject(tempAddress);
-                            if (jsonAddress.getString("status").equals("0")) {
-                                tempJsonObj.replace("address", jsonAddress.getJSONObject("result").getString("formatted_address"));
-                            }
-                        }
-                    } else {
-//                        for (JSONObject value : bicycleMap) {
-                        for (Object valueObject : bicycleMap) {
-                            JSONObject value = JSONObject.fromObject(valueObject);
-                            if (value.getString("id").equals(tempJsonObj.getString("id"))) {
-                                if (value.getString("lat").equals(tempJsonObj.getString("lat")) && value.getString("lng").equals(tempJsonObj.getString("lng"))) {
-                                    tempJsonObj.replace("address", value.getString("address"));
-//                                            tempJsonObj.accumulate("address", value.getString("address"));
-                                } else {
-                                    dataChangedFlag = true;
-                                    //掉百度api获取address
-                                    tempAddress = TaskBicycleData.GetHttpService(String.format("http://api.map.baidu.com/geocoder/v2/?ak=oMRm57DO72b40xgD1HABmwNd&location=%s,%s&output=json&pois=0", tempJsonObj.getString("lat"), tempJsonObj.getString("lng")));
-                                    if (tempAddress != null) {
-                                        JSONObject jsonAddress = JSONObject.fromObject(tempAddress);
-                                        if (jsonAddress.getString("status").equals("0")) {
-                                            tempJsonObj.replace("address", jsonAddress.getJSONObject("result").getString("formatted_address"));
-//                                                tempJsonObj.accumulate("address", jsonAddress.getJSONObject("result").getString("formatted_address"));
-                                        }
-                                    }
-
-                                }
-                                break;
-                            }
-                        }
-                    }
+// 以前返回数据address中没有数据调用baidu MapApi ，得到address
+//                    if (bicycleMap.size() == 0) {
+//                        dataChangedFlag = true;
+//                        tempAddress = TaskBicycleData.GetHttpService(String.format("http://api.map.baidu.com/geocoder/v2/?ak=oMRm57DO72b40xgD1HABmwNd&location=%s,%s&output=json&pois=0", tempJsonObj.getString("lat"), tempJsonObj.getString("lng")));
+//                        if (tempAddress != null) {
+//                            JSONObject jsonAddress = JSONObject.fromObject(tempAddress);
+//                            if (jsonAddress.getString("status").equals("0")) {
+//                                tempJsonObj.replace("address", jsonAddress.getJSONObject("result").getString("formatted_address"));
+//                            }
+//                        }
+//                    } else {
+////                        for (JSONObject value : bicycleMap) {
+//                        for (Object valueObject : bicycleMap) {
+//                            JSONObject value = JSONObject.fromObject(valueObject);
+//                            if (value.getString("id").equals(tempJsonObj.getString("id"))) {
+//                                if (value.getString("lat").equals(tempJsonObj.getString("lat")) && value.getString("lng").equals(tempJsonObj.getString("lng"))) {
+//                                    tempJsonObj.replace("address", value.getString("address"));
+////                                            tempJsonObj.accumulate("address", value.getString("address"));
+//                                } else {
+//                                    dataChangedFlag = true;
+//                                    //掉百度api获取address
+//                                    tempAddress = TaskBicycleData.GetHttpService(String.format("http://api.map.baidu.com/geocoder/v2/?ak=oMRm57DO72b40xgD1HABmwNd&location=%s,%s&output=json&pois=0", tempJsonObj.getString("lat"), tempJsonObj.getString("lng")));
+//                                    if (tempAddress != null) {
+//                                        JSONObject jsonAddress = JSONObject.fromObject(tempAddress);
+//                                        if (jsonAddress.getString("status").equals("0")) {
+//                                            tempJsonObj.replace("address", jsonAddress.getJSONObject("result").getString("formatted_address"));
+////                                                tempJsonObj.accumulate("address", jsonAddress.getJSONObject("result").getString("formatted_address"));
+//                                        }
+//                                    }
+//
+//                                }
+//                                break;
+//                            }
+//                        }
+//                    }
                     bicycleMapTemp.add(tempJsonObj);
                 }
 
@@ -101,10 +108,9 @@ public class AutoTaskBicycleData implements Runnable {
                     bicycleMap = bicycleMapTemp;
                     bicycleMapTemp = null;
                     UtileSmart.writeFile(TaskBicycleData.getBicycleDataPath(), bicycleMap.toString(), SmartDecodingEnum.utf8);
-                    
-                    JSONObject resultObject = CalcLocation.LocationDataAccess1(bicycleMapTemp, "lat", "lng");
+                    JSONObject resultObject = CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
+                    RSLogger.LogInfo("TimingBrushBicycleData dataChanged. " + resultObject);
                     UtileSmart.writeFile(TaskBicycleData.getBicycleXYDataPath(), resultObject.toString(), SmartDecodingEnum.utf8);
-                    
                 }
             }
         } catch (HttpException e) {
