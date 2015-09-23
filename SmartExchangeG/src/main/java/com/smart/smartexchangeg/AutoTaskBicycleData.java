@@ -50,8 +50,8 @@ public class AutoTaskBicycleData implements Runnable {
                     RSLogger.ErrorLogInfo("TimingBrushBicycleData Analyze json Exception " + e.getLocalizedMessage(), e);
                 }
                 if (obj == null || jsonArray == null) {
-                    jsonArray = bicycleMap;
-//                    return;
+//                    jsonArray = bicycleMap;
+                    return;
                 }
 
                 JSONObject tempJsonObj = null;

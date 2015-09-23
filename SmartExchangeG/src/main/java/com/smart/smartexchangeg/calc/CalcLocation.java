@@ -41,6 +41,8 @@ public class CalcLocation {
                     jsonObj.remove(pictureLevelKey);
                 }
                 jsonObj.accumulate(pictureLevelKey, level);
+                jsonObj.replace(latKey, jsonObj.getString(latKey));
+                jsonObj.replace(lngKey, jsonObj.getString(lngKey));
                 //平面坐标
                 BigDecimal[] pingMianZuoBiao = CoordinateConversionProxy.baidulatlon2UTM(Double.parseDouble(jsonObj.getString(latKey)), Double.parseDouble(jsonObj.getString(lngKey)));
                 //获取像素坐标
