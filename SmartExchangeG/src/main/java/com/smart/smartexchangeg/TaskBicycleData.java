@@ -97,7 +97,7 @@ public class TaskBicycleData {
 //        }
 //        CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
         ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
-        exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 120, 240, TimeUnit.SECONDS);
+        exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 240, 360, TimeUnit.SECONDS);
 
         ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
         exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 120, 240, TimeUnit.SECONDS);
