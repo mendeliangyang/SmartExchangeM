@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.smart.common.webService.RESTCorsDemoRequestFilter.class);
         resources.add(com.smart.common.webService.RESTCorsDemoResponseFilter.class);
+        resources.add(com.smart.smartexchangeg.VersionResource.class);
         resources.add(com.smart.smartexchangeg.ZstResource.class);
     }
     

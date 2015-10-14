@@ -10,6 +10,7 @@ import com.smart.common.RSLogger;
 import com.smart.common.UtileSmart;
 import com.smart.common.model.SmartDecodingEnum;
 import com.smart.smartexchangeg.calc.CalcLocation;
+import com.smart.smartexchangeg.model.VersionModel;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -41,12 +42,23 @@ public class TaskBicycleData {
     //保存本地json
 //    public static Set<JSONObject> bicycleMap = new HashSet<>();
     public static JSONArray bicycleMap = new JSONArray();
+    public static JSONObject versionInfo = null;
 
 //    public static Set<BycycleDataModel> bicycleSet = null;
     private static String bicycleDataPath = null;
     private static String bicyclexyDataPath = null;
     private static String houseDataPath = null;
     private static String housexyDataPath = null;
+
+    private static String versionPath = null;
+
+    public static String getVersionPath() throws Exception {
+        if (versionPath == null) {
+            versionPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath()).append(File.separator).append("zstData")
+                    .append(File.separator).append("version.json").toString();
+        }
+        return versionPath;
+    }
 
     public static String getBicycleDataPath() throws Exception {
         if (bicycleDataPath == null) {
@@ -80,10 +92,42 @@ public class TaskBicycleData {
         return housexyDataPath;
     }
 
+    public static void LoadVersionData() throws Exception {
+        try {
+            String bicycleStr = UtileSmart.readFile(getVersionPath(), SmartDecodingEnum.utf8);
+            //common.UtileSmart.cleanMapTDString(bicycleMap);
+
+            versionInfo = JSONObject.fromObject(bicycleStr);
+
+        } catch (Exception e) {
+            RSLogger.ErrorLogInfo("laod bicycleData error ." + e.getLocalizedMessage(), e);
+            throw new Exception("laod bicycleData error ." + e.getLocalizedMessage());
+        }
+    }
+
+    public static void WriteVersionData(String zstVersion, String updateContent) throws Exception {
+        try {
+            if (versionInfo == null) {
+                LoadVersionData();
+            }
+            versionInfo.remove("zstVersion");
+            versionInfo.accumulate("zstVersion", zstVersion);
+            versionInfo.remove("updateContent");
+            versionInfo.accumulate("updateContent", updateContent);
+
+            UtileSmart.writeFile(getVersionPath(), versionInfo.toString(), SmartDecodingEnum.utf8);
+
+        } catch (Exception e) {
+            RSLogger.ErrorLogInfo("laod bicycleData error ." + e.getLocalizedMessage(), e);
+            throw new Exception("laod bicycleData error ." + e.getLocalizedMessage());
+        }
+    }
+
     public static void TimingBrushBicycleData() {
         try {
 
             TaskBicycleData.loadBicycleData();
+            LoadVersionData();
         } catch (Exception e) {
             e.printStackTrace();
         }
