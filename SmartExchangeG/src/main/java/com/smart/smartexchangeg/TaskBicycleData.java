@@ -140,8 +140,10 @@ public class TaskBicycleData {
 //            Logger.getLogger(TaskBicycleData.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
+        new AutoTaskBicycleData().run();
         ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
-        exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 240, 360, TimeUnit.SECONDS);
+        exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 120, 720, TimeUnit.SECONDS);
+        
 
         ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
         exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 120, 240, TimeUnit.SECONDS);

@@ -8,6 +8,7 @@ package com.smart.smartexchangeg;
 import com.smart.common.RSLogger;
 import com.smart.common.UtileSmart;
 import com.smart.common.model.SmartDecodingEnum;
+import com.smart.common.officeFile.CSVUtils;
 import static com.smart.smartexchangeg.TaskBicycleData.bicycleMap;
 import com.smart.smartexchangeg.calc.CalcLocation;
 import java.io.IOException;
@@ -17,6 +18,11 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.PostMethod;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -110,6 +116,32 @@ public class AutoTaskBicycleData implements Runnable {
                     UtileSmart.writeFile(TaskBicycleData.getBicycleDataPath(), bicycleMap.toString(), SmartDecodingEnum.utf8);
                     JSONObject resultObject = CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
                     UtileSmart.writeFile(TaskBicycleData.getBicycleXYDataPath(), resultObject.toString(), SmartDecodingEnum.utf8);
+
+                    JSONArray jsonArray19 = resultObject.getJSONArray("19");
+                    LinkedHashMap map = new LinkedHashMap();
+                    map.put("1", "title");
+                    map.put("2", "address");
+                    map.put("3", "longitude");
+                    map.put("4", "latitude");
+                    map.put("5", "coord_type");
+                    map.put("6", "bike_id");
+                    List exportData = new ArrayList<Map>();
+                    JSONObject jsonTemp = null;
+                    Map rowTemp = null;
+                    for (Object jsonArray191 : jsonArray19) {
+                        jsonTemp = JSONObject.fromObject(jsonArray191);
+                        rowTemp = new LinkedHashMap<String, String>();
+                        rowTemp.put("1", UtileSmart.TryGetJsonString(jsonTemp, "name"));
+                        rowTemp.put("2", UtileSmart.TryGetJsonString(jsonTemp, "address"));
+                        rowTemp.put("3", UtileSmart.TryGetJsonString(jsonTemp, "lat"));
+                        rowTemp.put("4", UtileSmart.TryGetJsonString(jsonTemp, "lng"));
+                        rowTemp.put("5", "3");
+                        rowTemp.put("6", UtileSmart.TryGetJsonString(jsonTemp, "id"));
+                        exportData.add(rowTemp);
+                    }
+
+                    CSVUtils.createCSVFile(exportData, map, "d:\\", "xxxx");
+
                     RSLogger.LogInfo("TimingBrushBicycleData dataChanged. ");
                 }
             }
