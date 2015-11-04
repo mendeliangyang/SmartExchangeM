@@ -52,6 +52,15 @@ public class TaskBicycleData {
 
     private static String versionPath = null;
 
+    private static String zsdDataVPath = null;
+
+    public static String getZsdDataVPath() throws Exception {
+        if (zsdDataVPath == null) {
+            zsdDataVPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath()).append(File.separator).append("zstData").append(File.separator).toString();
+        }
+        return zsdDataVPath;
+    }
+
     public static String getVersionPath() throws Exception {
         if (versionPath == null) {
             versionPath = new StringBuffer().append(DeployInfo.GetDelplyRootPath()).append(File.separator).append("zstData")
@@ -140,13 +149,13 @@ public class TaskBicycleData {
 //            Logger.getLogger(TaskBicycleData.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        CalcLocation.LocationDataAccess1(bicycleMap, "lat", "lng");
-        new AutoTaskBicycleData().run();
+        //new AutoTaskBicycleData().run();
         ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
         exec.scheduleAtFixedRate(new AutoTaskBicycleData(), 120, 720, TimeUnit.SECONDS);
-        
-
+//        
+        //new AutoTaskHouseData().run();
         ScheduledThreadPoolExecutor exec1 = new ScheduledThreadPoolExecutor(1);
-        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 120, 240, TimeUnit.SECONDS);
+        exec1.scheduleAtFixedRate(new AutoTaskHouseData(), 120, 360, TimeUnit.SECONDS);
     }
 
     private static String PostHttpService(String url, Map<String, String> postData) throws Exception {

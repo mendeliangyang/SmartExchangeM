@@ -8,8 +8,13 @@ package com.smart.smartexchangeg;
 import com.smart.common.RSLogger;
 import com.smart.common.UtileSmart;
 import com.smart.common.model.SmartDecodingEnum;
+import com.smart.common.officeFile.CSVUtils;
 import com.smart.smartexchangeg.calc.CalcLocation;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
@@ -38,6 +43,32 @@ public class AutoTaskHouseData implements Runnable {
                 UtileSmart.writeFile(TaskBicycleData.getHouseDataPath(), array.toString(), SmartDecodingEnum.utf8);
                 JSONObject resultObject = CalcLocation.LocationDataAccess1(array, "lat", "lng");
                 UtileSmart.writeFile(TaskBicycleData.getHousexyDataPath(), resultObject.toString(), SmartDecodingEnum.utf8);
+
+                JSONArray jsonArray19 = resultObject.getJSONArray("19");
+                LinkedHashMap map = new LinkedHashMap();
+                map.put("1", "title");
+                map.put("2", "address");
+                map.put("3", "longitude");
+                map.put("4", "latitude");
+                map.put("5", "coord_type");
+                map.put("6", "bike_id");
+                List exportData = new ArrayList<Map>();
+                JSONObject jsonTemp = null;
+                Map rowTemp = null;
+                for (Object jsonArray191 : jsonArray19) {
+                    jsonTemp = JSONObject.fromObject(jsonArray191);
+                    rowTemp = new LinkedHashMap<String, String>();
+                    rowTemp.put("1", UtileSmart.TryGetJsonString(jsonTemp, "description"));
+                    rowTemp.put("2", UtileSmart.TryGetJsonString(jsonTemp, "location"));
+                    rowTemp.put("3", UtileSmart.TryGetJsonString(jsonTemp, "lng"));
+                    rowTemp.put("4", UtileSmart.TryGetJsonString(jsonTemp, "lat"));
+                    rowTemp.put("5", "3");
+                    rowTemp.put("6", UtileSmart.TryGetJsonString(jsonTemp, "id"));
+                    exportData.add(rowTemp);
+                }
+
+                CSVUtils.createCSVFile(exportData, map, TaskBicycleData.getZsdDataVPath(), "houseCSV");
+
             }
         } catch (HttpException e) {
             System.out.println("AutoTaskHouseData httpExcepiton" + e.getLocalizedMessage());

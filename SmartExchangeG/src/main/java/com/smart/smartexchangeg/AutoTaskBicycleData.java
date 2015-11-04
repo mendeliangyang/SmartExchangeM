@@ -133,14 +133,14 @@ public class AutoTaskBicycleData implements Runnable {
                         rowTemp = new LinkedHashMap<String, String>();
                         rowTemp.put("1", UtileSmart.TryGetJsonString(jsonTemp, "name"));
                         rowTemp.put("2", UtileSmart.TryGetJsonString(jsonTemp, "address"));
-                        rowTemp.put("3", UtileSmart.TryGetJsonString(jsonTemp, "lat"));
-                        rowTemp.put("4", UtileSmart.TryGetJsonString(jsonTemp, "lng"));
+                        rowTemp.put("3", UtileSmart.TryGetJsonString(jsonTemp, "lng"));
+                        rowTemp.put("4", UtileSmart.TryGetJsonString(jsonTemp, "lat"));
                         rowTemp.put("5", "3");
                         rowTemp.put("6", UtileSmart.TryGetJsonString(jsonTemp, "id"));
                         exportData.add(rowTemp);
                     }
 
-                    CSVUtils.createCSVFile(exportData, map, "d:\\", "xxxx");
+                    CSVUtils.createCSVFile(exportData, map, TaskBicycleData.getZsdDataVPath(), "bicycleCSV");
 
                     RSLogger.LogInfo("TimingBrushBicycleData dataChanged. ");
                 }
