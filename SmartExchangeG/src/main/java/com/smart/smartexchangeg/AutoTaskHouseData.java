@@ -51,7 +51,7 @@ public class AutoTaskHouseData implements Runnable {
                 map.put("3", "longitude");
                 map.put("4", "latitude");
                 map.put("5", "coord_type");
-                map.put("6", "bike_id");
+                map.put("6", "estate_id");
                 List exportData = new ArrayList<Map>();
                 JSONObject jsonTemp = null;
                 Map rowTemp = null;
