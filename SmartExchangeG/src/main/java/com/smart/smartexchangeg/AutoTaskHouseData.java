@@ -52,6 +52,7 @@ public class AutoTaskHouseData implements Runnable {
                 map.put("4", "latitude");
                 map.put("5", "coord_type");
                 map.put("6", "estate_id");
+                map.put("7", "estate_type");
                 List exportData = new ArrayList<Map>();
                 JSONObject jsonTemp = null;
                 Map rowTemp = null;
@@ -64,6 +65,7 @@ public class AutoTaskHouseData implements Runnable {
                     rowTemp.put("4", UtileSmart.TryGetJsonString(jsonTemp, "lat"));
                     rowTemp.put("5", "3");
                     rowTemp.put("6", UtileSmart.TryGetJsonString(jsonTemp, "id"));
+                    rowTemp.put("7", UtileSmart.TryGetJsonString(jsonTemp, "type"));
                     exportData.add(rowTemp);
                 }
 
