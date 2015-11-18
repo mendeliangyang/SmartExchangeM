@@ -9,7 +9,6 @@ package com.smart.smartexchanges.task;
 //import com.smart.common.RSLogger;
 //import com.smart.common.UtileSmart;
 //import com.smart.common.model.SmartDecodingEnum;
-import com.smart.smartexchangeg.calc.CalcLocation;
 import com.smart.smartexchanges.config.DeployConfig;
 import java.io.File;
 import java.io.IOException;
@@ -70,7 +69,7 @@ public class TaskBicycleData {
 
     }
 
-    public String getZsdDataVPath() throws Exception {
+    public static String getZsdDataVPath() throws Exception {
         if (zsdDataVPath == null) {
             zsdDataVPath = new StringBuffer().append(getDelplyRootPath()).append(File.separator).append("zstData").append(File.separator).toString();
         }
@@ -93,7 +92,7 @@ public class TaskBicycleData {
         return bicycleDataPath;
     }
 
-    public String getBicycleXYDataPath() throws Exception {
+    public static String getBicycleXYDataPath() throws Exception {
         if (bicyclexyDataPath == null) {
             bicyclexyDataPath = new StringBuffer().append(getDelplyRootPath()).append(File.separator).append("zstData")
                     .append(File.separator).append("bicyclexy.json").toString();
@@ -101,7 +100,7 @@ public class TaskBicycleData {
         return bicyclexyDataPath;
     }
 
-    public String getHouseDataPath() throws Exception {
+    public static String getHouseDataPath() throws Exception {
         if (houseDataPath == null) {
             houseDataPath = new StringBuffer().append(getDelplyRootPath()).append(File.separator).append("zstData")
                     .append(File.separator).append("house.json").toString();
@@ -109,7 +108,7 @@ public class TaskBicycleData {
         return houseDataPath;
     }
 
-    public String getHousexyDataPath() throws Exception {
+    public static String getHousexyDataPath() throws Exception {
         if (housexyDataPath == null) {
             housexyDataPath = new StringBuffer().append(getDelplyRootPath()).append(File.separator).append("zstData")
                     .append(File.separator).append("housexy.json").toString();
@@ -129,7 +128,7 @@ public class TaskBicycleData {
         }
     }
 
-    public void WriteVersionData(String zstVersion, String updateContent) throws Exception {
+    public static void WriteVersionData(String zstVersion, String updateContent) throws Exception {
         try {
             if (versionInfo == null) {
                 LoadVersionData();

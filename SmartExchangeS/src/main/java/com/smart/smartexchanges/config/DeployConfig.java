@@ -19,10 +19,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  *
  * @author Administrator
  */
-@Configuration
-@EnableWebMvc
-@EnableScheduling
-@PropertySource("classpath:properties/deploy.properties")
+//@Configuration
+//@EnableWebMvc
+//@EnableScheduling
+//@PropertySource("classpath:properties/deploy.properties")
 public class DeployConfig {
 
     @Resource
