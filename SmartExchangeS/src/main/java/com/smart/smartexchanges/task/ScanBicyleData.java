@@ -7,11 +7,14 @@ package com.smart.smartexchanges.task;
 
 import com.smart.smartexchanges.calc.CSVUtils;
 import com.smart.smartexchanges.calc.CalcLocation;
+import com.smart.smartexchanges.config.DeployConfig;
+import com.smart.smartexchanges.entity.DeployConfigInfo;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Resource;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
@@ -28,11 +31,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class ScanBicyleData {
 
+    @Resource
+    DeployConfigInfo deployConfigInfo;
+
     @Scheduled(fixedRate = 720000)
     public void scan() {
         try {
             HttpClient httpClient = new HttpClient();
-            PostMethod postMethod = new PostMethod("http://zsbicycle.com/zsbicycle/zsmap/ibikestation.asp");
+//            PostMethod postMethod = new PostMethod("http://zsbicycle.com/zsbicycle/zsmap/ibikestation.asp");
+
+            PostMethod postMethod = new PostMethod(deployConfigInfo.getIbikestationService());
             postMethod.getParams().setContentCharset("utf-8"); //The line I added
             postMethod.setRequestHeader("accept-charset", "UTF-8");
             httpClient.executeMethod(postMethod);

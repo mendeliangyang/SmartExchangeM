@@ -16,6 +16,5 @@ public class StartServlet extends HttpServlet {
 
     public StartServlet() {
         TaskBicycleData.TimingBrushBicycleData();
-        
     }
 }

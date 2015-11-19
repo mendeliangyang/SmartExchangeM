@@ -19,10 +19,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  *
  * @author Administrator
  */
-//@Configuration
-//@EnableWebMvc
-//@EnableScheduling
-//@PropertySource("classpath:properties/deploy.properties")
+@Configuration
+@EnableWebMvc
+@EnableScheduling
+@PropertySource("classpath:service.properties")
 public class DeployConfig {
 
     @Resource
@@ -30,11 +30,7 @@ public class DeployConfig {
 
     @Bean
     public DeployConfigInfo generalWebConfig() {
-        StringBuffer sb = new StringBuffer();
-        String DeployRootPath = DeployConfig.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        DeployRootPath = DeployRootPath.substring(1, DeployRootPath.indexOf("WEB-INF"));
-        DeployRootPath = sb.append(File.separator).append(DeployRootPath).toString();
-
-        return new DeployConfigInfo(DeployRootPath);
+        
+        return new DeployConfigInfo(env.getProperty("proxyService"),env.getProperty("ibikestationService"),env.getProperty("houseService"));
     }
 }

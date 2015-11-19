@@ -6,6 +6,7 @@
 package com.smart.smartexchanges.controller;
 
 import com.smart.smartexchanges.calc.AnalyzeParam;
+import com.smart.smartexchanges.entity.DeployConfigInfo;
 import com.smart.smartexchanges.task.TaskBicycleData;
 import com.smart.smartexchanges.task.UtileSmart;
 import com.smart.smartexchanges.util.ExecuteResultParam;
@@ -14,6 +15,7 @@ import com.smart.smartexchanges.util.ResponseResultCode;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,12 +40,15 @@ import net.sf.json.JSONObject;
 @RequestMapping("/proxy")
 public class ProxyServiceController {
 
+    @Resource
+    DeployConfigInfo deployConfigInfo;
+
     FormationResult formationResult = new FormationResult();
 
     @RequestMapping(value = "/lendRecordIbik1", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String lendRecordIbik1(@RequestBody String param) {
-       String paramKey_TBVipNo = "TBVipNo";
+        String paramKey_TBVipNo = "TBVipNo";
         String paramKey_TBCertNo = "TBCertNo";
         String paramKey_TBStartNo = "TBStartNo";
         String paramKey_TBRowCount = "TBRowCount";
@@ -64,7 +69,8 @@ public class ProxyServiceController {
             new AnalyzeParam().AnalyzeParamBodyToMap(param, paramMap);
 
             HttpClient httpClient = new HttpClient();
-            PostMethod postMethod = new PostMethod("http://218.93.33.59:84/zscx/Default.aspx");
+            PostMethod postMethod = new PostMethod(deployConfigInfo.getProxyService());
+//            PostMethod postMethod = new PostMethod("http://218.93.33.59:84/zscx/Default.aspx");
             postMethod.addParameter(paramKey_TBVipNo, UtileSmart.getStringFromMap(paramMap, paramKey_TBVipNo));
             postMethod.addParameter(paramKey_TBCertNo, UtileSmart.getStringFromMap(paramMap, paramKey_TBCertNo));
             postMethod.addParameter(paramKey_TBStartNo, "0");
@@ -134,9 +140,7 @@ public class ProxyServiceController {
             return formationResult.formationResult(ResponseResultCode.Error, "", new ExecuteResultParam(e.getLocalizedMessage(), param, e));
         }
     }
-    
-    
-    
+
     @RequestMapping(value = "/overageRecord1", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String overageRecord1(@RequestBody String param) {
@@ -162,7 +166,8 @@ public class ProxyServiceController {
             new AnalyzeParam().AnalyzeParamBodyToMap(param, paramMap);
 
             HttpClient httpClient = new HttpClient();
-            PostMethod postMethod = new PostMethod("http://218.93.33.59:84/zscx/Default.aspx");
+//            PostMethod postMethod = new PostMethod("http://218.93.33.59:84/zscx/Default.aspx");
+            PostMethod postMethod = new PostMethod(deployConfigInfo.getProxyService());
             postMethod.addParameter(paramKey_TBVipNo, UtileSmart.getStringFromMap(paramMap, paramKey_TBVipNo));
             postMethod.addParameter(paramKey_TBCertNo, UtileSmart.getStringFromMap(paramMap, paramKey_TBCertNo));
             postMethod.addParameter(paramKey_TBStartNo, "0");
