@@ -6,21 +6,18 @@
 package com.smart.smartexchanges.config;
 
 import com.smart.smartexchanges.entity.DeployConfigInfo;
-import java.io.File;
 import javax.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  *
  * @author Administrator
  */
 @Configuration
-@EnableWebMvc
 @EnableScheduling
 @PropertySource("classpath:service.properties")
 public class DeployConfig {
